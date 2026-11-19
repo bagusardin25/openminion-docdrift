@@ -1,0 +1,24 @@
+[project]
+name = "docdrift"
+version = "0.1.0"
+description = "An OpenMinion agent that checks whether OpenMinion's own docs still match the installed SDK and CLI."
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.12"
+dependencies = [
+    "openminion>=0.1.8,<0.2",
+    "pydantic>=2",
+]
+
+[project.scripts]
+docdrift = "docdrift.cli:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/docdrift"]
+
+[dependency-groups]
+dev = ["pytest>=8"]
