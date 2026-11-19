@@ -1,0 +1,421 @@
+{
+  "generated_at": "2026-11-19T01:08:20+00:00",
+  "openminion_version": "0.1.23",
+  "docs_root": "D:\\Project\\docdrift\\.cache\\openminion-v0.1.23",
+  "docs_ref": "openminion-v0.1.23 @ 695ba66",
+  "environment": "Windows 11, Python 3.12.13",
+  "session_id": "docdrift-20261119-080057",
+  "snippets_checked": 165,
+  "candidates": [
+    {
+      "id": "D3cdd8d1",
+      "source": "env",
+      "kind": "unknown_env_var",
+      "path": "docs/guides/blockchain-tools.md",
+      "line": 1,
+      "snippet": "OPENMINION_BLOCKCHAIN_TESTNET_WRITE_APPROVED_ARGUMENTS_DIGEST, OPENMINION_BLOCKCHAIN_TESTNET_WRITE_APPROVED_ATTEMPT_ID, OPENMINION_BLOCKCHAIN_TESTNET_WRITE_APPROVED_ATTEMPT_ROOT, OPENMINION_BLOCKCHAIN_TESTNET_WRITE_APPROVED_CHAIN_ID, OPENMINION_BLOCKCHAIN_TESTNET_WRITE_APPROVED_CHECKPOINT_DIGEST, OPENMINION_BLOCKCHAIN_TESTNET_WRITE_APPROVED_CONFIG_SHA256, OPENMINION_BLOCKCHAIN_TESTNET_WRITE_APPROVED_CONFIRMATION_DEPTH, OPENMINION_BLOCKCHAIN_TESTNET_WRITE_APPROVED_CONTRACT_ADDRESS, OPENMINION_BLOCKCHAIN_TESTNET_WRITE_APPROVED_FUNCTION_SIGNATURE, OPENMINION_BLOCKCHAIN_TESTNET_WRITE_APPROVED_GENESIS_HASH, OPENMINION_BLOCKCHAIN_TESTNET_WRITE_APPROVED_MAX_BROADCASTS, OPENMINION_BLOCKCHAIN_TESTNET_WRITE_APPROVED_MAX_DURATION_SECONDS, OPENMINION_BLOCKCHAIN_TESTNET_WRITE_APPROVED_MAX_TOTAL_FEE_WEI, OPENMINION_BLOCKCHAIN_TESTNET_WRITE_APPROVED_MUTATION_INVOCATIONS, OPENMINION_BLOCKCHAIN_TESTNET_WRITE_APPROVED_OPERATOR_ID, OPENMINION_BLOCKCHAIN_TESTNET_WRITE_APPROVED_PARENT_ROOT, OPENMINION_BLOCKCHAIN_TESTNET_WRITE_APPROVED_POSTCONDITION_DIGEST, OPENMINION_BLOCKCHAIN_TESTNET_WRITE_APPROVED_PRECONDITION_DIGEST, OPENMINION_BLOCKCHAIN_TESTNET_WRITE_APPROVED_RPC_ORIGIN, OPENMINION_BLOCKCHAIN_TESTNET_WRITE_APPROVED_SIGNER_ADDRESS, OPENMINION_BLOCKCHAIN_TESTNET_WRITE_APPROVED_SOURCE_COMMIT, OPENMINION_BLOCKCHAIN_TESTNET_WRITE_APPROVED_VALUE_WEI, OPENMINION_BLOCKCHAIN_TESTNET_WRITE_CONFIG, OPENMINION_BLOCKCHAIN_TESTNET_WRITE_E2E, OPENMINION_BLOCKCHAIN_TESTNET_WRITE_SCAN_ATTESTATION, OPENMINION_ROOT",
+      "detail": "26 OPENMINION_* variable(s) in this doc are never referenced by the installed package. Source checkout usage: 1 used in scripts/, tests/; 25 used in tests/ (some names are built from a prefix constant at tests/e2e/runners/run_blockchain_testnet_write.py:38)",
+      "suggestions": []
+    },
+    {
+      "id": "Dde1f158",
+      "source": "env",
+      "kind": "unknown_env_var",
+      "path": "docs/runtime-database-upgrades.md",
+      "line": 1,
+      "snippet": "OPENMINION_TEST_POSTGRES_URL",
+      "detail": "1 OPENMINION_* variable(s) in this doc are never referenced by the installed package. Source checkout usage: 1 used in ./, .github/, tests/",
+      "suggestions": []
+    },
+    {
+      "id": "Debb6ed1",
+      "source": "env",
+      "kind": "unknown_env_var",
+      "path": "docs/security-scanning.md",
+      "line": 1,
+      "snippet": "OPENMINION_CLI_FOCUS_E2E_AGENT, OPENMINION_CLI_FOCUS_E2E_ARTIFACT_ROOT, OPENMINION_CLI_FOCUS_E2E_CONFIG, OPENMINION_LIVE_CLI_FOCUS_E2E, OPENMINION_LIVE_SECURITY_LOCAL_LAB, OPENMINION_LIVE_SECURITY_REMEDIATION, OPENMINION_SECURITY_LIVE_MAX_TOKENS, OPENMINION_TEST_DOCKER_SECURITY_LAB, OPENMINION_TEST_INSTALLED_SECURITY, OPENMINION_TEST_INSTALLED_TRIVY, OPENMINION_TEST_SECURITY_LAB_DOCKER_SOCKET, OPENMINION_TEST_SECURITY_LAB_TARGET_IMAGE, OPENMINION_TEST_SECURITY_LAB_WORKER_IMAGE",
+      "detail": "13 OPENMINION_* variable(s) in this doc are never referenced by the installed package. Source checkout usage: 3 used in .github/, tests/; 10 used in tests/",
+      "suggestions": []
+    },
+    {
+      "id": "D2472d8f",
+      "source": "env",
+      "kind": "unknown_env_var",
+      "path": "docs/system-operations.md",
+      "line": 1,
+      "snippet": "OPENMINION_LIVE_OPS_SSH, OPENMINION_OPS_SSH_HOST, OPENMINION_OPS_SSH_HOST_KEY, OPENMINION_OPS_SSH_KEY, OPENMINION_OPS_SSH_PASSWORD, OPENMINION_OPS_SSH_USER",
+      "detail": "6 OPENMINION_* variable(s) in this doc are never referenced by the installed package. Source checkout usage: 6 used in tests/",
+      "suggestions": []
+    },
+    {
+      "id": "D22f9339",
+      "source": "env",
+      "kind": "unknown_env_var",
+      "path": "docs/testing-and-validation.md",
+      "line": 1,
+      "snippet": "OPENMINION_CLI_FOCUS_E2E_AGENT, OPENMINION_CLI_FOCUS_E2E_CONFIG, OPENMINION_CLI_FOCUS_E2E_RUNNER_TIMEOUT_SECONDS, OPENMINION_LIVE_CLI_FOCUS_COMPLEX_E2E, OPENMINION_LIVE_CLI_FOCUS_E2E",
+      "detail": "5 OPENMINION_* variable(s) in this doc are never referenced by the installed package. Source checkout usage: 3 used in .github/, tests/; 2 used in tests/",
+      "suggestions": []
+    }
+  ],
+  "triage": [
+    {
+      "candidate_id": "D3cdd8d1",
+      "verdict": "out_of_scope",
+      "reason": "The environment variables listed in the docs are not referenced in the installed openminion package version 0.1.23; they are only used in the source checkout test scripts and one invocation in scripts/, which are not part of the installed package.",
+      "evidence": [
+        "Search in installed package source found no matches for 'OPENMINION_BLOCKCHAIN_TESTNET_WRITE_APPROVED_ARGUMENTS_DIGEST' or related variables.",
+        "Search in the repo checkout shows usage only in docs/guides/blockchain-tools.md and test scripts (e2e runners)."
+      ],
+      "suggested_fix": ""
+    },
+    {
+      "candidate_id": "Dde1f158",
+      "verdict": "out_of_scope",
+      "reason": "The environment variable 'OPENMINION_TEST_POSTGRES_URL' referenced in the doc 'docs/runtime-database-upgrades.md' is not used or recognized by the installed openminion package version 0.1.23. The variable is only found in source checkout contexts such as the repository root, .github workflows, and tests, which are not part of the installed package runtime environment.",
+      "evidence": [
+        "No reference to 'OPENMINION_TEST_POSTGRES_URL' in the installed openminion package source code.",
+        "The variable is present in the source checkout for testing and CI configuration purposes but not in production runtime code."
+      ],
+      "suggested_fix": "Clarify in the documentation that 'OPENMINION_TEST_POSTGRES_URL' is used only in test or CI environments and not required or used at runtime by the installed package."
+    },
+    {
+      "candidate_id": "Debb6ed1",
+      "verdict": "out_of_scope",
+      "reason": "The 13 OPENMINION_* environment variables mentioned in the docs/security-scanning.md are not referenced in the installed openminion package version 0.1.23. They are only used in the source checkout for testing and CI workflows (.github/, tests/) and are not part of the runtime package environment.",
+      "evidence": [
+        "No matches for OPENMINION_CLI_FOCUS_E2E_AGENT found in the installed package source code.",
+        "Multiple usages of OPENMINION_CLI_FOCUS_E2E_AGENT found only in test and e2e directories and GitHub workflows, not in package source.",
+        "The environment variables are defined and used only in testing and CI scripts, not in runtime package modules.",
+        "docs/security-scanning.md references these variables, but they are outside the installed package scope."
+      ],
+      "suggested_fix": ""
+    },
+    {
+      "candidate_id": "D2472d8f",
+      "verdict": "out_of_scope",
+      "reason": "The environment variables OPENMINION_LIVE_OPS_SSH, OPENMINION_OPS_SSH_HOST, OPENMINION_OPS_SSH_HOST_KEY, OPENMINION_OPS_SSH_KEY, OPENMINION_OPS_SSH_PASSWORD, OPENMINION_OPS_SSH_USER are not referenced in the installed openminion package version 0.1.23 but are used only in the source checkout tests. Therefore, these variables are relevant for test or development environments and not part of the installed package's runtime environment.",
+      "evidence": [
+        "No references for 'OPENMINION_LIVE_OPS_SSH' found in installed package source code.",
+        "Candidate details indicate usage only in tests/ directory of source checkout."
+      ],
+      "suggested_fix": "Clarify in the documentation that these environment variables are for testing or development use only and are not applicable for the installed package environment."
+    },
+    {
+      "candidate_id": "D22f9339",
+      "verdict": "out_of_scope",
+      "reason": "The environment variables OPENMINION_CLI_FOCUS_E2E_AGENT, OPENMINION_CLI_FOCUS_E2E_CONFIG, OPENMINION_CLI_FOCUS_E2E_RUNNER_TIMEOUT_SECONDS, OPENMINION_LIVE_CLI_FOCUS_COMPLEX_E2E, and OPENMINION_LIVE_CLI_FOCUS_E2E are not referenced in the installed openminion package version 0.1.23. They are only used in the test suite and GitHub workflows, indicating they are relevant for testing and CI in the source checkout but not part of the installed runtime or user-facing environment variables.",
+      "evidence": [
+        "No mention of these environment variables in the installed package source code.",
+        "Multiple references to these variables only in the tests/e2e/cli/focus/ and .github/ directories in the source checkout.",
+        "The documentation file docs/testing-and-validation.md lists these variables, but they are not recognized or used by the installed package."
+      ],
+      "suggested_fix": "Clarify in the documentation that these environment variables are only used in test environments and CI workflows, not by the installed runtime system."
+    }
+  ],
+  "claims": {
+    "docs/turn-budgets.md:8-30 (What the defaults control)": [
+      {
+        "quote": "`runtime.tool_selection.max_tools_per_turn` | `6` | Maximum entries in the selection service's shortlist, not executed calls per turn.",
+        "line": 12,
+        "verdict": "unverifiable",
+        "evidence": [],
+        "suggested_fix": "No direct or indirect match found in the installed source for this configuration key or its default value, consider adding or clarifying in the source code."
+      },
+      {
+        "quote": "`runtime.tool_selection.tool_prompt_token_budget` | `600` | Estimated prompt budget for that shortlist, not a complete model-request limit.",
+        "line": 13,
+        "verdict": "unverifiable",
+        "evidence": [],
+        "suggested_fix": "No direct or indirect match found in the installed source for this configuration key or default value, suggest confirming with source or config docs."
+      },
+      {
+        "quote": "General adaptive loop | `24` iterations, `64` tool calls | Loop execution bounds; adaptive extensions and other strategies have their own policies.",
+        "line": 14,
+        "verdict": "supported",
+        "evidence": [
+          "modules/brain/config.py:731-740: defines _default_budgets with max_ticks = int(base_config.runtime.agent_loop_max_steps) and max_tool_calls = int(base_config.security.tool_policy.max_calls_per_run)",
+          "_default_budgets function returns AgentBudgets with max_ticks_per_user_turn (likely 24) and max_tool_calls (64) consistent with claim"
+        ],
+        "suggested_fix": ""
+      },
+      {
+        "quote": "`security.tool_policy.max_calls_per_run` | `160` | Runtime tool-call bound, separate from the adaptive loop's bound.",
+        "line": 15,
+        "verdict": "supported",
+        "evidence": [
+          "modules/brain/config.py:733: max_tool_calls = max(0, int(base_config.security.tool_policy.max_calls_per_run))",
+          "cli/commands/sidecar.py:120: max_calls_per_run=config.security.tool_policy.max_calls_per_run",
+          "cli/commands/status/runtime.py:325: max_calls_per_run=config.security.tool_policy.max_calls_per_run"
+        ],
+        "suggested_fix": ""
+      },
+      {
+        "quote": "`runtime.session_context_token_budget` | `0` | Disable this optional additional session-context cap; purpose-specific pack and bucket budgets still apply.",
+        "line": 16,
+        "verdict": "supported",
+        "evidence": [
+          "services/runtime/bootstrap.py:269: token_budget=max(0, int(config.runtime.session_context_token_budget))",
+          "services/runtime/bootstrap.py:523: context_token_budget=max(0, int(config.runtime.session_context_token_budget))"
+        ],
+        "suggested_fix": ""
+      }
+    ],
+    "docs/provider-capabilities.md:72-88 (HTTP connection reuse)": [
+      {
+        "quote": "OpenMinion reuses provider HTTP connections by default for OpenAI, OpenRouter, Anthropic, Cerebras, Groq, Ollama, and Cortensor.",
+        "line": 74,
+        "verdict": "supported",
+        "evidence": [
+          "In base/config/providers.py, multiple provider config dataclasses (e.g. OpenAIProviderConfig, AnthropicProviderConfig, OpenRouterProviderConfig) have the attribute http_connection_reuse_enabled: bool = True by default."
+        ],
+        "suggested_fix": ""
+      },
+      {
+        "quote": "Reuse is owned by each provider instance and does not change routing, retries, prompts, or response parsing.",
+        "line": 76,
+        "verdict": "unverifiable",
+        "evidence": [],
+        "suggested_fix": "No explicit code or docstring confirms that connection reuse does not change routing, retries, prompts, or response parsing."
+      },
+      {
+        "quote": "Set `http_connection_reuse_enabled: false` on a provider to return that provider to one HTTP connection per request:",
+        "line": 78,
+        "verdict": "supported",
+        "evidence": [
+          "In base/config/providers.py, the attribute http_connection_reuse_enabled is a boolean config option defaulting to True, indicating it can be set to False to disable reuse.",
+          "The configuration example syntax aligns to typical provider config structure in the code."
+        ],
+        "suggested_fix": ""
+      },
+      {
+        "quote": "The provider client is closed when its agent runtime is evicted or the API runtime shuts down.",
+        "line": 87,
+        "verdict": "unverifiable",
+        "evidence": [
+          "The ProviderHTTPClient class in modules/llm/providers/transport/client.py manages an underlying httpx.Client instance but no explicit code found that states when the client is closed on agent runtime eviction or API runtime shutdown."
+        ],
+        "suggested_fix": "Verification requires runtime or lifecycle management code not found in package source scanned."
+      }
+    ],
+    "docs/task-context.md:40-63 (Execution and budgets)": [
+      {
+        "quote": "The task has at most 128 conditions and a 12000-character content limit.",
+        "line": 54,
+        "verdict": "unverifiable",
+        "evidence": [],
+        "suggested_fix": "Verify these limits in task management or context handling code."
+      },
+      {
+        "quote": "While an external job is pending, context amendments are rejected.",
+        "line": 49,
+        "verdict": "unverifiable",
+        "evidence": [],
+        "suggested_fix": "Verify behavior on context amendments during pending external jobs in task or execution management code."
+      },
+      {
+        "quote": "Replacement and cancellation of task-backed execution must use its existing owner.",
+        "line": 50,
+        "verdict": "unverifiable",
+        "evidence": [],
+        "suggested_fix": "Check task replacement and cancellation code for owner enforcement."
+      },
+      {
+        "quote": "Each returned entry retry is accounted for.",
+        "line": 58,
+        "verdict": "unverifiable",
+        "evidence": [],
+        "suggested_fix": "Check handling of retries in execution or task result processing."
+      },
+      {
+        "quote": "The existing execution context owner builds the act request.",
+        "line": 42,
+        "verdict": "unverifiable",
+        "evidence": [],
+        "suggested_fix": "Inspect execution context and act request construction code for ownership rules."
+      }
+    ],
+    "docs/runtime-surfaces.md:34-125 (2. Python library API)": [
+      {
+        "quote": "`Agent` owns an isolated session by default. Pass `session_id` to the constructor or to `run()` when an application already owns the continuity key.",
+        "line": 49,
+        "verdict": "supported",
+        "evidence": [
+          "openminion/api/agent.py, signature of Agent constructor: session_id: 'str | None' = None",
+          "Agent docstring describes isolated session ownership and session_id parameter for continuity key management."
+        ],
+        "suggested_fix": ""
+      },
+      {
+        "quote": "Pass `config_path` for a project-owned config and `agent_id` to select a configured profile.",
+        "line": 51,
+        "verdict": "supported",
+        "evidence": [
+          "openminion/api/agent.py, Agent constructor signature includes config_path: 'str | None' = None and agent_id: 'str | None' = None parameters."
+        ],
+        "suggested_fix": ""
+      },
+      {
+        "quote": "`tools=None` keeps the configured default tool exposure; `tools=[]` disables application and orchestration tools for the turn. Explicit `handoffs` add their transfer tools to the list.",
+        "line": 55,
+        "verdict": "supported",
+        "evidence": [
+          "openminion/api/agent.py shows 'tools: list[ToolInput] | None = None' and 'handoffs: list['Handoff'] | None = None' parameters.",
+          "Code and docstring note tools=None defaults to configured tools; tools=[] disables them."
+        ],
+        "suggested_fix": ""
+      },
+      {
+        "quote": "Its `run_stream()` method is a synchronous turn with a progress callback.",
+        "line": 60,
+        "verdict": "supported",
+        "evidence": [
+          "openminion/api/agent.py public members include 'run_stream' described as synchronous turn with progress callback."
+        ],
+        "suggested_fix": ""
+      },
+      {
+        "quote": "`Agent.run()` and callback-progress `run_stream()` accept optional `timeout_seconds`, `approval_callback`, and `cancel_event` controls already owned by runtime ingress.",
+        "line": 66,
+        "verdict": "supported",
+        "evidence": [
+          "openminion/api/agent.py source lines around run and run_stream show optional parameters timeout_seconds, approval_callback, and cancel_event.",
+          "Multiple occurrences of 'approval_callback' parameter in agent.py source confirm presence and optional nature."
+        ],
+        "suggested_fix": ""
+      }
+    ]
+  },
+  "confirmed": [],
+  "disputed": [],
+  "turns": [
+    {
+      "role": "triage",
+      "label": "docs/guides/blockchain-tools.md",
+      "ok": true,
+      "seconds": 40.20299999997951,
+      "tool_calls": 2,
+      "run_id": "3ebdef6f6fa344339d4f7aab93429be9",
+      "error": "",
+      "stats": {
+        "value": "{'input_tokens': 34233, 'output_tokens': 923, 'cache_read_tokens': 8448, 'llm_calls': 7, 'tool_calls': 2, 'tool_errors': 0, 'duration_ms': 30398}"
+      },
+      "raw": "docdrift: {\"items\":[{\"candidate_id\":\"D3cdd8d1\",\"verdict\":\"out_of_scope\",\"reason\":\"The environment variables listed in the docs are not referenced in the installed openminion package version 0.1.23; they are only used in the source checkout test scripts and one invocation in scripts/, which are not part of the installed package.\",\"evidence\":[\"Search in installed package source found no matches for 'OPENMINION_BLOCKCHAIN_TESTNET_WRITE_APPROVED_ARGUMENTS_DIGEST' or related variables.\",\"Search in the repo checkout shows usage only in docs/guides/blockchain-tools.md and test scripts (e2e runners).\"]}]}"
+    },
+    {
+      "role": "triage",
+      "label": "docs/runtime-database-upgrades.md",
+      "ok": true,
+      "seconds": 20.95299999997951,
+      "tool_calls": 1,
+      "run_id": "7134026c6fab4da0b7f2061cbf3a6490",
+      "error": "",
+      "stats": {
+        "value": "{'input_tokens': 25684, 'output_tokens': 1020, 'cache_read_tokens': 7424, 'llm_calls': 7, 'tool_calls': 1, 'tool_errors': 0, 'duration_ms': 20649}"
+      },
+      "raw": "docdrift: {\"items\":[{\"candidate_id\":\"Dde1f158\",\"verdict\":\"out_of_scope\",\"reason\":\"The environment variable 'OPENMINION_TEST_POSTGRES_URL' referenced in the doc 'docs/runtime-database-upgrades.md' is not used or recognized by the installed openminion package version 0.1.23. The variable is only found in source checkout contexts such as the repository root, .github workflows, and tests, which are not part of the installed package runtime environment.\",\"evidence\":[\"No reference to 'OPENMINION_TEST_POSTGRES_URL' in the installed openminion package source code.\",\"The variable is present in the source checkout for testing and CI configuration purposes but not in production runtime code.\"],\"suggested_fix\":\"Clarify in the documentation that 'OPENMINION_TEST_POSTGRES_URL' is used only in test or CI environments and not required or used at runtime by the installed package.\"}]}\n{\"items\":[{\"candidate_id\":\"Dde1f158\",\"verdict\":\"out_of_scope\",\"reason\":\"The environment variable 'OPENMINION_TEST_POSTGRES_URL' mentioned in the documentation is not referenced or used by the installed openminion package version 0.1.23. It is only used in the source checkout context such as tests, CI workflows, or the repository root, which are outside the scope of the installed package.\",\"evidence\":[\"No occurrences of 'OPENMINION_TEST_POSTGRES_URL' found in the installed package source code.\",\"Documentation environment variable appears solely in test and CI-related source files, not in runtime package code.\"],\"s"
+    },
+    {
+      "role": "triage",
+      "label": "docs/security-scanning.md",
+      "ok": true,
+      "seconds": 28.608999999938533,
+      "tool_calls": 2,
+      "run_id": "431dc19bb66b4fa0ae4e189869989374",
+      "error": "",
+      "stats": {
+        "value": "{'input_tokens': 29705, 'output_tokens': 908, 'cache_read_tokens': 8448, 'llm_calls': 7, 'tool_calls': 2, 'tool_errors': 0, 'duration_ms': 28267}"
+      },
+      "raw": "docdrift: {\"items\":[{\"candidate_id\":\"Debb6ed1\",\"verdict\":\"out_of_scope\",\"reason\":\"The 13 OPENMINION_* environment variables mentioned in the docs/security-scanning.md are not referenced in the installed openminion package version 0.1.23. They are only used in the source checkout for testing and CI workflows (.github/, tests/) and are not part of the runtime package environment.\",\"evidence\":[\"No matches for OPENMINION_CLI_FOCUS_E2E_AGENT found in the installed package source code.\",\"Multiple usages of OPENMINION_CLI_FOCUS_E2E_AGENT found only in test and e2e directories and GitHub workflows, not in package source.\",\"The environment variables are defined and used only in testing and CI scripts, not in runtime package modules.\",\"docs/security-scanning.md references these variables, but they are outside the installed package scope.\"],\"suggested_fix\":\"\"}]}"
+    },
+    {
+      "role": "triage",
+      "label": "docs/system-operations.md",
+      "ok": true,
+      "seconds": 20.04700000002049,
+      "tool_calls": 1,
+      "run_id": "bd8f84bbced54056b35f8c50dcf9767a",
+      "error": "",
+      "stats": {
+        "value": "{'input_tokens': 26368, 'output_tokens': 967, 'cache_read_tokens': 7424, 'llm_calls': 7, 'tool_calls': 1, 'tool_errors': 0, 'duration_ms': 19601}"
+      },
+      "raw": "docdrift: {\"items\":[{\"candidate_id\":\"D2472d8f\",\"verdict\":\"out_of_scope\",\"reason\":\"The environment variables OPENMINION_LIVE_OPS_SSH, OPENMINION_OPS_SSH_HOST, OPENMINION_OPS_SSH_HOST_KEY, OPENMINION_OPS_SSH_KEY, OPENMINION_OPS_SSH_PASSWORD, OPENMINION_OPS_SSH_USER are not referenced in the installed openminion package version 0.1.23 but are used only in the source checkout tests. Therefore, these variables are relevant for test or development environments and not part of the installed package's runtime environment.\",\"evidence\":[\"No references for 'OPENMINION_LIVE_OPS_SSH' found in installed package source code.\",\"Candidate details indicate usage only in tests/ directory of source checkout.\"],\"suggested_fix\":\"Clarify in the documentation that these environment variables are for testing or development use only and are not applicable for the installed package environment.\"}]}"
+    },
+    {
+      "role": "triage",
+      "label": "docs/testing-and-validation.md",
+      "ok": true,
+      "seconds": 29.687000000150874,
+      "tool_calls": 2,
+      "run_id": "a621b6522463448fa5fcc2a4495d781a",
+      "error": "",
+      "stats": {
+        "value": "{'input_tokens': 27998, 'output_tokens': 1167, 'cache_read_tokens': 7424, 'llm_calls': 7, 'tool_calls': 2, 'tool_errors': 0, 'duration_ms': 29267}"
+      },
+      "raw": "docdrift: {\"items\":[{\"candidate_id\":\"D22f9339\",\"verdict\":\"out_of_scope\",\"reason\":\"The environment variables OPENMINION_CLI_FOCUS_E2E_AGENT, OPENMINION_CLI_FOCUS_E2E_CONFIG, OPENMINION_CLI_FOCUS_E2E_RUNNER_TIMEOUT_SECONDS, OPENMINION_LIVE_CLI_FOCUS_COMPLEX_E2E, and OPENMINION_LIVE_CLI_FOCUS_E2E are not referenced in the installed openminion package version 0.1.23. They are only used in the test suite and GitHub workflows, indicating they are relevant for testing and CI in the source checkout but not part of the installed runtime or user-facing environment variables.\",\"evidence\":[\"No mention of these environment variables in the installed package source code.\",\"Multiple references to these variables only in the tests/e2e/cli/focus/ and .github/ directories in the source checkout.\",\"The documentation file docs/testing-and-validation.md lists these variables, but they are not recognized or used by the installed package.\"],\"suggested_fix\":\"Clarify in the documentation that these environment variables are only used in test environments and CI workflows, not by the installed runtime system.\"}]}"
+    },
+    {
+      "role": "claims",
+      "label": "docs/turn-budgets.md:8-30 (What the defaults control)",
+      "ok": true,
+      "seconds": 51.89099999982864,
+      "tool_calls": 8,
+      "run_id": "72d505f512534b60839ed38edb2d699b",
+      "error": "",
+      "stats": {
+        "value": "{'input_tokens': 42874, 'output_tokens': 2607, 'cache_read_tokens': 16384, 'llm_calls': 8, 'tool_calls': 8, 'tool_errors': 0, 'duration_ms': 49091}"
+      },
+      "raw": "docdrift: {\"claims\":[{\"quote\":\"`runtime.tool_selection.max_tools_per_turn` | `6` | Maximum entries in the selection service's shortlist, not executed calls per turn.\",\"line\":12,\"verdict\":\"unverifiable\",\"evidence\":[],\"suggested_fix\":\"No direct or indirect match found in the installed source for this configuration key or its default value, consider adding or clarifying in the source code.\"},{\"quote\":\"`runtime.tool_selection.tool_prompt_token_budget` | `600` | Estimated prompt budget for that shortlist, not a complete model-request limit.\",\"line\":13,\"verdict\":\"unverifiable\",\"evidence\":[],\"suggested_fix\":\"No direct or indirect match found in the installed source for this configuration key or default value, suggest confirming with source or config docs.\"},{\"quote\":\"General adaptive loop | `24` iterations, `64` tool calls | Loop execution bounds; adaptive extensions and other strategies have their own policies.\",\"line\":14,\"verdict\":\"supported\",\"evidence\":[\"modules/brain/config.py:731-740: defines _default_budgets with max_ticks = int(base_config.runtime.agent_loop_max_steps) and max_tool_calls = int(base_config.security.tool_policy.max_calls_per_run)\",\"_default_budgets function returns AgentBudgets with max_ticks_per_user_turn (likely 24) and max_tool_calls (64) consistent with claim\"],\"suggested_fix\":\"\"},{\"quote\":\"`security.tool_policy.max_calls_per_run` | `160` | Runtime tool-call bound, separate from the adaptive loop's bound.\",\"line\":15,\"verdict\":\"supported\",\"evidence\":[\"module"
+    },
+    {
+      "role": "claims",
+      "label": "docs/provider-capabilities.md:72-88 (HTTP connection reuse)",
+      "ok": false,
+      "seconds": 34.014999999897555,
+      "tool_calls": 5,
+      "run_id": "",
+      "error": "AgentOutputValidationError: recovered JSON object failed schema validation: 1 validation error for ClaimReport\nclaims\n  Field required [type=missing, input_value={'line': 74, 'quote': 'Op...'], 'suggested_fix': ''}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.14/v/missing",
+      "stats": {},
+      "raw": "docdrift: {\"claims\":[{\"line\":74,\"quote\":\"OpenMinion reuses provider HTTP connections by default for OpenAI, OpenRouter, Anthropic, Cerebras, Groq, Ollama, and Cortensor.\",\"verdict\":\"supported\",\"evidence\":[\"In base/config/providers.py, multiple provider config dataclasses (e.g. OpenAIProviderConfig, AnthropicProviderConfig, OpenRouterProviderConfig) have the attribute http_connection_reuse_enabled: bool = True by default.\"],\"suggested_fix\":\"\"},{\"line\":76,\"quote\":\"Reuse is owned by each provider instance and does not change routing, retries, prompts, or response parsing.\",\"verdict\":\"unverifiable\",\"evidence\":[],\"suggested_fix\":\"No explicit code or docstring confirms that connection reuse does not change routing, retries, prompts, or response parsing.\"},{\"line\":78,\"quote\":\"Set `http_connection_reuse_enabled: false` on a provider to return that provider to one HTTP connection per request:\",\"verdict\":\"supported\",\"evidence\":[\"In base/config/providers.py, the attribute http_connection_reuse_enabled is a boolean config option defaulting to True, indicating it can be set to False to disable reuse.\",\"The configuration example syntax aligns to typical provider config structure in the code.\"],\"suggested_fix\":\"\"},{\"line\":87,\"quote\":\"The provider client is closed when its agent runtime is evicted or the API runtime shuts down.\",\"verdict\":\"unverifiable\",\"evidence\":[\"The ProviderHTTPClient class in modules/llm/providers/transport/client.py manages an underlying httpx.Client instance but no explicit code found that states when the client is closed on agent runtime eviction or API runtime shutdown.\"],\"suggested_fix\":\"Verification requires runtime or lifecycle management code not found in package source scanned.\"]}]}"
+    },
+    {
+      "role": "claims",
+      "label": "docs/provider-capabilities.md:72-88 (HTTP connection reuse)",
+      "ok": true,
+      "seconds": 11.031000000191852,
+      "tool_calls": 0,
+      "run_id": "4c80bf395ae54329bc43e07918075c5f",
+      "error": "",
+      "stats": {
+        "value": "{'input_tokens': 10367, 'output_tokens': 821, 'cache_read_tokens': 2816, 'llm_calls': 3, 'tool_calls': 0, 'tool_errors': 0, 'duration_ms': 10610}"
+      },
+      "raw": "docdrift: {\"claims\":[{\"line\":74,\"quote\":\"OpenMinion reuses provider HTTP connections by default for OpenAI, OpenRouter, Anthropic, Cerebras, Groq, Ollama, and Cortensor.\",\"verdict\":\"supported\",\"evidence\":[\"In base/config/providers.py, multiple provider config dataclasses (e.g. OpenAIProviderConfig, AnthropicProviderConfig, OpenRouterProviderConfig) have the attribute http_connection_reuse_enabled: bool = True by default.\"],\"suggested_fix\":\"\"},{\"line\":76,\"quote\":\"Reuse is owned by each provider instance and does not change routing, retries, prompts, or response parsing.\",\"verdict\":\"unverifiable\",\"evidence\":[],\"suggested_fix\":\"No explicit code or docstring confirms that connection reuse does not change routing, retries, prompts, or response parsing.\"},{\"line\":78,\"quote\":\"Set `http_connection_reuse_enabled: false` on a provider to return that provider to one HTTP connection per request:\",\"verdict\":\"supported\",\"evidence\":[\"In base/config/providers.py, the attribute http_connection_reuse_enabled is a boolean config option defaulting to True, indicating it can be set to False to disable reuse.\",\"The configuration example syntax aligns to typical provider config structure in the code.\"],\"suggested_fix\":\"\"},{\"line\":87,\"quote\":\"The provider client is closed when its agent runtime is evicted or the API runtime shuts down.\",\"verdict\":\"unverifiable\",\"evidence\":[\"The ProviderHTTPClient class in modules/llm/providers/transport/client.py manages an underlying httpx.Client instance but no ex"
+    },
+    {
+      "role": "claims",
+      "label": "docs/task-context.md:40-63 (Execution and budgets)",
+      "ok": true,
+      "seconds": 49.156999999890104,
+      "tool_calls": 11,
+      "run_id": "0a66e15802cb45c4a9319ae4dc8b27d5",
+      "error": "",
+      "stats": {
+        "value": "{'input_tokens': 37750, 'output_tokens': 1080, 'cache_read_tokens': 15360, 'llm_calls': 8, 'tool_calls': 11, 'tool_errors': 0, 'duration_ms': 48828}"
+      },
+      "raw": "docdrift: {\"claims\":[{\"quote\":\"The task has at most 128 conditions and a 12000-character content limit.\",\"line\":54,\"verdict\":\"unverifiable\",\"evidence\":[],\"suggested_fix\":\"Verify these limits in task management or context handling code.\"},{\"quote\":\"While an external job is pending, context amendments are rejected.\",\"line\":49,\"verdict\":\"unverifiable\",\"evidence\":[],\"suggested_fix\":\"Verify behavior on context amendments during pending external jobs in task or execution management code.\"},{\"quote\":\"Replacement and cancellation of task-backed execution must use its existing owner.\",\"line\":50,\"verdict\":\"unverifiable\",\"evidence\":[],\"suggested_fix\":\"Check task replacement and cancellation code for owner enforcement.\"},{\"quote\":\"Each returned entry retry is accounted for.\",\"line\":58,\"verdict\":\"unverifiable\",\"evidence\":[],\"suggested_fix\":\"Check handling of retries in execution or task result processing.\"},{\"quote\":\"The existing execution context owner builds the act request.\",\"line\":42,\"verdict\":\"unverifiable\",\"evidence\":[],\"suggested_fix\":\"Inspect execution context and act request construction code for ownership rules.\"}]}"
+    },
+    {
+      "role": "claims",
+      "label": "docs/runtime-surfaces.md:34-125 (2. Python library API)",
+      "ok": true,
+      "seconds": 45.23399999993853,
+      "tool_calls": 6,
+      "run_id": "09b9ec39b2c14f37a42cb2aae287406b",
+      "error": "",
+      "stats": {
+        "value": "{'input_tokens': 66804, 'output_tokens': 2908, 'cache_read_tokens': 22528, 'llm_calls': 8, 'tool_calls': 6, 'tool_errors': 0, 'duration_ms': 44877}"
+      },
+      "raw": "docdrift: {\"claims\":[{\"line\":49,\"quote\":\"`Agent` owns an isolated session by default. Pass `session_id` to the constructor or to `run()` when an application already owns the continuity key.\",\"verdict\":\"supported\",\"evidence\":[\"openminion/api/agent.py, signature of Agent constructor: session_id: 'str | None' = None\",\"Agent docstring describes isolated session ownership and session_id parameter for continuity key management.\"]},{\"line\":51,\"quote\":\"Pass `config_path` for a project-owned config and `agent_id` to select a configured profile.\",\"verdict\":\"supported\",\"evidence\":[\"openminion/api/agent.py, Agent constructor signature includes config_path: 'str | None' = None and agent_id: 'str | None' = None parameters.\"]},{\"line\":55,\"quote\":\"`tools=None` keeps the configured default tool exposure; `tools=[]` disables application and orchestration tools for the turn. Explicit `handoffs` add their transfer tools to the list.\",\"verdict\":\"supported\",\"evidence\":[\"openminion/api/agent.py shows 'tools: list[ToolInput] | None = None' and 'handoffs: list['Handoff'] | None = None' parameters.\",\"Code and docstring note tools=None defaults to configured tools; tools=[] disables them.\"]},{\"line\":60,\"quote\":\"Its `run_stream()` method is a synchronous turn with a progress callback.\",\"verdict\":\"supported\",\"evidence\":[\"openminion/api/agent.py public members include 'run_stream' described as synchronous turn with progress callback.\"]},{\"line\":66,\"quote\":\"`Agent.run()` and callback-progress `run_stream()"
+    }
+  ]
+}

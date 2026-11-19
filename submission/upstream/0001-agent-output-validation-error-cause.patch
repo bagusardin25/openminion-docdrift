@@ -1,0 +1,71 @@
+diff --git a/src/openminion/api/agent.py b/src/openminion/api/agent.py
+index 0b895d8..b9e3682 100644
+--- a/src/openminion/api/agent.py
++++ b/src/openminion/api/agent.py
+@@ -259,22 +259,25 @@ class Agent(Generic[InputT, OutputT]):
+             try:
+                 return cast(OutputT, self.output_type.model_validate_json(text))
+             except ValidationError as exc:
+-                # Some providers wrap JSON answers in prose; recover the first
+-                # balanced object before failing validation.
+-                stripped = _extract_json_object(text)
+-                if stripped:
+-                    try:
+-                        return cast(
+-                            OutputT,
+-                            self.output_type.model_validate_json(stripped),
+-                        )
+-                    except ValidationError:
+-                        pass
+-                raise AgentOutputValidationError(
+-                    f"Reply did not validate against {self.output_type.__name__}: {exc}",
+-                    raw_text=text,
+-                    validation_error=exc,
+-                ) from exc
++                error = exc
++            # Some providers wrap JSON answers in prose; recover the first
++            # balanced object before failing validation. When an object is
++            # recovered, its validation error is the one that explains the
++            # failure, so report that instead of the raw-text JSON error.
++            stripped = _extract_json_object(text)
++            if stripped:
++                try:
++                    return cast(
++                        OutputT,
++                        self.output_type.model_validate_json(stripped),
++                    )
++                except ValidationError as exc:
++                    error = exc
++            raise AgentOutputValidationError(
++                f"Reply did not validate against {self.output_type.__name__}: {error}",
++                raw_text=text,
++                validation_error=error,
++            ) from error
+         try:
+             return self.output_type(text)  # type: ignore[call-arg]
+         except Exception as exc:  # noqa: BLE001
+diff --git a/tests/api/test_agent.py b/tests/api/test_agent.py
+index cd175d5..f4e5ab8 100644
+--- a/tests/api/test_agent.py
++++ b/tests/api/test_agent.py
+@@ -318,6 +318,20 @@ def test_agent_extracts_json_when_string_contains_a_closing_brace() -> None:
+     assert result.output.summary == "keep } as text"
+ 
+ 
++def test_agent_reports_schema_error_of_recovered_json_object() -> None:
++    # The runtime prefixes replies with "<agent>: ", so the raw text is never
++    # valid JSON. The recovered object is missing "summary"; that is the error
++    # callers need, not "Invalid JSON at line 1 column 1".
++    reply = 'agent: {"sentiment": "neutral"}'
++    agent = Agent(output_type=_ReplyModel, runtime=_FakeRuntime(reply))
++    with pytest.raises(AgentOutputValidationError) as exc_info:
++        agent.run("evaluate")
++    errors = exc_info.value.validation_error.errors()
++    assert [(e["type"], e["loc"]) for e in errors] == [("missing", ("summary",))]
++    assert "json_invalid" not in str(exc_info.value)
++    assert exc_info.value.raw_text == reply
++
++
+ def test_agent_raises_validation_error_on_unparseable_reply() -> None:
+     runtime = _FakeRuntime("not json at all")
+     agent = Agent(output_type=_ReplyModel, runtime=runtime)

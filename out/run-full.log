@@ -1,0 +1,18 @@
+[1/5] scan: openminion 0.1.23 vs openminion-v0.1.23 @ 695ba66
+      165 snippets, 5 candidate(s)
+[2/5] triage: agent classifies each candidate with read-only tools
+      D3cdd8d1: out_of_scope
+      Dde1f158: out_of_scope
+      Debb6ed1: out_of_scope
+      D2472d8f: out_of_scope
+      D22f9339: out_of_scope
+[3/5] claims: verifying up to 5 claims in 4 section(s)
+      docs/turn-budgets.md:8-30 (What the defaults control): {'supported': 4, 'contradicted': 0, 'unverifiable': 1}
+      docs/provider-capabilities.md:72-88 (HTTP connection reuse): {'supported': 2, 'contradicted': 0, 'unverifiable': 2}
+      docs/getting-started.md:109-161 (Persistent action-policy defaults): {'supported': 5, 'contradicted': 0, 'unverifiable': 0}
+      docs/runtime-surfaces.md:34-125 (2. Python library API): {'supported': 5, 'contradicted': 0, 'unverifiable': 0}
+[4/5] review: subagent re-checks 0 negative verdict(s)
+[5/5] issues: nothing to draft
+
+report: D:/Project/docdrift/out/report.md  (0 confirmed, 0 disputed, 0 failed turn(s))
+exit=0
