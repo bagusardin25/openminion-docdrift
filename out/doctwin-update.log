@@ -1,0 +1,52 @@
+DocTwin sync: openminion-v0.1.23 @ 695ba66 -> D:\Project\docdrift\translations\id (id)
+  README.md: 14 sections, 2 to translate (3 parts), 0 to re-review, 12 reused
+    README.md [quick-start::p1, quick-start::p2, what-openminion-does-not-provide]: 3/3 accepted, 0 need review, 0 unreviewed, 0 kept in English
+  docs/getting-started.md: 11 sections, 1 to translate (4 parts), 0 to re-review, 10 reused
+    docs/getting-started.md [start-a-local-human-plus-agents-room::p1]: 1/1 accepted, 0 need review, 0 unreviewed, 0 kept in English
+    docs/getting-started.md [start-a-local-human-plus-agents-room::p2, start-a-local-human-plus-agents-room::p3]: 2/2 accepted, 0 need review, 0 unreviewed, 0 kept in English
+    docs/getting-started.md [start-a-local-human-plus-agents-room::p4]: 1/1 accepted, 0 need review, 0 unreviewed, 0 kept in English
+  docs/runtime-surfaces.md: 10 sections, 2 to translate (3 parts), 0 to re-review, 8 reused
+    docs/runtime-surfaces.md [2-python-library-api::p1, 2-python-library-api::p2, not-blanket-public]: 3/3 accepted, 0 need review, 0 unreviewed, 0 kept in English
+  docs/turn-budgets.md: 6 sections, 2 to translate, 0 to re-review, 4 reused
+    docs/turn-budgets.md [automatic-fact-extraction]: 1/1 accepted, 0 need review, 0 unreviewed, 0 kept in English
+    docs/turn-budgets.md [maintainer-assessment-for-issue-497]: 1/1 accepted, 0 need review, 0 unreviewed, 0 kept in English
+  docs/provider-capabilities.md: 5 sections, 0 to translate, 0 to re-review, 5 reused
+  docs/configuration-compatibility.md: 5 sections, 5 to translate, 0 to re-review, 0 reused
+    docs/configuration-compatibility.md [configuration-compatibility-notes, selfimprovement-maxappliednotes, selfimprovement-mintokenoverlap, measured-behaviour-these-fields-do-not-change, related]: 5/5 accepted, 0 need review, 0 unreviewed, 0 kept in English
+  examples/sdk/README.md: 3 sections, 2 to translate, 0 to re-review, 1 reused
+    examples/sdk/README.md [example-map, handoff-approval]: 2/2 accepted, 0 need review, 0 unreviewed, 0 kept in English
+  glossary: 7 proposed term(s); each addition needs your approval
+
+    OpenMinion asks to run add_glossary_term: 'Bare' -> 'sederhana'
+    reason: Untuk mengartikan perintah 'bare command' sebagai perintah dasar atau sederhana dalam konteks teknologi
+    denied (--terms no)
+
+    OpenMinion asks to run add_glossary_term: 'read-only' -> 'hanya baca'
+    reason: Istilah read-only digunakan sebagai 'hanya baca' sesuai konteks akses sistem file
+    denied (--terms no)
+
+    OpenMinion asks to run add_glossary_term: 'preset' -> 'preset'
+    reason: Istilah ini tidak memiliki padanan khusus dalam glosarium, sehingga lebih baik menggunakan istilah aslinya agar tidak membingungkan konteks teknis.
+    denied (--terms no)
+
+    OpenMinion asks to run add_glossary_term: 'researcher' -> 'researcher'
+    reason: Term 'researcher' not found in glossary and contextually it refers to a specific role or identity in a technical setting, so the English term is preserved.
+    denied (--terms no)
+
+    OpenMinion asks to run add_glossary_term: 'risk metadata' -> 'metadata risiko'
+    reason: Translated based on common Indonesian technical terminology to describe metadata related to risk.
+    denied (--terms no)
+
+    OpenMinion asks to run add_glossary_term: 'operator prompt' -> 'prompt operator'
+    reason: Translated by combining the glossary term 'prompt' with 'operator' to fit the context.
+    denied (--terms no)
+
+    OpenMinion asks to run add_glossary_term: 'thread' -> 'thread'
+    reason: Not found in glossary and commonly used as a technical term in Indonesian IT contexts, so it is preserved in English.
+    denied (--terms no)
+  validating commands and code in the translated files with DocDrift ...
+
+done: 14 translated, 40 reused, 0 need review, 0 not reviewed, 0 kept in English
+report:  D:/Project/docdrift/translations/id/.doctwin/reports/20261119-145805/report.md
+preview: D:/Project/docdrift/translations/id/.doctwin/preview.html
+exit=0

@@ -8,7 +8,7 @@ from dataclasses import asdict, dataclass
 from pathlib import Path
 
 from . import cli_check, env_check, py_check
-from .extract import Snippet, collect, doc_files
+from .extract import Profile, Snippet, collect, detect_profile, doc_files
 
 
 @dataclass
@@ -32,8 +32,9 @@ def _cid(*parts: object) -> str:
     return "D" + hashlib.sha1("|".join(map(str, parts)).encode()).hexdigest()[:7]
 
 
-def scan(root: Path) -> tuple[list[Snippet], list[Candidate]]:
-    snippets = collect(root)
+def scan(root: Path, profile: Profile | None = None, env: bool = True) -> tuple[list[Snippet], list[Candidate]]:
+    profile = profile or detect_profile(root)
+    snippets = collect(root, profile)
     candidates: list[Candidate] = []
     for c in cli_check.check_snippets([s for s in snippets if s.kind == "shell"]):
         candidates.append(
@@ -64,7 +65,8 @@ def scan(root: Path) -> tuple[list[Snippet], list[Candidate]]:
                     suggestions=p.suggestions,
                 )
             )
-    for path, usages in env_check.unknown_env_vars(root, doc_files(root)).items():
+    env_findings = env_check.unknown_env_vars(root, doc_files(root, profile)) if env else {}
+    for path, usages in env_findings.items():
         names = [u.name for u in usages]
         candidates.append(
             Candidate(
@@ -88,11 +90,19 @@ def scan(root: Path) -> tuple[list[Snippet], list[Candidate]]:
     return snippets, list(unique.values())
 
 
-def write_evidence(path: Path, root: Path, snippets: list[Snippet], candidates: list[Candidate], version: str) -> None:
+def write_evidence(
+    path: Path,
+    root: Path,
+    snippets: list[Snippet],
+    candidates: list[Candidate],
+    version: str,
+    extra: dict | None = None,
+) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     payload = {
         "openminion_version": version,
         "docs_root": str(root),
+        **(extra or {}),
         "snippets_checked": len(snippets),
         "python_snippets": sum(1 for s in snippets if s.kind == "python"),
         "shell_snippets": sum(1 for s in snippets if s.kind == "shell"),

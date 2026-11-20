@@ -1,0 +1,2915 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>body{margin:0}</style>
+<title>DocTwin Bahasa Indonesia</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a two-column reading desk (English left, translation right) under a
+   compact status ledger; one fold per file, changed files open first. */
+:root{
+  --paper:#f5f6f8;--surface:#ffffff;--ink:#16202c;--muted:#5a6676;--rule:#dfe3e9;--accent:#1c5bbf;--code-bg:#edf0f4;
+  --ok:#1b7a4c;--warn:#9d5800;--bad:#b3261e;
+  --font-ui:"Plus Jakarta Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --font-mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#0e131a;--surface:#151c25;--ink:#e5eaf1;--muted:#97a2b2;--rule:#253040;--accent:#80aaff;--code-bg:#1c2430;
+  --ok:#4cc38a;--warn:#f0a54a;--bad:#ff7b72;color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#0e131a;--surface:#151c25;--ink:#e5eaf1;--muted:#97a2b2;--rule:#253040;--accent:#80aaff;--code-bg:#1c2430;
+  --ok:#4cc38a;--warn:#f0a54a;--bad:#ff7b72;color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font:15px/1.6 var(--font-ui)}
+.wrap{max-width:1320px;margin:0 auto;padding-block:28px 56px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.eyebrow{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:600}
+h1{font-size:clamp(24px,3.2vw,34px);line-height:1.15;margin:6px 0 6px;font-weight:700;text-wrap:balance}
+.sub{color:var(--muted);font-size:14px}.sub code{font-family:var(--font-mono);font-size:13px}
+.ledger{display:flex;flex-wrap:wrap;gap:10px 28px;margin:20px 0 8px;padding:14px 0;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+.ledger div{display:flex;align-items:baseline;gap:8px}.ledger b{font-size:22px;font-variant-numeric:tabular-nums}
+.ledger span{color:var(--muted);font-size:13px}
+.legend{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0 20px}
+.chip{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;padding:2px 9px;border-radius:999px;border:1px solid currentColor;white-space:nowrap}
+.chip::before{content:"";width:7px;height:7px;border-radius:50%;background:currentColor}
+.s-new{color:var(--ok)}.s-reused{color:var(--muted)}.s-review{color:var(--warn)}.s-english{color:var(--bad)}
+details{background:var(--surface);border:1px solid var(--rule);border-radius:10px;margin:0 0 14px;overflow:hidden}
+summary{cursor:pointer;padding:12px 16px;display:flex;flex-wrap:wrap;align-items:center;gap:10px;font-weight:600}
+summary:focus-visible{outline:2px solid var(--accent);outline-offset:-2px}
+summary .path{font-family:var(--font-mono);font-size:14px;font-weight:500}
+.cols,.row{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+.cols{border-top:1px solid var(--rule);font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.cols span{padding:8px 16px}.cols span+span{border-left:1px solid var(--rule)}
+.row{border-top:1px solid var(--rule)}.row>div{min-width:0;padding:6px 16px 10px;overflow-wrap:anywhere}
+.row>div+div{border-left:3px solid var(--state,var(--rule))}
+.row .chip{margin:8px 0 2px}
+.md h1,.md h2,.md h3,.md h4{line-height:1.25;margin:.8em 0 .4em}.md h1{font-size:22px}.md h2{font-size:19px}.md h3{font-size:16px}
+.md p,.md li{max-width:68ch}.md a{color:var(--accent)}
+.md code{font-family:var(--font-mono);font-size:.86em;background:var(--code-bg);padding:1px 5px;border-radius:5px}
+.md pre{background:var(--code-bg);padding:10px 12px;border-radius:8px;overflow-x:auto}.md pre code{padding:0;background:none}
+.md table{border-collapse:collapse;display:block;overflow-x:auto;max-width:100%}.md td,.md th{border:1px solid var(--rule);padding:4px 8px;text-align:left}
+.md img{max-width:100%;height:auto}
+@media (max-width:760px){.cols{display:none}.row{grid-template-columns:minmax(0,1fr)}.row>div+div{border-left:0;border-top:1px dashed var(--rule)}
+  .row>div:first-child::before{content:"English";display:block;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);padding-top:8px}}
+@media (prefers-reduced-motion: reduce){*{scroll-behavior:auto}}
+</style>
+<div class="wrap">
+  <div class="eyebrow">DocTwin sync preview</div>
+  <h1>English → Bahasa Indonesia</h1>
+  <div class="sub">Source <code>openminion-v0.1.23 @ 695ba66</code> · generated 2026-11-19 07:58:05 UTC · code blocks and links are byte-identical to the source. Every section, side by side.</div>
+  <div class="ledger"><div><b>14</b><span>sections translated</span></div><div><b>40</b><span>reused without a model call</span></div><div><b>0</b><span>need a human</span></div><div><b>0</b><span>kept in English</span></div></div>
+  <div class="legend"><span class="chip s-new">translated in this sync</span><span class="chip s-reused">reused from the ledger</span><span class="chip s-review">needs a human</span><span class="chip s-english">kept in English</span></div>
+  <details open><summary><span class="path">README.md</span><span class="chip s-new">2 changed</span></summary><div class="cols"><span>English source</span><span>Bahasa Indonesia</span></div><div class="row"><div><div class="md" data-md>&lt;p align=&quot;center&quot;&gt;
+  &lt;img src=&quot;https://www.openminion.com/brand/openminion-logo-transparent-v1.png&quot; alt=&quot;OpenMinion logo&quot; width=&quot;128&quot; /&gt;
+&lt;/p&gt;
+
+&lt;h1 align=&quot;center&quot;&gt;OpenMinion&lt;/h1&gt;
+
+&lt;p align=&quot;center&quot;&gt;
+  &lt;strong&gt;Python-first, local-first runtime for tool-using AI agents.&lt;/strong&gt;
+&lt;/p&gt;
+
+&lt;p align=&quot;center&quot;&gt;
+  &lt;a href=&quot;https://github.com/OpenMinion/openminion&quot;&gt;GitHub&lt;/a&gt;
+  · &lt;a href=&quot;https://pypi.org/project/openminion/&quot;&gt;PyPI&lt;/a&gt;
+  · &lt;a href=&quot;https://www.openminion.com&quot;&gt;Website&lt;/a&gt;
+  · &lt;a href=&quot;https://www.openminion.com/docs/&quot;&gt;Docs&lt;/a&gt;
+  · &lt;a href=&quot;https://x.com/OpenMinion&quot;&gt;X&lt;/a&gt;
+&lt;/p&gt;
+
+&lt;p align=&quot;center&quot;&gt;
+  &lt;a href=&quot;https://pypi.org/project/openminion/&quot;&gt;&lt;img alt=&quot;PyPI&quot; src=&quot;https://img.shields.io/pypi/v/openminion?cacheSeconds=300&quot;&gt;&lt;/a&gt;
+  &lt;a href=&quot;https://pypi.org/project/openminion/&quot;&gt;&lt;img alt=&quot;Python&quot; src=&quot;https://img.shields.io/pypi/pyversions/openminion?cacheSeconds=300&quot;&gt;&lt;/a&gt;
+  &lt;a href=&quot;LICENSE&quot;&gt;&lt;img alt=&quot;License&quot; src=&quot;https://img.shields.io/badge/license-Apache--2.0-blue&quot;&gt;&lt;/a&gt;
+  &lt;img alt=&quot;Status&quot; src=&quot;https://img.shields.io/badge/status-alpha-6B7280&quot;&gt;
+&lt;/p&gt;
+
+OpenMinion is the public preview of a runtime for running inspectable
+agents on your own machine. One shared runtime spans CLI, Python API, HTTP API,
+and daemon-backed workflows, with durable sessions, structured tools, and
+inspectable run state built in. Long-running autonomy, live provider
+resilience, and memory/context usefulness claims remain proof-gated during the
+alpha period.
+
+</div></div><div style="--state:var(--rule)"><span class="chip s-reused">reused</span><div class="md" data-md>&lt;p align=&quot;center&quot;&gt;
+  &lt;img src=&quot;https://www.openminion.com/brand/openminion-logo-transparent-v1.png&quot; alt=&quot;OpenMinion logo&quot; width=&quot;128&quot; /&gt;
+&lt;/p&gt;
+
+&lt;h1 align=&quot;center&quot;&gt;OpenMinion&lt;/h1&gt;
+
+&lt;p align=&quot;center&quot;&gt;
+  &lt;strong&gt;Runtime lokal-pertama, Python-pertama untuk agen AI yang menggunakan alat.&lt;/strong&gt;
+&lt;/p&gt;
+
+&lt;p align=&quot;center&quot;&gt;
+  &lt;a href=&quot;https://github.com/OpenMinion/openminion&quot;&gt;GitHub&lt;/a&gt;
+  · &lt;a href=&quot;https://pypi.org/project/openminion/&quot;&gt;PyPI&lt;/a&gt;
+  · &lt;a href=&quot;https://www.openminion.com&quot;&gt;Situs Web&lt;/a&gt;
+  · &lt;a href=&quot;https://www.openminion.com/docs/&quot;&gt;Dokumentasi&lt;/a&gt;
+  · &lt;a href=&quot;https://x.com/OpenMinion&quot;&gt;X&lt;/a&gt;
+&lt;/p&gt;
+
+&lt;p align=&quot;center&quot;&gt;
+  &lt;a href=&quot;https://pypi.org/project/openminion/&quot;&gt;&lt;img alt=&quot;PyPI&quot; src=&quot;https://img.shields.io/pypi/v/openminion?cacheSeconds=300&quot;&gt;&lt;/a&gt;
+  &lt;a href=&quot;https://pypi.org/project/openminion/&quot;&gt;&lt;img alt=&quot;Python&quot; src=&quot;https://img.shields.io/pypi/pyversions/openminion?cacheSeconds=300&quot;&gt;&lt;/a&gt;
+  &lt;a href=&quot;LICENSE&quot;&gt;&lt;img alt=&quot;License&quot; src=&quot;https://img.shields.io/badge/license-Apache--2.0-blue&quot;&gt;&lt;/a&gt;
+  &lt;img alt=&quot;Status&quot; src=&quot;https://img.shields.io/badge/status-alpha-6B7280&quot;&gt;
+&lt;/p&gt;
+
+OpenMinion adalah pratinjau publik dari runtime untuk menjalankan agen yang dapat diperiksa
+pada mesin Anda sendiri. Satu runtime bersama mencakup CLI, API Python, API HTTP,
+dan alur kerja berbasis daemon, dengan sesi tahan lama, alat terstruktur, dan
+status jalan yang dapat diperiksa terintegrasi. Klaim otonomi jangka panjang,
+kegigihan provider langsung, dan kegunaan memori/konteks tetap dibatasi bukti selama
+periode alfa.
+
+</div></div></div><div class="row"><div><div class="md" data-md>## Read This First
+
+1. Read [At a Glance](#at-a-glance) to confirm the current product boundary.
+2. Follow [Install](#install) and [Quick Start](#quick-start) for one local run.
+3. Use [Runtime Surfaces](#runtime-surfaces) to choose CLI, Python, HTTP, or
+   daemon-backed operation.
+4. Read [Development](#development) before changing the runtime.
+5. Use the [documentation site](https://www.openminion.com/docs/) for the full
+   operator and contributor manual.
+
+</div></div><div style="--state:var(--rule)"><span class="chip s-reused">reused</span><div class="md" data-md>## Baca Ini Dulu
+
+1. Baca [Sekilas](#at-a-glance) untuk mengonfirmasi batas produk saat ini.
+2. Ikuti [Install](#install) dan [Mulai Cepat](#quick-start) untuk satu kali jalan lokal.
+3. Gunakan [Permukaan Runtime](#runtime-surfaces) untuk memilih operasi CLI, Python, HTTP,
+   atau berbasis daemon.
+4. Baca [Pengembangan](#development) sebelum mengubah runtime.
+5. Gunakan [situs dokumentasi](https://www.openminion.com/docs/) untuk manual lengkap operator dan kontributor.
+
+</div></div></div><div class="row"><div><div class="md" data-md>## Trust and Brand Safety
+
+- Official GitHub: &lt;https://github.com/OpenMinion/openminion&gt;
+- Official website and docs: &lt;https://www.openminion.com&gt;
+- Official X account: &lt;https://x.com/OpenMinion&gt;
+
+OpenMinion has no official token, coin, NFT, airdrop, staking program,
+treasury product, or investment offering. Any claim otherwise is unauthorized
+and should be treated as a scam.
+
+</div></div><div style="--state:var(--rule)"><span class="chip s-reused">reused</span><div class="md" data-md>## Kepercayaan dan Keamanan Merek
+
+- GitHub Resmi: &lt;https://github.com/OpenMinion/openminion&gt;
+- Situs web dan dokumentasi resmi: &lt;https://www.openminion.com&gt;
+- Akun X resmi: &lt;https://x.com/OpenMinion&gt;
+
+OpenMinion tidak memiliki token resmi, koin, NFT, airdrop, program staking,
+produk treasury, atau penawaran investasi. Klaim sebaliknya tidak sah
+dan harus diperlakukan sebagai penipuan.
+
+</div></div></div><div class="row"><div><div class="md" data-md>## At a Glance
+
+| | |
+| --- | --- |
+| Package | `openminion` |
+| Current line | `0.1.x` public preview for the broadly usable source/CLI milestone |
+| Python | 3.11+ |
+| Best fit | Bounded local workflows, tool use, integrations, and operator-driven agents |
+| Main surfaces | CLI, Python API, local HTTP API, and daemon-backed execution |
+| State model | Local sessions, conversations, threads, runs, artifacts, and memory records |
+| Not the claim | Finished walk-away autonomy or a managed cloud control plane |
+
+OpenMinion is usable for focused local work today, but it remains under active
+development. Complex end-to-end prompts and long unsupervised tasks are still
+improving. Current 2-hour autonomy certification support is validation-only;
+full 8-hour and 24-hour real elapsed certification pilots still require an
+approved run window, provider/model access, workspace, and budgets.
+
+The [0.1.x compatibility contract](API_COMPATIBILITY.md#01x-compatibility-contract)
+covers the documented Python and CLI surface. It does not claim signed Desktop
+binaries, managed cloud service, or completed long-duration autonomy certification.
+
+</div></div><div style="--state:var(--rule)"><span class="chip s-reused">reused</span><div class="md" data-md>## Sekilas
+
+| | |
+| --- | --- |
+| Paket | `openminion` |
+| Jalur saat ini | Pratinjau publik untuk tonggak sumber/CLI yang dapat digunakan secara luas `0.1.x` |
+| Python | 3.11+ |
+| Cocok untuk | Alur kerja lokal terbatas, penggunaan alat, integrasi, dan agen yang digerakkan operator |
+| Permukaan utama | CLI, API Python, API HTTP lokal, dan eksekusi berbasis daemon |
+| Model status | Sesi lokal, percakapan, thread, run, artefak, dan catatan memori |
+| Bukan klaim | Otonomi selesai tanpa pengawasan atau pengelolaan cloud control plane |
+
+OpenMinion dapat digunakan untuk pekerjaan lokal yang terfokus hari ini, namun masih dalam pengembangan aktif.
+Prompt end-to-end yang kompleks dan tugas panjang tanpa pengawasan masih terus diperbaiki.
+Dukungan sertifikasi otonomi 2 jam saat ini hanya untuk validasi; pilot sertifikasi penuh 8 jam dan 24 jam
+masih membutuhkan jendela run yang disetujui, akses provider/model, workspace, dan anggaran.
+
+[Kontrak kompatibilitas 0.1.x](API_COMPATIBILITY.md#01x-compatibility-contract)
+mencakup permukaan Python dan CLI yang terdokumentasi. Ini tidak mengklaim biner Desktop bertanda tangan,
+layanan cloud yang dikelola, atau sertifikasi otonomi jangka panjang yang selesai.
+
+</div></div></div><div class="row"><div><div class="md" data-md>## Common Commands
+
+```bash
+openminion config init
+openminion setup --list-providers
+openminion setup --list-providers --json
+openminion run &quot;hello&quot;
+openminion
+openminion tools list
+openminion doctor --check-turn --json
+# Optional: install &quot;openminion[acp]&quot; before using a local ACP client.
+openminion acp
+```
+
+Useful operator surfaces:
+
+```bash
+openminion agent ls
+openminion agent status --agent-id default
+openminion agent logs
+openminion agent inspect --agent-id default --json
+```
+
+</div></div><div style="--state:var(--rule)"><span class="chip s-reused">reused</span><div class="md" data-md>## Perintah Umum
+
+```bash
+openminion config init
+openminion setup --list-providers
+openminion setup --list-providers --json
+openminion run &quot;hello&quot;
+openminion
+openminion tools list
+openminion doctor --check-turn --json
+# Optional: install &quot;openminion[acp]&quot; before using a local ACP client.
+openminion acp
+```
+
+Permukaan operator yang berguna:
+
+```bash
+openminion agent ls
+openminion agent status --agent-id default
+openminion agent logs
+openminion agent inspect --agent-id default --json
+```
+
+</div></div></div><div class="row"><div><div class="md" data-md>## Install
+
+Install the current package as an isolated command-line app:
+
+```bash
+pipx install openminion
+```
+
+or, with `uv`:
+
+```bash
+uv tool install openminion
+```
+
+Installing into an existing Python environment is also supported:
+
+```bash
+python3.11 -m pip install openminion
+```
+
+For a source checkout:
+
+```bash
+git clone https://github.com/OpenMinion/openminion.git
+cd openminion
+python3.11 -m venv .venv
+source .venv/bin/activate
+python -m pip install --upgrade pip
+python -m pip install -e .
+```
+
+On Windows PowerShell, activate the same environment with:
+
+```powershell
+.venv\Scripts\Activate.ps1
+python -m pip install --upgrade pip
+python -m pip install -e .
+```
+
+For isolated local data during development:
+
+```bash
+export OPENMINION_HOME=&quot;$PWD&quot;
+export OPENMINION_DATA_ROOT=&quot;$OPENMINION_HOME/.openminion&quot;
+```
+
+</div></div><div style="--state:var(--rule)"><span class="chip s-reused">reused</span><div class="md" data-md>## Instalasi
+
+Instal paket saat ini sebagai aplikasi command-line yang terisolasi:
+
+```bash
+pipx install openminion
+```
+
+atau, dengan `uv`:
+
+```bash
+uv tool install openminion
+```
+
+Instalasi ke dalam lingkungan Python yang sudah ada juga didukung:
+
+```bash
+python3.11 -m pip install openminion
+```
+
+Untuk checkout sumber:
+
+```bash
+git clone https://github.com/OpenMinion/openminion.git
+cd openminion
+python3.11 -m venv .venv
+source .venv/bin/activate
+python -m pip install --upgrade pip
+python -m pip install -e .
+```
+
+Pada Windows PowerShell, aktifkan lingkungan yang sama dengan:
+
+```powershell
+.venv\Scripts\Activate.ps1
+python -m pip install --upgrade pip
+python -m pip install -e .
+```
+
+Untuk data lokal terisolasi selama pengembangan:
+
+```bash
+export OPENMINION_HOME=&quot;$PWD&quot;
+export OPENMINION_DATA_ROOT=&quot;$OPENMINION_HOME/.openminion&quot;
+```
+
+</div></div></div><div class="row"><div><div class="md" data-md>## Quick Start
+
+For a real model-backed session, start with the bare command:
+
+```bash
+openminion --version
+openminion --dir &quot;$PWD&quot;
+```
+
+Setup asks for a provider, model, and credential. For built-in providers,
+OpenMinion selects the API adapter automatically. For example, MiniMax remains
+the provider when it uses an OpenAI-compatible API. Press Enter at the hosted
+provider check to send one recommended test request before Focus opens; the
+request may consume a small amount of quota. Use the provider-list commands
+above for the current human-readable or machine-readable catalog.
+
+An explicit `--dir` trusts that workspace for the current process. A bare
+launch also trusts an ordinary Git worktree; another implicit directory starts
+Read only. Launching from your home directory or a filesystem root requires an
+explicit `--dir PATH`. Add another existing directory for the current process
+with repeatable `--add-dir PATH` options:
+
+```bash
+openminion --dir &quot;$PWD&quot; --add-dir ../shared
+```
+
+Structured file tools remain confined to the workspace, explicitly added
+directories, and configured policy roots. Host commands remain disabled when
+no sandbox is configured. `--allow-unsandboxed-exec` is an explicit opt-in:
+commands then use the OpenMinion process&#x27;s OS permissions and are not confined
+to workspace roots; command policy and approvals still apply. A native local
+sandbox and approval-free command parity are not provided yet.
+
+In Focus, `/permissions` opens Read only, Ask, Workspace auto, and Full access.
+Workspace auto is intentionally narrow: only `file.write` and `file.edit` skip
+their ordinary prompt, and workspace/path enforcement remains active. Full
+access requires confirmation and does not bypass configured block/ask rules,
+selected denies, host-execution enablement, exact financial or operations
+authorization, or `project.start`. Permission posture and exact-session grants
+persist with the OpenMinion session; `/permissions grants` lists active grants and
+`/permissions revoke &lt;grant-id&gt;` removes one.
+
+For a durable action-policy default, put `action_policy` at the config root or
+under one agent profile. The per-agent form is:
+
+```json
+{
+  &quot;agents&quot;: {
+    &quot;local-coder&quot;: {
+      &quot;provider&quot;: &quot;openai&quot;,
+      &quot;action_policy&quot;: {&quot;mode&quot;: &quot;bypass&quot;}
+    }
+  }
+}
+```
+
+This disables ordinary action-policy prompts for that agent, but it is not a
+persistent Full access switch: Full access also sets the session tool
+permission mode. `permission_mode` is not supported inside `agents.&lt;id&gt;`.
+Select Full access through `/permissions` and reuse the same session, or pass
+`permission_mode` as a trusted API/request input. See
+[Getting Started](docs/getting-started.md#persistent-action-policy-defaults).
+
+When setup finishes and the interactive CLI opens, ask: `List this workspace
+using the file tools.` The default config is saved at
+`~/.openminion/agents.json`, so the next bare launch reuses it.
+
+Direct `openminion mcp ...` commands use `./.openminion/agents.json` when
+`--config` is omitted, matching the Python SDK&#x27;s project-scoped default. Pass
+`--config ~/.openminion/agents.json` to manage the interactive setup config
+instead. MCP commands that change configuration report the exact `config_path`
+they wrote.
+
+For a credential-free product tour, create an explicit echo/demo config:
+
+```bash
+openminion config init --provider echo
+openminion run &quot;hello&quot;
+openminion status readiness
+```
+
+Demo mode exercises configuration, storage, sessions, and CLI plumbing, but it
+does not call a model or prove provider-backed task quality. Readiness reports
+label this state `demo`, not `ready`.
+
+Open the interactive CLI:
+
+```bash
+openminion --dir &quot;$PWD&quot;
+```
+
+Run two configured agents in one Focus room with explicit runtime roots:
+
+```bash
+runtime_root=&quot;$PWD/.openminion-room&quot;
+config_path=&quot;$HOME/.openminion/agents.json&quot;
+room_output=&quot;$(openminion \
+  --home-root &quot;$runtime_root/home&quot; \
+  --data-root &quot;$runtime_root/data&quot; \
+  --config &quot;$config_path&quot; \
+  room create \
+  --name &quot;Review room&quot; \
+  --human owner-local \
+  --agent writer \
+  --agent reviewer \
+  --channel console \
+  --target focus)&quot;
+room_id=&quot;$(printf &#x27;%s\n&#x27; &quot;$room_output&quot; | sed -n &#x27;s/^room=//p&#x27;)&quot;
+
+openminion \
+  --home-root &quot;$runtime_root/home&quot; \
+  --data-root &quot;$runtime_root/data&quot; \
+  --config &quot;$config_path&quot; \
+  --agent writer \
+  --session &quot;$room_id&quot; \
+  --dir &quot;$PWD&quot;
+```
+
+Inside Focus, use `/participants` to inspect the room, `/routing broadcast` or
+`/routing sequential` to change its mode, and address one agent with
+`@reviewer`. Room mutations require the local owner; participants can post and
+observers cannot.
+
+Embed an isolated agent session from Python:
+
+```python
+from openminion import Agent, ProviderError, tool
+
+@tool(min_scope=&quot;READ_ONLY&quot;, idempotent=True)
+def lookup_order(order_id: str) -&gt; str:
+    return f&quot;order {order_id}: ready&quot;
+
+try:
+    with Agent(
+        instructions=&quot;Answer briefly.&quot;,
+        tools=[lookup_order],
+        session_id=&quot;customer-42&quot;,
+    ) as agent:
+        result = agent.run(&quot;Check order A-104&quot;)
+        print(result.text, result.session_id)
+except ProviderError as exc:
+    print(f&quot;provider failed: {exc}&quot;)
+```
+
+`lookup_order` declares itself read-only, so the default action policy runs it
+without a confirmation. Under the same policy a bare `@tool` is treated as a
+write and is confirmed first; see [Runtime surfaces](docs/runtime-surfaces.md) for how the `@tool`
+options map to approval.
+
+Pass `config_path=&quot;path/to/agents.json&quot;` to use a project-owned config and
+`agent_id=&quot;reviewer&quot;` to select one configured profile. For advanced runtime
+composition, construct `APIRuntime` directly and pass it as `runtime=` instead.
+
+See [`examples/starter/quickstart.py`](examples/starter/quickstart.py) for the
+complete runnable example and
+[`docs/getting-started.md`](docs/getting-started.md) for contributor bootstrap.
+
+</div></div><div style="--state:var(--ok)"><span class="chip s-new">translated</span><div class="md" data-md>## Memulai Cepat
+
+Untuk sesi nyata yang didukung model, mulai dengan perintah dasar berikut:
+
+```bash
+openminion --version
+openminion --dir &quot;$PWD&quot;
+```
+
+Setup akan meminta provider, model, dan kredensial. Untuk provider bawaan,
+OpenMinion akan memilih adaptor API secara otomatis. Sebagai contoh, MiniMax tetap
+menjadi provider saat menggunakan API yang kompatibel dengan OpenAI. Tekan Enter saat
+pemeriksaan provider hosted untuk mengirim satu permintaan tes yang direkomendasikan
+sebelum Focus dibuka; permintaan ini mungkin mengonsumsi sedikit kuota. Gunakan perintah
+provider-list di atas untuk katalog dalam bentuk yang dapat dibaca manusia atau mesin.
+
+`--dir` yang eksplisit mempercayai workspace itu untuk proses saat ini. Peluncuran dasar
+juga mempercayai Git worktree biasa; direktori implisit lain memulai dalam mode Baca saja.
+Meluncurkan dari direktori home Anda atau root filesystem memerlukan `--dir PATH` yang eksplisit.
+Tambahkan direktori lainnya yang sudah ada untuk proses saat ini dengan opsi `--add-dir PATH` yang
+berulang:
+
+```bash
+openminion --dir &quot;$PWD&quot; --add-dir ../shared
+```
+
+Alat file terstruktur tetap terbatas pada workspace, direktori yang secara eksplisit
+ditambahkan, dan root kebijakan yang dikonfigurasi. Perintah host tetap dinonaktifkan
+ketika sandbox tidak dikonfigurasi. `--allow-unsandboxed-exec` adalah opt-in eksplisit: perintah akan menggunakan
+izin OS proses OpenMinion dan tidak terbatas pada root workspace; kebijakan perintah dan
+persetujuan masih berlaku. Sandbox lokal asli dan kesetaraan perintah tanpa persetujuan
+belum disediakan.
+
+Dalam Focus, `/permissions` membuka mode Baca saja, Ask, Workspace auto, dan Akses penuh.
+Workspace auto sengaja dibuat sempit: hanya `file.write` dan `file.edit` yang melewati prompt biasa mereka,
+dan penegakan workspace/path tetap aktif. Akses penuh memerlukan konfirmasi dan tidak
+melewati aturan blok/tanya yang dikonfigurasi, penolakan terpilih, pengaktifan execution host,
+autorisasi keuangan atau operasional yang tepat, atau `project.start`. Sikap izin dan grant sesi tepat
+bertahan dengan sesi OpenMinion; `/permissions grants` mencantumkan grant aktif dan `/permissions revoke &lt;grant-id&gt;` menghapus salah satu.
+
+Untuk default kebijakan aksi yang tahan lama, letakkan `action_policy` di root konfigurasi atau di bawah
+profil satu agent. Bentuk per agent adalah:
+
+```json
+{
+  &quot;agents&quot;: {
+    &quot;local-coder&quot;: {
+      &quot;provider&quot;: &quot;openai&quot;,
+      &quot;action_policy&quot;: {&quot;mode&quot;: &quot;bypass&quot;}
+    }
+  }
+}
+```
+
+Ini menonaktifkan prompt kebijakan aksi biasa untuk agent itu, namun ini bukan saklar
+Akses penuh yang persisten: Akses penuh juga mengatur mode izin alat sesi. `permission_mode` tidak didukung
+dalam `agents.&lt;id&gt;`. Pilih Akses penuh melalui `/permissions` dan gunakan ulang sesi yang sama, atau lewati
+`permission_mode` sebagai input API/permintaan yang dipercaya. Lihat [Getting Started](docs/getting-started.md#persistent-action-policy-defaults).
+
+Saat setup selesai dan CLI interaktif terbuka, tanya: `List this workspace
+using the file tools.` Konfigurasi default disimpan
+pada `~/.openminion/agents.json`, sehingga peluncuran dasar berikutnya menggunakan ulang konfigurasi tersebut.
+
+Perintah langsung `openminion mcp ...` menggunakan `./.openminion/agents.json` ketika `--config` dihilangkan, sesuai dengan default proyek berbasis SDK Python.
+Lewati `--config ~/.openminion/agents.json` untuk mengelola konfigurasi setup interaktif sebagai gantinya. Perintah MCP yang
+mengubah konfigurasi melaporkan `config_path` yang tepat yang ditulis.
+
+Untuk tur produk tanpa kredensial, buat konfigurasi echo/demo eksplisit:
+
+```bash
+openminion config init --provider echo
+openminion run &quot;hello&quot;
+openminion status readiness
+```
+
+Mode demo melatih konfigurasi, penyimpanan, sesi, dan sistem CLI, namun tidak memanggil model
+atau membuktikan kualitas tugas yang didukung provider. Laporan kesiapan memberi label
+status ini `demo`, bukan `ready`.
+
+Buka CLI interaktif:
+
+```bash
+openminion --dir &quot;$PWD&quot;
+```
+
+Jalankan dua agent yang sudah dikonfigurasi dalam satu ruang Focus dengan root runtime yang eksplisit:
+
+```bash
+runtime_root=&quot;$PWD/.openminion-room&quot;
+config_path=&quot;$HOME/.openminion/agents.json&quot;
+room_output=&quot;$(openminion \
+  --home-root &quot;$runtime_root/home&quot; \
+  --data-root &quot;$runtime_root/data&quot; \
+  --config &quot;$config_path&quot; \
+  room create \
+  --name &quot;Review room&quot; \
+  --human owner-local \
+  --agent writer \
+  --agent reviewer \
+  --channel console \
+  --target focus)&quot;
+room_id=&quot;$(printf &#x27;%s\n&#x27; &quot;$room_output&quot; | sed -n &#x27;s/^room=//p&#x27;)&quot;
+
+openminion \
+  --home-root &quot;$runtime_root/home&quot; \
+  --data-root &quot;$runtime_root/data&quot; \
+  --config &quot;$config_path&quot; \
+  --agent writer \
+  --session &quot;$room_id&quot; \
+  --dir &quot;$PWD&quot;
+```
+
+Dalam Focus, gunakan `/participants` untuk memeriksa ruangan, `/routing broadcast` atau `/routing sequential` untuk mengubah modenya, dan
+alamatkan satu agent dengan `@reviewer`. Mutasi ruangan memerlukan pemilik lokal; peserta bisa
+mengirim dan pengamat tidak bisa.
+
+Sematkan sesi agent terisolasi dari Python:
+
+```python
+from openminion import Agent, ProviderError, tool
+
+@tool(min_scope=&quot;READ_ONLY&quot;, idempotent=True)
+def lookup_order(order_id: str) -&gt; str:
+    return f&quot;order {order_id}: ready&quot;
+
+try:
+    with Agent(
+        instructions=&quot;Answer briefly.&quot;,
+        tools=[lookup_order],
+        session_id=&quot;customer-42&quot;,
+    ) as agent:
+        result = agent.run(&quot;Check order A-104&quot;)
+        print(result.text, result.session_id)
+except ProviderError as exc:
+    print(f&quot;provider failed: {exc}&quot;)
+```
+
+`lookup_order` menyatakan dirinya hanya-baca, sehingga kebijakan aksi default menjalankannya tanpa
+konfirmasi. Dalam kebijakan yang sama, `@tool` dianggap sebagai tulis dan harus dikonfirmasi
+terlebih dahulu; lihat [Runtime surfaces](docs/runtime-surfaces.md) untuk bagaimana opsi `@tool` dipetakan ke persetujuan.
+
+Lewati `config_path=&quot;path/to/agents.json&quot;` untuk menggunakan konfigurasi milik proyek dan `agent_id=&quot;reviewer&quot;` untuk memilih profil yang sudah dikonfigurasi.
+Untuk komposisi runtime lanjutan, buat `APIRuntime` langsung dan lewati sebagai `runtime=` sebagai gantinya.
+
+Lihat [`examples/starter/quickstart.py`](examples/starter/quickstart.py) untuk contoh lengkap yang dapat dijalankan dan
+[`docs/getting-started.md`](docs/getting-started.md) untuk bootstrap kontributor.
+
+</div></div></div><div class="row"><div><div class="md" data-md>## What OpenMinion Provides
+
+- one orchestration model across CLI, Python, HTTP, and daemon-backed paths
+- provider abstraction for local and hosted model backends
+- structured tools with model-facing contracts and policy-gated execution
+- durable local session, run, artifact, memory-record, and conversation state
+- interactive and one-shot local workflows
+- diagnostics, status, logs, inspection, and OpenTelemetry-ready traces
+- extension surfaces for tools, providers, skills, memory, and integrations
+
+</div></div><div style="--state:var(--rule)"><span class="chip s-reused">reused</span><div class="md" data-md>## Apa yang Disediakan OpenMinion
+
+- satu model orkestrasi di seluruh CLI, Python, HTTP, dan jalur berbasis daemon
+- abstraksi provider untuk backend model lokal dan hosted
+- alat terstruktur dengan kontrak berorientasi model dan eksekusi yang dibatasi kebijakan
+- sesi lokal yang tahan lama, run, artifact, catatan memori, dan status percakapan
+- alur kerja lokal interaktif dan satu kali
+- diagnostik, status, log, inspeksi, dan jejak yang siap OpenTelemetry
+- permukaan ekstensi untuk alat, provider, keterampilan, memori, dan integrasi
+
+</div></div></div><div class="row"><div><div class="md" data-md>## What OpenMinion Does Not Provide
+
+- finished “give it any complex task and walk away” autonomy
+- a hosted control plane or managed cloud agent service
+- provider-backed certification proof without configured provider credentials
+  and an approved run window
+- a black-box prompt wrapper that hides runtime state
+- automatic permission to perform unsafe or privileged actions
+- any cryptocurrency or investment product
+
+</div></div><div style="--state:var(--ok)"><span class="chip s-new">translated</span><div class="md" data-md>## Apa yang Tidak Disediakan oleh OpenMinion
+
+- otonomi “selesaikan tugas kompleks apa pun dan tinggalkan” yang selesai
+- plane kontrol yang dihosting atau layanan agent cloud yang dikelola
+- bukti sertifikasi yang didukung provider tanpa kredensial provider yang dikonfigurasi dan jendela run yang disetujui
+- pembungkus prompt kotak hitam yang menyembunyikan status runtime
+- izin otomatis untuk melakukan tindakan yang tidak aman atau berhak istimewa
+- produk cryptocurrency atau produk investasi apa pun
+
+</div></div></div><div class="row"><div><div class="md" data-md>## Runtime Surfaces
+
+| Surface | Use it when |
+| --- | --- |
+| `openminion run` | You want one bounded local request |
+| `openminion` | You want an interactive focus session |
+| `APIRuntime` and `Agent` | You want to embed the runtime in Python |
+| Local HTTP API | You want another process to submit turns or tool requests |
+| `openminiond` | You want daemon-backed local execution |
+| Operator CLIs | You need focused session, memory, policy, runtime, or artifact control |
+
+The root package exports the supported Python facade: `APIRuntime`, `Agent`,
+`AgentOutputValidationError`, `AgentRunResult`, `Handoff`, `MemoryBundle`,
+`OpenMinionConfig`, `ProviderError`, `TurnTimeoutError`, `subagent`, `tool`, and `__version__`. See
+[`API_COMPATIBILITY.md`](API_COMPATIBILITY.md) before depending on deeper
+package internals.
+
+`Agent.run_stream()` is the synchronous callback-progress convenience API.
+For typed iterator streaming, cancellation, or streamed approval resolution,
+use `APIRuntime.submit_turn()` and the advanced contracts exported from
+`openminion.api`. See [`examples/sdk/`](examples/sdk/) for both flows.
+
+</div></div><div style="--state:var(--rule)"><span class="chip s-reused">reused</span><div class="md" data-md>## Runtime Surfaces
+
+| Surface | Gunakan ketika |
+| --- | --- |
+| `openminion run` | Anda menginginkan satu permintaan lokal yang terbatas |
+| `openminion` | Anda menginginkan sesi fokus interaktif |
+| `APIRuntime` dan `Agent` | Anda ingin menyematkan runtime dalam Python |
+| Local HTTP API | Anda menginginkan proses lain untuk mengirim giliran atau permintaan alat |
+| `openminiond` | Anda menginginkan eksekusi lokal yang didukung daemon |
+| Operator CLIs | Anda memerlukan kontrol sesi fokus, memori, kebijakan, runtime, atau artefak |
+
+Paket root mengekspor facade Python yang didukung: `APIRuntime`, `Agent`, `AgentOutputValidationError`, `AgentRunResult`, `Handoff`, `MemoryBundle`, `OpenMinionConfig`, `ProviderError`, `TurnTimeoutError`, `subagent`, `tool`, dan `__version__`. Lihat [`API_COMPATIBILITY.md`](API_COMPATIBILITY.md) sebelum bergantung pada internal paket yang lebih dalam.
+
+`Agent.run_stream()` adalah API kenyamanan callback-progress sinkron.
+Untuk streaming iterator bertipe, pembatalan, atau resolusi persetujuan yang disiarkan, gunakan `APIRuntime.submit_turn()` dan kontrak lanjutan yang diekspor dari `openminion.api`. Lihat [`examples/sdk/`](examples/sdk/) untuk kedua alur tersebut.
+
+</div></div></div><div class="row"><div><div class="md" data-md>## Repository Map
+
+```text
+src/openminion/
+  api/         Public Python and HTTP runtime entrypoints
+  base/        Foundational contracts and shared primitives
+  cli/         CLI entrypoints and terminal UX
+  modules/     Feature and subsystem owners
+  services/    Cross-owner runtime orchestration
+  tools/       Tool host and tool families
+docs/          Package-local public documentation
+examples/      Runnable usage examples
+scripts/       Validation and operator utilities
+tests/         Package and integration proof
+```
+
+For owner-by-owner detail, read
+[`docs/source-tree-owner-map.md`](docs/source-tree-owner-map.md).
+
+</div></div><div style="--state:var(--rule)"><span class="chip s-reused">reused</span><div class="md" data-md>## Peta Repositori
+
+```text
+src/openminion/
+  api/         Public Python and HTTP runtime entrypoints
+  base/        Foundational contracts and shared primitives
+  cli/         CLI entrypoints and terminal UX
+  modules/     Feature and subsystem owners
+  services/    Cross-owner runtime orchestration
+  tools/       Tool host and tool families
+docs/          Package-local public documentation
+examples/      Runnable usage examples
+scripts/       Validation and operator utilities
+tests/         Package and integration proof
+```
+
+Untuk detail per pemilik, baca [`docs/source-tree-owner-map.md`](docs/source-tree-owner-map.md).
+
+</div></div></div><div class="row"><div><div class="md" data-md>## Development
+
+Before contributing, read [CONTRIBUTING.md](CONTRIBUTING.md) and
+[CODE_QUALITY.md](CODE_QUALITY.md).
+
+```bash
+make dev-install
+make hooks-install
+make lint
+```
+
+Use focused tests while iterating. Run `make lint` before feature sign-off;
+reserve `make check` for an intentional broader integration sweep.
+
+</div></div><div style="--state:var(--rule)"><span class="chip s-reused">reused</span><div class="md" data-md>## Pengembangan
+
+Sebelum berkontribusi, baca [CONTRIBUTING.md](CONTRIBUTING.md) dan [CODE_QUALITY.md](CODE_QUALITY.md).
+
+```bash
+make dev-install
+make hooks-install
+make lint
+```
+
+Gunakan pengujian terfokus selama iterasi. Jalankan `make lint` sebelum persetujuan fitur; simpan `make check` untuk penyapuan integrasi yang lebih luas secara sengaja.
+
+</div></div></div><div class="row"><div><div class="md" data-md>## Docs and Release
+
+- [`docs/README.md`](docs/README.md): package documentation map
+- [`docs/runtime-surfaces.md`](docs/runtime-surfaces.md): supported runtime
+  and library surfaces
+- [`docs/system-operations.md`](docs/system-operations.md): local operation and
+  diagnostics
+- [`docs/security-scanning.md`](docs/security-scanning.md): bounded local
+  Semgrep and Trivy audits
+- [`docs/testing-and-validation.md`](docs/testing-and-validation.md): validation
+  inventory
+- [`docs/certification-readiness-matrix.md`](docs/certification-readiness-matrix.md):
+  current proof coverage
+- [`API_COMPATIBILITY.md`](API_COMPATIBILITY.md): public import and command
+  compatibility
+- [`RELEASING.md`](RELEASING.md): release checks and publish flow
+
+Model-provider charges, hosted services, and third-party infrastructure are
+separate from the Apache-2.0 licensed runtime. Review provider terms and costs
+before enabling paid backends.
+
+</div></div><div style="--state:var(--rule)"><span class="chip s-reused">reused</span><div class="md" data-md>## Dokumentasi dan Rilis
+
+- [`docs/README.md`](docs/README.md): peta dokumentasi paket
+- [`docs/runtime-surfaces.md`](docs/runtime-surfaces.md): runtime dan library yang didukung
+- [`docs/system-operations.md`](docs/system-operations.md): operasi lokal dan diagnostik
+- [`docs/security-scanning.md`](docs/security-scanning.md): audit lokal terbatas Semgrep dan Trivy
+- [`docs/testing-and-validation.md`](docs/testing-and-validation.md): inventaris validasi
+- [`docs/certification-readiness-matrix.md`](docs/certification-readiness-matrix.md): cakupan bukti saat ini
+- [`API_COMPATIBILITY.md`](API_COMPATIBILITY.md): kompatibilitas impor publik dan perintah
+- [`RELEASING.md`](RELEASING.md): pemeriksaan rilis dan alur publikasi
+
+Biaya model-provider, layanan hosted, dan infrastruktur pihak ketiga terpisah dari runtime berlisensi Apache-2.0. Tinjau ketentuan dan biaya provider sebelum mengaktifkan backend berbayar.
+
+</div></div></div><div class="row"><div><div class="md" data-md>## License and Brand-use Boundary
+
+- Source code license: Apache-2.0
+- Brand/trademark grant: none
+
+The license grants rights to use, modify, and redistribute the code. It does
+not grant rights to present a fork, clone, token, website, or social account as
+the official OpenMinion project or imply affiliation or endorsement.
+</div></div><div style="--state:var(--rule)"><span class="chip s-reused">reused</span><div class="md" data-md>## Lisensi dan Batasan Penggunaan Merek
+
+- Lisensi kode sumber: Apache-2.0
+- Lisensi merek/merk dagang: tidak ada
+
+Lisensi ini memberikan hak untuk menggunakan, memodifikasi, dan mendistribusikan ulang kode. Lisensi ini tidak memberikan hak untuk menyajikan fork, clone, token, website, atau akun sosial sebagai proyek resmi OpenMinion atau mengimplikasikan afiliasi atau dukungan.
+</div></div></div></details><details open><summary><span class="path">docs/getting-started.md</span><span class="chip s-new">1 changed</span></summary><div class="cols"><span>English source</span><span>Bahasa Indonesia</span></div><div class="row"><div><div class="md" data-md># OpenMinion Getting Started
+
+Status: active
+Last updated: 2026-09-06
+
+Purpose: give contributors and automation authors a package-local bootstrap and
+execution summary for work inside the `openminion` repo.
+
+</div></div><div style="--state:var(--rule)"><span class="chip s-reused">reused</span><div class="md" data-md># Mulai dengan OpenMinion
+
+Status: aktif
+Terakhir diperbarui: 2026-09-06
+
+Tujuan: memberikan kontributor dan penulis otomatisasi ringkasan bootstrap dan eksekusi lokal paket untuk pekerjaan di dalam repositori `openminion`.
+
+</div></div></div><div class="row"><div><div class="md" data-md>## Fast bootstrap
+
+```bash
+python3.11 -m venv .venv
+source .venv/bin/activate
+make dev-install
+make hooks-install
+```
+
+On Windows PowerShell, use `.venv\Scripts\Activate.ps1`, then run the same
+`make` targets from an environment that provides GNU Make. For ordinary use,
+`pipx install openminion` or `uv tool install openminion` avoids checkout
+tooling entirely.
+
+Keep `.venv` checkout-local when installing. `make dev-install` confirms that
+OpenMinion imports from this checkout and repairs a stale editable binding. It
+refuses to install through a `.venv` symlink so another worktree cannot silently
+repoint the environment.
+
+For a source-guaranteed developer launch, use `make run-local ARGS=&quot;...&quot;` from
+the package root. This places the current checkout&#x27;s `src` first even if the
+environment&#x27;s editable package metadata points elsewhere:
+
+```bash
+make run-local ARGS=&#x27;--dir &quot;$PWD&quot;&#x27;
+```
+
+If you are running the CLI locally, also set:
+
+```bash
+export OPENMINION_HOME=.
+export OPENMINION_DATA_ROOT=&quot;$OPENMINION_HOME/.openminion&quot;
+```
+
+</div></div><div style="--state:var(--rule)"><span class="chip s-reused">reused</span><div class="md" data-md>## Bootstrap cepat
+
+```bash
+python3.11 -m venv .venv
+source .venv/bin/activate
+make dev-install
+make hooks-install
+```
+
+Di Windows PowerShell, gunakan `.venv\Scripts\Activate.ps1`, kemudian jalankan target `make` yang sama dari lingkungan yang menyediakan GNU Make. Untuk penggunaan biasa, `pipx install openminion` atau `uv tool install openminion` menghindari penggunaan alat checkout sepenuhnya.
+
+Pertahankan `.venv` checkout-local saat menginstal. `make dev-install` memastikan bahwa OpenMinion mengimpor dari checkout ini dan memperbaiki binding editable yang sudah usang. Ia menolak instalasi melalui tautan simbolik `.venv` agar worktree lain tidak bisa secara diam-diam mengubah rujukan lingkungan.
+
+Untuk peluncuran pengembang yang jaminan sumbernya, gunakan `make run-local ARGS=&quot;...&quot;` dari root paket. Ini menempatkan `src` checkout saat ini di posisi pertama meskipun metadata paket editable lingkungan menunjuk ke tempat lain:
+
+```bash
+make run-local ARGS=&#x27;--dir &quot;$PWD&quot;&#x27;
+```
+
+Jika Anda menjalankan CLI secara lokal, juga atur:
+
+```bash
+export OPENMINION_HOME=.
+export OPENMINION_DATA_ROOT=&quot;$OPENMINION_HOME/.openminion&quot;
+```
+
+</div></div></div><div class="row"><div><div class="md" data-md>## First run
+
+For a public package install, prefer an isolated command-line installation:
+
+```bash
+pipx install openminion
+# or: uv tool install openminion
+```
+
+Start with the bare command:
+
+```bash
+openminion --version
+openminion --dir &quot;$PWD&quot;
+```
+
+When the normal default config already exists, this opens the default terminal
+directly. When the default config is missing and a terminal is available,
+OpenMinion launches setup, guides you through hosted, local, or import setup,
+writes the canonical config at
+`~/.openminion/agents.json` (or `&lt;OPENMINION_HOME&gt;/.openminion/agents.json`
+when that root is set), runs `doctor`, and then enters the interactive CLI.
+The hosted-provider connection check is recommended and selected by pressing
+Enter; it sends one short request that may consume quota. The check displays
+progress and elapsed time. Pressing Ctrl-C stops the foreground check without
+retrying; the saved configuration remains available but unverified. A useful
+first task is:
+
+```text
+List this workspace using the file tools.
+```
+
+A later bare launch reuses the same config and opens the terminal directly.
+
+Direct `openminion mcp ...` commands use `./.openminion/agents.json` when
+`--config` is omitted, matching the Python SDK&#x27;s project-scoped default. Pass
+`--config ~/.openminion/agents.json` to manage the interactive setup config
+instead. Configuration-changing MCP commands report the exact `config_path`
+they wrote.
+
+An explicit `--dir` trusts that workspace for the current process. Without it,
+an ordinary Git worktree is trusted, another directory starts Read only, and a
+launch from your home directory or a filesystem root stops with `--dir PATH`
+guidance. To use an existing sibling directory for the same interactive
+process, add it explicitly:
+
+```bash
+openminion --dir &quot;$PWD&quot; --add-dir ../shared
+```
+
+`--add-dir` is repeatable and is not saved with the session. Restart with the
+same option when you want the grant again. Default file access no longer
+includes `~/projects` or `~/Downloads`; choose an explicit workspace, use
+`--add-dir`, or configure the exact policy root you need.
+
+Inside Focus, `/permissions` opens four session postures. Read only permits
+only registered read-only tools and still blocks `exec.run`. Ask requests
+approval for non-read effects. Workspace auto skips ordinary prompts only for
+`file.write` and `file.edit` inside the allowed workspace. Full access skips
+ordinary prompts after confirmation, but configured block/ask rules, selected
+denies, workspace paths, host-execution enablement, exact financial, commerce,
+blockchain, and operations authorization, and `project.start` confirmation
+still apply. These controls are application policy, not an operating-system
+sandbox. Use `/permissions grants` and `/permissions revoke &lt;grant-id&gt;` to
+inspect or remove active session grants.
+
+</div></div><div style="--state:var(--rule)"><span class="chip s-reused">reused</span><div class="md" data-md>## Peluncuran pertama
+
+Untuk instalasi paket publik, lebih baik gunakan instalasi baris perintah terisolasi:
+
+```bash
+pipx install openminion
+# or: uv tool install openminion
+```
+
+Mulailah dengan perintah kosong:
+
+```bash
+openminion --version
+openminion --dir &quot;$PWD&quot;
+```
+
+Jika konfigurasi default normal sudah ada, ini membuka terminal default secara langsung. Jika konfigurasi default hilang dan terminal tersedia, OpenMinion meluncurkan setup, membimbing Anda melalui pengaturan hosted, lokal, atau impor, menulis konfigurasi kanonik di
+`~/.openminion/agents.json` (atau `&lt;OPENMINION_HOME&gt;/.openminion/agents.json` saat root itu disetel), menjalankan `doctor`, lalu masuk ke CLI interaktif.
+
+Pemeriksaan koneksi penyedia hosted direkomendasikan dan dipilih dengan menekan Enter; ini mengirim satu permintaan singkat yang mungkin menggunakan kuota. Pemeriksaan ini menampilkan kemajuan dan waktu yang telah berlalu. Menekan Ctrl-C menghentikan pemeriksaan di foreground tanpa mengulang; konfigurasi yang disimpan tetap tersedia tetapi belum diverifikasi. Tugas pertama yang berguna adalah:
+
+```text
+List this workspace using the file tools.
+```
+
+Peluncuran kosong berikutnya menggunakan kembali konfigurasi yang sama dan membuka terminal langsung.
+
+Perintah langsung `openminion mcp ...` menggunakan `./.openminion/agents.json` ketika `--config` dihilangkan, sesuai dengan default lingkup proyek SDK Python. Gunakan `--config ~/.openminion/agents.json` untuk mengelola konfigurasi setup interaktif sebagai gantinya. Perintah MCP yang mengubah konfigurasi melaporkan `config_path` tepat yang mereka tulis.
+
+`--dir` eksplisit mempercayai workspace itu untuk proses saat ini. Tanpa itu, worktree Git biasa dipercaya, direktori lain dimulai dalam mode Baca-saja, dan peluncuran dari direktori home atau root sistem file dihentikan dengan panduan `--dir PATH`. Untuk menggunakan direktori saudara yang ada untuk proses interaktif yang sama, tambahkan secara eksplisit:
+
+```bash
+openminion --dir &quot;$PWD&quot; --add-dir ../shared
+```
+
+`--add-dir` dapat diulang dan tidak disimpan dengan sesi. Mulai ulang dengan opsi yang sama ketika Anda ingin mengulang hak akses. Akses file default tidak lagi menyertakan `~/projects` atau `~/Downloads`; pilih workspace yang eksplisit, gunakan `--add-dir`, atau konfigurasikan root kebijakan yang tepat yang Anda butuhkan.
+
+Di dalam Focus, `/permissions` membuka empat postur sesi. Baca-saja hanya mengizinkan alat baca-saja yang terdaftar dan masih memblokir `exec.run`. Permintaan Ask memerlukan persetujuan untuk efek non-baca. Workspace otomatis melewati permintaan biasa hanya untuk `file.write` dan `file.edit` di dalam workspace yang diizinkan. Akses penuh melewati permintaan biasa setelah konfirmasi, tetapi aturan blok/tanya yang dikonfigurasi, penolakan yang dipilih, jalur workspace, pengaktifan host-execution, otorisasi finansial, perdagangan, blockchain, operasi yang tepat, dan konfirmasi `project.start` masih berlaku. Kontrol ini adalah kebijakan aplikasi, bukan sandbox sistem operasi. Gunakan `/permissions grants` dan `/permissions revoke &lt;grant-id&gt;` untuk memeriksa atau menghapus hak akses sesi aktif.
+
+</div></div></div><div class="row"><div><div class="md" data-md>### Persistent action-policy defaults
+
+The top-level `action_policy` is the default for every agent without its own
+policy. Keep the normal policy-driven behavior with:
+
+```json
+{
+  &quot;action_policy&quot;: {
+    &quot;mode&quot;: &quot;auto&quot;,
+    &quot;default_action&quot;: &quot;require_confirm&quot;,
+    &quot;allow_read_only_without_prompt&quot;: true
+  }
+}
+```
+
+Set an agent-specific replacement under `agents.&lt;id&gt;.action_policy`:
+
+```json
+{
+  &quot;default_agent&quot;: &quot;local-coder&quot;,
+  &quot;agents&quot;: {
+    &quot;local-coder&quot;: {
+      &quot;provider&quot;: &quot;openai&quot;,
+      &quot;action_policy&quot;: {
+        &quot;mode&quot;: &quot;bypass&quot;
+      }
+    }
+  }
+}
+```
+
+`action_policy.mode = &quot;bypass&quot;` disables ordinary action-policy enforcement
+for that agent. It does not set Focus Full access by itself because Full access
+also sets the session tool permission mode. `permission_mode` is not a
+supported field under `agents.&lt;id&gt;`.
+
+For interactive use, open `/permissions`, select **Full access**, and return to
+the same named session when you want to reuse the posture. For API-driven work,
+combine the per-agent action policy above with a request/session input:
+
+```json
+{
+  &quot;agent_id&quot;: &quot;local-coder&quot;,
+  &quot;session_id&quot;: &quot;trusted-local-work&quot;,
+  &quot;permission_mode&quot;: &quot;bypass&quot;,
+  &quot;message&quot;: &quot;Run the requested local workflow.&quot;
+}
+```
+
+These controls do not expose missing tools, enable host execution, widen
+workspace roots, override explicit blocks, or replace exact one-time
+authorization for financial, commerce, blockchain, and operations actions.
+
+</div></div><div style="--state:var(--rule)"><span class="chip s-reused">reused</span><div class="md" data-md>### Default kebijakan aksi persisten
+
+`action_policy` tingkat atas adalah default untuk setiap agent tanpa kebijakan sendiri. Pertahankan perilaku berdasar kebijakan normal dengan:
+
+```json
+{
+  &quot;action_policy&quot;: {
+    &quot;mode&quot;: &quot;auto&quot;,
+    &quot;default_action&quot;: &quot;require_confirm&quot;,
+    &quot;allow_read_only_without_prompt&quot;: true
+  }
+}
+```
+
+Tetapkan pengganti spesifik agent di bawah `agents.&lt;id&gt;.action_policy`:
+
+```json
+{
+  &quot;default_agent&quot;: &quot;local-coder&quot;,
+  &quot;agents&quot;: {
+    &quot;local-coder&quot;: {
+      &quot;provider&quot;: &quot;openai&quot;,
+      &quot;action_policy&quot;: {
+        &quot;mode&quot;: &quot;bypass&quot;
+      }
+    }
+  }
+}
+```
+
+`action_policy.mode = &quot;bypass&quot;` menonaktifkan penegakan kebijakan aksi biasa untuk agent itu. Ini tidak mengatur Focus Akses penuh dengan sendiri karena Akses penuh juga menetapkan mode izin alat sesi. `permission_mode` bukan bidang yang didukung di bawah `agents.&lt;id&gt;`.
+
+Untuk penggunaan interaktif, buka `/permissions`, pilih **Akses penuh**, dan kembali ke sesi bernama yang sama ketika Anda ingin menggunakan kembali postur. Untuk pekerjaan berbasis API, gabungkan kebijakan aksi per-agent di atas dengan masukan permintaan/sesi:
+
+```json
+{
+  &quot;agent_id&quot;: &quot;local-coder&quot;,
+  &quot;session_id&quot;: &quot;trusted-local-work&quot;,
+  &quot;permission_mode&quot;: &quot;bypass&quot;,
+  &quot;message&quot;: &quot;Run the requested local workflow.&quot;
+}
+```
+
+Kontrol ini tidak mengekspos alat yang hilang, mengaktifkan host execution, memperluas root workspace, menggantikan blok eksplisit, atau menggantikan otorisasi satu kali tepat untuk aksi finansial, perdagangan, blockchain, dan operasi.
+
+</div></div></div><div class="row"><div><div class="md" data-md>### Start a local human-plus-agents room
+
+Use explicit root flags so the room and its telemetry stay under one chosen
+runtime directory. Replace `writer` and `reviewer` with agent IDs from your
+config:
+
+```bash
+runtime_root=&quot;$PWD/.openminion-room&quot;
+config_path=&quot;$HOME/.openminion/agents.json&quot;
+room_output=&quot;$(openminion \
+  --home-root &quot;$runtime_root/home&quot; \
+  --data-root &quot;$runtime_root/data&quot; \
+  --config &quot;$config_path&quot; \
+  room create \
+  --name &quot;Review room&quot; \
+  --human owner-local \
+  --agent writer \
+  --agent reviewer \
+  --channel console \
+  --target focus)&quot;
+room_id=&quot;$(printf &#x27;%s\n&#x27; &quot;$room_output&quot; | sed -n &#x27;s/^room=//p&#x27;)&quot;
+
+openminion \
+  --home-root &quot;$runtime_root/home&quot; \
+  --data-root &quot;$runtime_root/data&quot; \
+  --config &quot;$config_path&quot; \
+  --agent writer \
+  --session &quot;$room_id&quot; \
+  --dir &quot;$PWD&quot;
+```
+
+Use `/participants`, `/status`, and `/sessions` to inspect the room. The local
+owner can use `/invite`, `/kick`, `/activate`, and `/routing`; address one agent
+with `@reviewer`, or select `broadcast` or `sequential` routing for both agents.
+
+The first screen goes directly to the model provider. OpenAI, Anthropic,
+OpenRouter, MiniMax, and local Ollama appear first; additional providers,
+experimental endpoints, custom endpoints, and config import remain available
+from the same menu.
+
+Demo mode is not part of normal onboarding. It remains available through the
+explicit `openminion --demo` development/test path. A non-interactive demo can
+also be created with `openminion config init --provider echo`. It verifies
+local configuration, storage, session, and CLI plumbing only; it does not call
+a model. `openminion status readiness` therefore reports `overall=demo` for
+that configuration instead of claiming provider readiness.
+
+Setup shows the three identities that matter during first run:
+
+1. provider, such as OpenAI, Anthropic, OpenRouter, Ollama, MiniMax,
+   Kimi, Z.ai, DeepSeek, Qwen/DashScope, Gemini, xAI, Mistral, Together,
+   Cerebras, Groq, Cortensor Portal, Cortensor Router, or a custom endpoint;
+2. model id, such as `gpt-4.1-mini` or `MiniMax-M2.7`; and
+3. API adapter, such as OpenAI-compatible or Anthropic-compatible.
+
+For built-in providers, OpenMinion selects the API adapter automatically. The
+adapter describes compatibility, not provider identity. MiniMax remains the
+provider when it uses the OpenAI-compatible adapter.
+
+Provider settings in `agents.json` have one edit location: the top-level
+`providers` block. `openminion config init` writes `providers.&lt;id&gt;` once and
+does not duplicate it under `system.providers`, so editing
+`providers.openai.base_url` (or another field) takes effect on the next load.
+Older configs that define only `system.providers` still load, and a config that
+deliberately defines both blocks keeps the existing precedence (`system.providers`
+wins); a save then writes the effective values back to the top-level block and
+removes the duplicate mirror.
+
+Environment credentials are preferred. For example, OpenAI setup reads
+`OPENAI_API_KEY`; MiniMax setup reads `MINIMAX_API_KEY` while using the existing
+OpenAI-compatible adapter. Compatibility does not imply a shared account or
+credential; each provider still uses its own key. Interactive setup may
+store a pasted key locally only after a hidden prompt, warning, and confirmation.
+On POSIX systems, setup-owned config directories are tightened to owner-only
+`0700`, and setup-created config files are owner-only `0600`.
+
+The setup catalog is runtime-owned, so use the CLI instead of a copied provider
+table when choosing or integrating a provider:
+
+```bash
+# Human-readable catalog
+openminion setup --list-providers
+
+# Stable machine-readable catalog for clients and scripts
+openminion setup --list-providers --json
+```
+
+The JSON form reports each provider&#x27;s ID, label, credential environment
+variable, credential requirement, default base URL, and ordered recommended
+models. Listing providers does not make a provider request.
+
+Cortensor Portal remains an experimental hosted path because current service
+availability can be slow or unstable. Portal owns routing, quota, capacity,
+and its internal request lifecycle. OpenMinion defaults its existing provider
+timeout to 480 seconds; a larger configured
+`timeout_seconds` value is preserved by the runtime. Current Portal support is
+text, text streaming, native OpenAI tool calls, tool-result continuation, and
+streamed tool-call deltas. OpenMinion preserves Portal tool-call IDs,
+arguments, finish reasons, usage, and `X-Request-ID` correlation facts. Portal
+requests are not automatically retried because resubmission is not yet
+idempotent. Portal currently omits `X-Request-ID` from FastAPI `422` request
+validation responses; OpenMinion cannot capture a header that is not present.
+
+Run initial Portal acceptance serially. Two simultaneous requests assigned to
+the same Cortensor session can currently surface
+`router_v4_correlation_mismatch` as a `502 router_error`; OpenMinion reports
+that failure without retrying it.
+
+```bash
+export CORTENSOR_API_KEY=&quot;...&quot;
+openminion setup --provider cortensor-portal --agent cortensor-portal --no-focus
+```
+
+The advanced direct Router path remains separate and keeps its Router session
+semantics. Use the `cortensor-router` preset. The legacy setup ID `cortensor`
+resolves only to this direct path.
+
+```bash
+openminion setup --provider cortensor-router --agent cortensor-router --no-focus
+```
+
+The local `ollama` preset needs no credential and defaults to the local Ollama
+endpoint.
+
+`/v1/models` is useful for diagnostics, but it does not prove inference
+readiness. Add `--check-provider` only when a quota-consuming text request is
+authorized.
+
+Unless a setup run says `live`, a checked-in model is only a recommended
+fallback. Fixture-backed provider support means OpenMinion has local request and
+configuration coverage; it is not a live account, billing, quota, or model
+availability guarantee.
+
+Commerce is currently a config-disabled local foundation. No production
+provider can be enabled. See [Commerce Order Care](guides/commerce-order-care.md)
+for the five-tool lifecycle, exact one-time approval boundaries, recovery,
+handoff behavior, and the distinction between fixture, live-model, sandbox,
+and production evidence.
+
+To move an existing setup, export it without embedded secrets and import it on
+the new machine:
+
+```bash
+openminion config export --out openminion-config.yaml
+openminion setup
+```
+
+Choose **Import an existing OpenMinion config**, enter the exported path, and
+confirm the redacted source/target summary. Imported values replace matching
+fields while unrelated settings in an existing target config are preserved.
+The standalone equivalent is:
+
+```bash
+openminion config import openminion-config.yaml
+```
+
+Add `--force` only when the imported file should replace, rather than merge
+with, an existing config. Credentials are not included in a normal export, so
+set the referenced provider environment variables on the destination machine.
+Token limits, context budgets and credential environment-variable names remain
+in the export; credential values, including authentication headers, do not.
+See [turn budgets and token cost](turn-budgets.md) before changing limits to
+address an early stop or an expensive turn.
+
+A `file.read` includes `content_sha256` for the full UTF-8 text before newline
+conversion or slicing. Local reads retain their existing universal-newline text
+view; the fingerprint distinguishes the original LF, CRLF and CR bytes. In-memory
+reads preserve the original newline characters. Complete local reads also include
+an opaque `version`. For conditional overwrites, `file.write` accepts
+`expected_content_sha256` (pass `content_sha256` from the read directly)
+and `expected_version`. A mismatch returns
+`PRECONDITION_FAILED` before truncation. Conditional append is rejected. Local
+conditional replacement requires advisory file locking and fails closed when it
+is unavailable; the locks coordinate participating writers, not arbitrary external
+processes. The in-memory backend supports the content precondition.
+
+The adaptive loop permits one identical safe read retry after a structured
+transient failure. It can also retry an identical overwrite once after a complete,
+same-path readback contradicts the acknowledged content, adding the content and
+available version preconditions. Permissions and budgets are checked again.
+Append, external effects and partial readbacks do not receive this recovery.
+
+File tools preserve newline bytes outside edited spans and reject invalid UTF-8
+content before modifying a file. `file.read_range` counts the actual file and
+rejects a start beyond EOF. `file.search` supports search-root-relative globs
+and marks incomplete results as truncated. `file.trash` uses the native trash
+facility through Send2Trash and never substitutes permanent deletion. Native
+file/directory recovery is verified on macOS; Windows and Linux recovery still
+require platform-specific qualification. The memory backend rejects trash
+without removing content because it has no recoverable trash facility.
+
+Automation can use the same setup path without prompts:
+
+```bash
+openminion setup \
+  --provider minimax \
+  --model MiniMax-M2.7 \
+  --agent minimax-m27 \
+  --no-focus
+```
+
+Inside the interactive CLI, `/model` shows only models configured for the
+active agent. A connection is the service and credential/endpoint route, while
+the API format describes how OpenMinion talks to it. For example, MiniMax is
+the connection and OpenAI-compatible is the API format.
+
+```text
+/model
+/model use 2
+/model default 2
+/model add MiniMax-M2.7-highspeed
+/model setup
+```
+
+`/model use &lt;#&gt;` changes the current session and is restored when that session
+is resumed. `/model default &lt;#&gt;` updates the active agent&#x27;s saved default.
+`/model add &lt;model&gt;` adds a model to the current connection and selects it for
+the session immediately; the agent default stays unchanged. `/model setup`
+uses the same provider presets and config writer inside terminal Focus to add a
+different connection, review it, save it, and use it without restarting.
+`openminion setup` remains available for first-run and scripted setup.
+
+For another OpenAI-compatible provider, choose the provider preset and model:
+
+```bash
+openminion setup \
+  --provider qwen-dashscope \
+  --model qwen3.7-plus \
+  --agent qwen3.7-plus \
+  --no-focus
+```
+
+The same pattern works for `kimi`, `zai`, `zai-coding`, and `deepseek` with
+their own environment variables and model ids.
+
+Non-interactive setup reads credentials from the provider&#x27;s environment
+variable and does not send a remote provider request by default. Add
+`--check-provider` only when the run is allowed to make one bounded provider
+request that may consume quota.
+
+Custom endpoints are explicit:
+
+```bash
+openminion setup \
+  --provider custom-openai-compatible \
+  --api-format openai-compatible \
+  --base-url https://example.test/v1 \
+  --model provider-model-id \
+  --agent custom-openai \
+  --no-focus
+```
+
+Custom endpoints use either `custom-openai-compatible` or
+`custom-anthropic-compatible`; both require an explicit API format, base URL,
+and model ID.
+
+</div></div><div style="--state:var(--ok)"><span class="chip s-new">translated</span><div class="md" data-md>### Mulai ruang lokal human-plus-agents
+
+Gunakan flag root eksplisit agar ruang dan telemetrinya tetap di bawah satu direktori runtime yang dipilih. Ganti `writer` dan `reviewer` dengan ID agent dari konfigurasi Anda:
+
+```bash
+runtime_root=&quot;$PWD/.openminion-room&quot;
+config_path=&quot;$HOME/.openminion/agents.json&quot;
+room_output=&quot;$(openminion \
+  --home-root &quot;$runtime_root/home&quot; \
+  --data-root &quot;$runtime_root/data&quot; \
+  --config &quot;$config_path&quot; \
+  room create \
+  --name &quot;Review room&quot; \
+  --human owner-local \
+  --agent writer \
+  --agent reviewer \
+  --channel console \
+  --target focus)&quot;
+room_id=&quot;$(printf &#x27;%s\n&#x27; &quot;$room_output&quot; | sed -n &#x27;s/^room=//p&#x27;)&quot;
+
+openminion \
+  --home-root &quot;$runtime_root/home&quot; \
+  --data-root &quot;$runtime_root/data&quot; \
+  --config &quot;$config_path&quot; \
+  --agent writer \
+  --session &quot;$room_id&quot; \
+  --dir &quot;$PWD&quot;
+```
+
+Gunakan `/participants`, `/status`, dan `/sessions` untuk memeriksa ruang tersebut. Pemilik lokal dapat menggunakan `/invite`, `/kick`, `/activate`, dan `/routing`; alamat satu agent dengan `@reviewer`, atau pilih routing `broadcast` atau `sequential` untuk kedua agent.
+
+Layar pertama langsung menuju provider model. OpenAI, Anthropic, OpenRouter, MiniMax, dan Ollama lokal muncul pertama; provider tambahan, endpoint eksperimental, endpoint khusus, dan impor konfigurasi tetap tersedia dari menu yang sama.
+
+Mode demo bukan bagian dari onboarding normal. Ini tetap tersedia melalui jalur pengembangan/uji `openminion --demo` yang eksplisit. Demo non-interaktif juga dapat dibuat dengan `openminion config init --provider echo`. Ini memverifikasi konfigurasi lokal, penyimpanan, sesi, dan jalur CLI saja; tidak memanggil model. Oleh karena itu, `openminion status readiness` melaporkan `overall=demo` untuk konfigurasi tersebut sebagai ganti mengklaim kesiapan provider.
+
+Setup menunjukkan tiga identitas yang penting selama putaran pertama:
+
+1. provider, seperti OpenAI, Anthropic, OpenRouter, Ollama, MiniMax, Kimi, Z.ai, DeepSeek, Qwen/DashScope, Gemini, xAI, Mistral, Together, Cerebras, Groq, Cortensor Portal, Cortensor Router, atau endpoint khusus;
+2. ID model, seperti `gpt-4.1-mini` atau `MiniMax-M2.7`; dan
+3. adaptor API, seperti kompatibel OpenAI atau kompatibel Anthropic.
+
+Untuk provider bawaan, OpenMinion secara otomatis memilih adaptor API. Adaptor menggambarkan kompatibilitas, bukan identitas provider. MiniMax tetap menjadi provider ketika menggunakan adaptor yang kompatibel dengan OpenAI.
+
+Pengaturan provider di `agents.json` memiliki satu lokasi edit: blok tingkat atas `providers`. `openminion config init` menulis `providers.&lt;id&gt;` sekali dan tidak menduplikasinya di bawah `system.providers`, sehingga mengedit `providers.openai.base_url` (atau bidang lain) akan berlaku pada muatan berikutnya. Konfigurasi lama yang hanya mendefinisikan `system.providers` masih dapat dimuat, dan konfigurasi yang dengan sengaja mendefinisikan kedua blok mempertahankan preseden yang ada (`system.providers` menang); penyimpanan kemudian menulis nilai efektif kembali ke blok tingkat atas dan menghapus duplikatnya.
+
+Kredensial lingkungan lebih diutamakan. Misalnya, pengaturan OpenAI membaca `OPENAI_API_KEY`; pengaturan MiniMax membaca `MINIMAX_API_KEY` sambil menggunakan adaptor yang kompatibel dengan OpenAI yang ada. Kompatibilitas tidak berarti berbagi akun atau kredensial; setiap provider tetap menggunakan kuncinya sendiri. Setup interaktif dapat menyimpan kunci yang ditempel secara lokal hanya setelah prompt tersembunyi, peringatan, dan konfirmasi. Pada sistem POSIX, direktori konfigurasi milik setup diperketat menjadi hanya pemilik `0700`, dan file konfigurasi yang dibuat setup adalah hanya pemilik `0600`.
+
+Katalog setup dimiliki oleh runtime, jadi gunakan CLI daripada tabel provider yang disalin saat memilih atau mengintegrasikan provider:
+
+```bash
+# Human-readable catalog
+openminion setup --list-providers
+
+# Stable machine-readable catalog for clients and scripts
+openminion setup --list-providers --json
+```
+
+Form JSON melaporkan setiap ID provider, label, variabel lingkungan kredensial, persyaratan kredensial, URL dasar default, dan model yang direkomendasikan menurut urutan. Mencantumkan provider tidak membuat permintaan ke provider.
+
+Portal Cortensor tetap merupakan jalur hosting eksperimental karena ketersediaan layanan saat ini dapat lambat atau tidak stabil. Portal mengelola routing, kuota, kapasitas, dan siklus hidup permintaan internalnya. OpenMinion menetapkan batas waktu provider yang ada secara default menjadi 480 detik; nilai `timeout_seconds` yang dikonfigurasi lebih besar dipertahankan oleh runtime. Dukungan Portal saat ini meliputi teks, streaming teks, panggilan alat OpenAI asli, kelanjutan hasil alat, dan delta panggilan alat yang dipancarkan secara streaming. OpenMinion mempertahankan ID panggilan alat Portal, argumen, alasan penyelesaian, penggunaan, dan fakta korelasi `X-Request-ID`. Permintaan Portal tidak secara otomatis dicoba ulang karena pengiriman ulang belum bersifat idempoten. Portal saat ini menghilangkan `X-Request-ID` dari respons validasi permintaan FastAPI `422`; OpenMinion tidak dapat menangkap header yang tidak ada.
+
+Jalankan penerimaan Portal awal secara serial. Dua permintaan simultan yang ditugaskan ke sesi Cortensor yang sama saat ini dapat menampilkan
+`router_v4_correlation_mismatch` sebagai `502 router_error`; OpenMinion melaporkan kegagalan itu tanpa mencobanya ulang.
+
+```bash
+export CORTENSOR_API_KEY=&quot;...&quot;
+openminion setup --provider cortensor-portal --agent cortensor-portal --no-focus
+```
+
+Jalur Router langsung yang canggih tetap terpisah dan mempertahankan semantik sesi Router-nya. Gunakan preset `cortensor-router`. ID pengaturan warisan `cortensor`
+hanya mengarah ke jalur langsung ini.
+
+```bash
+openminion setup --provider cortensor-router --agent cortensor-router --no-focus
+```
+
+Preset lokal `ollama` tidak memerlukan kredensial dan default ke endpoint lokal Ollama.
+
+`/v1/models` berguna untuk diagnosis, tetapi tidak membuktikan kesiapan inferensi. Tambahkan `--check-provider` hanya ketika permintaan teks yang mengkonsumsi kuota diotorisasi.
+
+Kecuali pengaturan menyatakan `live`, model yang diperiksa hanya merupakan fallback yang direkomendasikan. Dukungan provider berbasis fixture berarti OpenMinion memiliki cakupan permintaan lokal dan konfigurasi; ini bukan akun langsung, penagihan, kuota, atau jaminan ketersediaan model.
+
+Commerce saat ini adalah fondasi lokal yang dikonfigurasi nonaktif. Tidak ada provider produksi yang dapat diaktifkan. Lihat [Commerce Order Care](guides/commerce-order-care.md) untuk siklus hidup lima alat, batas persetujuan satu kali yang tepat, pemulihan, perilaku pengalihan, dan perbedaan antara fixture, model langsung, sandbox, dan bukti produksi.
+
+Untuk memindahkan pengaturan yang ada, ekspor tanpa rahasia yang tertanam dan impor di mesin baru:
+
+```bash
+openminion config export --out openminion-config.yaml
+openminion setup
+```
+
+Pilih **Import an existing OpenMinion config**, masukkan jalur ekspor, dan konfirmasi ringkasan sumber/target yang telah disunting. Nilai yang diimpor menggantikan bidang yang cocok sementara pengaturan yang tidak terkait di konfigurasi target yang ada dipertahankan. Setara mandiri adalah:
+
+```bash
+openminion config import openminion-config.yaml
+```
+
+Tambahkan `--force` hanya ketika file yang diimpor harus menggantikan, bukan menggabungkan dengan konfigurasi yang ada. Kredensial tidak termasuk dalam ekspor normal, jadi setel variabel lingkungan provider yang dirujuk pada mesin tujuan. Batas token, anggaran konteks, dan nama variabel lingkungan kredensial tetap ada dalam ekspor; nilai kredensial, termasuk header otentikasi, tidak ada. Lihat [turn budgets and token cost](turn-budgets.md) sebelum mengubah batas untuk menangani penghentian awal atau giliran yang mahal.
+
+Sebuah `file.read` mencakup `content_sha256` untuk teks UTF-8 penuh sebelum konversi baris baru atau pemotongan. Pembacaan lokal mempertahankan tampilan teks baris baru universal yang ada; sidik jari membedakan byte LF, CRLF, dan CR asli. Pembacaan di memori mempertahankan karakter baris baru asli. Pembacaan lokal lengkap juga mencakup `version` yang tidak tembus pandang. Untuk penimpaan kondisional, `file.write` menerima
+`expected_content_sha256` (operkan `content_sha256` dari bacaan secara langsung) dan `expected_version`. Ketidaksesuaian mengembalikan `PRECONDITION_FAILED` sebelum pemangkasan. Penambahan kondisional ditolak. Penggantian kondisional lokal memerlukan penguncian file advisori dan gagal tertutup ketika tidak tersedia; kunci tersebut mengoordinasikan penulis yang berpartisipasi, bukan proses eksternal sembarangan. Backend di memori mendukung prekondisi konten.
+
+Loop adaptif memungkinkan satu percobaan baca aman identik setelah kegagalan transien terstruktur. Ini juga dapat mencoba menimpa identik satu kali setelah pembacaan ulang lengkap jalur yang sama yang membantah konten yang diakui, menambahkan konten dan prekondisi versi yang tersedia. Izin dan anggaran diperiksa ulang. Penambahan, efek eksternal dan pembacaan parsial tidak menerima pemulihan ini.
+
+Alat file mempertahankan byte baris baru di luar rentang yang diedit dan menolak konten UTF-8 tidak valid sebelum memodifikasi berkas. `file.read_range` menghitung berkas aktual dan menolak awal di luar EOF. `file.search` mendukung glob relatif akar pencarian dan menandai hasil tidak lengkap sebagai terpangkas. `file.trash` menggunakan fasilitas sampah asli melalui Send2Trash dan tidak pernah menggantikan penghapusan permanen. Pemulihan berkas/direktori asli diverifikasi di macOS; pemulihan Windows dan Linux masih memerlukan kualifikasi khusus platform. Backend memori menolak sampah tanpa menghapus konten karena tidak memiliki fasilitas sampah yang dapat dipulihkan.
+
+Otomatisasi dapat menggunakan jalur pengaturan yang sama tanpa prompt:
+
+```bash
+openminion setup \
+  --provider minimax \
+  --model MiniMax-M2.7 \
+  --agent minimax-m27 \
+  --no-focus
+```
+
+Di dalam CLI interaktif, `/model` hanya menampilkan model yang dikonfigurasikan untuk agent aktif. Sebuah koneksi adalah layanan dan rute kredensial/endpoint, sementara format API menjelaskan bagaimana OpenMinion berkomunikasi dengannya. Misalnya, MiniMax adalah koneksi dan OpenAI-compatible adalah format API.
+
+```text
+/model
+/model use 2
+/model default 2
+/model add MiniMax-M2.7-highspeed
+/model setup
+```
+
+`/model use &lt;#&gt;` mengubah sesi saat ini dan dipulihkan saat sesi tersebut dilanjutkan. `/model default &lt;#&gt;` memperbarui default tersimpan dari agent aktif.
+`/model add &lt;model&gt;` menambahkan model ke koneksi saat ini dan langsung memilihnya untuk sesi; default agent tetap tidak berubah. `/model setup` menggunakan preset provider yang sama dan penulis konfigurasi di dalam terminal Focus untuk menambahkan koneksi berbeda, meninjaunya, menyimpannya, dan menggunakannya tanpa perlu memulai ulang.
+`openminion setup` tetap tersedia untuk pengaturan pertama kali dan pengaturan skrip.
+
+Untuk provider yang kompatibel dengan OpenAI lainnya, pilih preset provider dan model:
+
+```bash
+openminion setup \
+  --provider qwen-dashscope \
+  --model qwen3.7-plus \
+  --agent qwen3.7-plus \
+  --no-focus
+```
+
+Polanya sama untuk `kimi`, `zai`, `zai-coding`, dan `deepseek` dengan variabel lingkungan dan ID model masing-masing.
+
+Pengaturan non-interaktif membaca kredensial dari variabel lingkungan provider dan secara default tidak mengirim permintaan ke provider jarak jauh. Tambahkan `--check-provider` hanya saat sesi diizinkan untuk membuat satu permintaan terbatas ke provider yang dapat mengkonsumsi kuota.
+
+Endpoint kustom bersifat eksplisit:
+
+```bash
+openminion setup \
+  --provider custom-openai-compatible \
+  --api-format openai-compatible \
+  --base-url https://example.test/v1 \
+  --model provider-model-id \
+  --agent custom-openai \
+  --no-focus
+```
+
+Endpoint kustom menggunakan `custom-openai-compatible` atau `custom-anthropic-compatible`; keduanya memerlukan format API yang eksplisit, URL dasar, dan ID model.
+
+</div></div></div><div class="row"><div><div class="md" data-md>## Per-agent command access
+
+Unsandboxed host execution remains disabled by default. A trusted local agent
+profile can allow specific executables and opt into host execution without
+changing other profiles:
+
+```json
+{
+  &quot;agents&quot;: {
+    &quot;local-docker&quot;: {
+      &quot;provider&quot;: &quot;minimax&quot;,
+      &quot;command_policy&quot;: {
+        &quot;allow&quot;: [&quot;docker&quot;],
+        &quot;allow_host&quot;: true
+      }
+    }
+  }
+}
+```
+
+The executable must resolve from a trusted host directory. Existing dangerous
+command approval rules still apply; this profile setting does not bypass them.
+Executable names are exact; `&quot;*&quot;` is not a supported allow-all entry.
+If no command sandbox is configured, `exec.run` returns
+`SANDBOX_UNAVAILABLE` and recommends structured file tools, a configured
+sandbox, or restarting with `--allow-unsandboxed-exec`. The flag runs commands
+with the OpenMinion process&#x27;s OS permissions; commands are not confined to the
+workspace or added directories. Full access does not enable host execution.
+A native local sandbox and approval-free command parity remain future work.
+
+</div></div><div style="--state:var(--rule)"><span class="chip s-reused">reused</span><div class="md" data-md>## Akses perintah per-agent
+
+Eksekusi host tanpa sandbox tetap dinonaktifkan secara default. Profil agent lokal terpercaya dapat mengizinkan eksekusi tertentu dan memilih untuk menggunakan eksekusi host tanpa mengubah profil lain:
+
+```json
+{
+  &quot;agents&quot;: {
+    &quot;local-docker&quot;: {
+      &quot;provider&quot;: &quot;minimax&quot;,
+      &quot;command_policy&quot;: {
+        &quot;allow&quot;: [&quot;docker&quot;],
+        &quot;allow_host&quot;: true
+      }
+    }
+  }
+}
+```
+
+Eksekusi harus berasal dari direktori host terpercaya. Aturan persetujuan perintah berbahaya yang sudah ada tetap berlaku; pengaturan profil ini tidak melewati aturan tersebut. Nama eksekusi harus tepat; `&quot;*&quot;` bukan entri izinkan-semua yang didukung.
+Jika tidak ada sandbox perintah yang dikonfigurasi, `exec.run` mengembalikan
+`SANDBOX_UNAVAILABLE` dan merekomendasikan alat file terstruktur, sandbox yang dikonfigurasi, atau memulai ulang dengan `--allow-unsandboxed-exec`. Flag ini menjalankan perintah dengan izin OS dari proses OpenMinion; perintah tidak dibatasi pada workspace atau direktori tambahan. Akses penuh tidak mengaktifkan eksekusi host.
+Sandbox lokal asli dan kesetaraan perintah tanpa persetujuan masih menjadi pekerjaan masa depan.
+
+</div></div></div><div class="row"><div><div class="md" data-md>## Read first
+
+Before substantial code changes, read:
+
+1. [`engineering-patterns.md`](engineering-patterns.md)
+2. [`code-quality-enforcement.md`](code-quality-enforcement.md)
+3. [`source-tree-owner-map.md`](source-tree-owner-map.md)
+4. [`runtime-surfaces.md`](runtime-surfaces.md)
+
+</div></div><div style="--state:var(--rule)"><span class="chip s-reused">reused</span><div class="md" data-md>## Baca terlebih dahulu
+
+Sebelum melakukan perubahan kode yang substansial, baca:
+
+1. [`engineering-patterns.md`](engineering-patterns.md)
+2. [`code-quality-enforcement.md`](code-quality-enforcement.md)
+3. [`source-tree-owner-map.md`](source-tree-owner-map.md)
+4. [`runtime-surfaces.md`](runtime-surfaces.md)
+
+</div></div></div><div class="row"><div><div class="md" data-md>## Normal execution loop
+
+1. Pick one focused change.
+2. Implement code and docs together when the public surface changes.
+3. Add or update tests for the behavior you changed.
+4. Run focused validation while iterating.
+5. Run `make lint` before calling the work ready.
+6. Record validation commands in the PR description.
+
+</div></div><div style="--state:var(--rule)"><span class="chip s-reused">reused</span><div class="md" data-md>## Siklus eksekusi normal
+
+1. Pilih satu perubahan fokus.
+2. Terapkan kode dan dokumentasi bersama ketika permukaan publik berubah.
+3. Tambahkan atau perbarui pengujian untuk perilaku yang Anda ubah.
+4. Jalankan validasi fokus selama iterasi.
+5. Jalankan `make lint` sebelum menandai pekerjaan siap.
+6. Catat perintah validasi dalam deskripsi PR.
+
+</div></div></div><div class="row"><div><div class="md" data-md>## Pull request shape
+
+Preferred PR shape:
+
+1. short, GitHub-native title,
+2. flat line-item bullets that summarize what changed,
+3. plain `Validation` label followed by exact command bullets.
+
+Example:
+
+`Add package-local workspace sync helpers`
+
+- add typed workspace sync planning
+- add explicit apply/status helpers
+- align public docs
+
+Validation
+- `make lint`
+- `python -m pytest -q tests/&lt;target&gt;`
+
+</div></div><div style="--state:var(--rule)"><span class="chip s-reused">reused</span><div class="md" data-md>## Bentuk pull request
+
+Bentuk PR yang disukai:
+
+1. judul singkat, asli GitHub,
+2. butir datar yang merangkum perubahan,
+3. label `Validation` polos diikuti dengan butir perintah yang tepat.
+
+Contoh:
+
+`Add package-local workspace sync helpers`
+
+- menambah perencanaan sinkronisasi workspace bertipe
+- menambah helper apply/status eksplisit
+- menyelaraskan dokumentasi publik
+
+Validasi
+- `make lint`
+- `python -m pytest -q tests/&lt;target&gt;`
+
+</div></div></div><div class="row"><div><div class="md" data-md>## Commit message shape
+
+Use commit messages in the form:
+
+1. `&lt;type&gt;(&lt;scope&gt;): &lt;summary&gt;`
+
+Approved current types are:
+
+1. `feat`
+2. `fix`
+3. `docs`
+4. `refactor`
+5. `test`
+6. `chore`
+7. `style`
+8. `build`
+
+Guidance:
+
+1. include a scope by default in `openminion`,
+2. choose a real owner scope such as `agent`, `api`, `cli`, `e2e`, `gateway`,
+   `runtime`, `telemetry`, `tool`, or `tools`,
+3. keep the summary specific to the landed change,
+4. avoid vague subjects like `update`,
+5. prefer the most specific truthful type; do not use `chore` when `docs`,
+   `test`, `refactor`, or `build` is more accurate,
+6. do not use local shorthand or planning labels as normal commit types.
+
+</div></div><div style="--state:var(--rule)"><span class="chip s-reused">reused</span><div class="md" data-md>## Bentuk pesan commit
+
+Gunakan pesan commit dalam bentuk:
+
+1. `&lt;type&gt;(&lt;scope&gt;): &lt;summary&gt;`
+
+Tipe yang disetujui saat ini adalah:
+
+1. `feat`
+2. `fix`
+3. `docs`
+4. `refactor`
+5. `test`
+6. `chore`
+7. `style`
+8. `build`
+
+Panduan:
+
+1. sertakan scope secara default di `openminion`,
+2. pilih scope pemilik nyata seperti `agent`, `api`, `cli`, `e2e`, `gateway`,
+   `runtime`, `telemetry`, `tool`, atau `tools`,
+3. buat ringkasan spesifik pada perubahan yang dilakukan,
+4. hindari subjek kabur seperti `update`,
+5. pilih tipe yang paling spesifik dan benar; jangan gunakan `chore` jika `docs`,
+   `test`, `refactor`, atau `build` lebih akurat,
+6. jangan gunakan singkatan lokal atau label perencanaan sebagai tipe commit biasa.
+
+</div></div></div><div class="row"><div><div class="md" data-md>## Boundary reminder
+
+1. `README.md` is the package contract and install surface.
+2. `API_COMPATIBILITY.md` is the public import/export promise.
+3. `docs/` is the package-local public docs layer.
+4. `tests/` and `scripts/` are important, but they are not public library API.
+</div></div><div style="--state:var(--rule)"><span class="chip s-reused">reused</span><div class="md" data-md>## Pengingat batas
+
+1. `README.md` adalah kontrak paket dan permukaan instalasi.
+2. `API_COMPATIBILITY.md` adalah janji impor/ekspor publik.
+3. `docs/` adalah lapisan dokumentasi publik lokal paket.
+4. `tests/` dan `scripts/` penting, tetapi bukan API library publik.
+</div></div></div></details><details open><summary><span class="path">docs/runtime-surfaces.md</span><span class="chip s-new">2 changed</span></summary><div class="cols"><span>English source</span><span>Bahasa Indonesia</span></div><div class="row"><div><div class="md" data-md># OpenMinion Runtime Surfaces
+
+Status: active
+Last updated: 2026-10-06
+
+Purpose: give developers one package-local map of the public `openminion`
+surfaces and when to use each one.
+
+</div></div><div style="--state:var(--rule)"><span class="chip s-reused">reused</span><div class="md" data-md># OpenMinion Runtime Surfaces
+
+Status: aktif
+Terakhir diperbarui: 2026-10-06
+
+Tujuan: memberikan kepada pengembang satu peta paket lokal dari permukaan publik `openminion` dan kapan harus menggunakan masing-masing.
+
+</div></div></div><div class="row"><div><div class="md" data-md>## Primary surfaces
+
+</div></div><div style="--state:var(--rule)"><span class="chip s-reused">reused</span><div class="md" data-md>## Permukaan utama
+
+</div></div></div><div class="row"><div><div class="md" data-md>### 1. Interactive CLI
+
+Use:
+
+1. `openminion`
+2. `python -m openminion`
+
+Best for:
+
+1. interactive local operator use,
+2. tool-using conversational work,
+3. terminal-first workflows.
+
+Notes:
+
+1. the default invocation launches the sole interactive terminal renderer on a TTY,
+2. piped input executes one request without mounting an interactive renderer,
+3. legacy `focus`, `chat`, `tui`, and `dashboard` command names are retired and rejected,
+4. startup creates a fresh session unless `--session &lt;id&gt;` is provided,
+5. `openminion room` creates and manages local human-agent room sessions; use
+   the returned room ID with `--session` to enter that room in the interactive
+   CLI.
+
+</div></div><div style="--state:var(--rule)"><span class="chip s-reused">reused</span><div class="md" data-md>### 1. CLI Interaktif
+
+Penggunaan:
+
+1. `openminion`
+2. `python -m openminion`
+
+Terbaik untuk:
+
+1. penggunaan operator lokal interaktif,
+2. pekerjaan percakapan dengan penggunaan alat,
+3. alur kerja terminal-first.
+
+Catatan:
+
+1. pemanggilan default meluncurkan satu-satunya perender terminal interaktif pada sebuah TTY,
+2. masukan yang dipipakan menjalankan satu permintaan tanpa memasang perender interaktif,
+3. nama perintah lama `focus`, `chat`, `tui`, dan `dashboard` sudah dihentikan dan ditolak,
+4. startup membuat sesi baru kecuali jika `--session &lt;id&gt;` disediakan,
+5. `openminion room` membuat dan mengelola sesi ruang agen-manusia lokal; gunakan ID ruang yang dikembalikan dengan `--session` untuk memasuki ruang tersebut di CLI interaktif.
+
+</div></div></div><div class="row"><div><div class="md" data-md>### 2. Python library API
+
+Use:
+
+1. `import openminion`
+2. `from openminion import Agent, ProviderError, tool`
+3. `from openminion.api import APIRuntime, Agent, RuntimeTurnHandle, TurnChunk, TurnResponse`
+
+Best for:
+
+1. embedding OpenMinion into Python applications,
+2. direct runtime composition,
+3. explicit turn execution from code,
+4. typed tool/handoff integration.
+
+`Agent` owns an isolated session by default. Pass `session_id` to the
+constructor or to `run()` when an application already owns the continuity key.
+Pass `config_path` for a project-owned config and `agent_id` to select a
+configured profile. Agent calls return their result to Python without console
+delivery, and `AgentRunResult.session_id` exposes the resolved continuity key.
+`Agent` also supports `with Agent(...) as agent:` for deterministic cleanup.
+`tools=None` keeps the configured default tool exposure; `tools=[]` disables
+application and orchestration tools for the turn. Explicit `handoffs` add their
+transfer tools to the list. Forced tool requests do not override an empty
+allowlist. Internal structured-output schemas may still be used for runtime
+reasoning; they cannot dispatch application tools.
+Its `run_stream()` method is a synchronous turn with a progress callback. For
+iterator streaming, cancellation, or explicit approval resolution, call
+`APIRuntime.submit_turn()` and use the returned `RuntimeTurnHandle`.
+`examples/sdk/submitted_stream.py` shows that lifecycle using public imports.
+
+`Agent.run()` and callback-progress `run_stream()` accept optional
+`timeout_seconds`, `approval_callback`, and `cancel_event` controls already
+owned by runtime ingress. Their results expose the canonical result ID,
+metadata, and stats alongside the existing output and continuity fields.
+Turn `stats` report observed LLM calls and provider-reported input, output, and
+cache-read tokens across reflection, entry, action, and judgment, including
+continuation steps in the same run. These totals also populate response
+metadata and persisted outbound-message stats. Canonical call events support
+the detailed token-usage view; replaying the same call event does not add usage
+again. Action-loop subtotals are not added to those events.
+
+Calls count logical client requests, not their transport retry attempts. A
+structured-output correction that makes another request is another call.
+Known usage survives rejected empty responses and response-policy failures.
+Unreported usage, including usage from failed transport attempts, is unknown;
+zero in a numeric summary is not proof of zero billing. The response metadata&#x27;s
+`llm_usage_coverage` records reported, missing, and invalid token dimensions.
+When event facts are unavailable, legacy action totals and inference counts
+remain a fallback, with counts labeled `unknown` rather than a guessed phase.
+This reporting does not settle child execution budgets or aggregate child tool
+results; those are separate from LLM usage observations.
+
+Action-policy confirmations reach `approval_callback` before tool execution.
+Returning true grants that invocation once; false or a callback failure prevents
+execution. Without a callback, the interactive confirmation flow remains in
+place. Submitted turns deliver the same request through approval stream events.
+
+Which `@tool` functions get a confirmation depends on how they are declared.
+Under the default action policy:
+
+- a bare `@tool` is a local write with unknown reversibility, so it is
+  confirmed before it runs;
+- `@tool(min_scope=&quot;READ_ONLY&quot;, idempotent=True)` is a read with no side
+  effects and runs without confirmation, as in `examples/sdk/tool_agent.py`.
+  Explicit denials, sensitive-target handling and operator policy still apply;
+- `idempotent=True` alone still leaves a write, which is confirmed;
+- `dangerous=True` is destructive and irreversible, and requires confirmation
+  unless a matching grant or an explicit policy rule resolves it first;
+- `tags` and `capabilities` do not declare risk.
+
+The docstring of `openminion.tool` lists the full mapping.
+
+In that flow the turn ends with `respond_kind` `policy_confirmation_prompt` in
+its metadata, and the call waits on the turn&#x27;s thread. A later `run()` without
+a thread starts a new thread, so it does not answer the confirmation. To answer
+it, pass the earlier result&#x27;s `thread_id` to `run()` or `run_stream()`: the
+runtime then resumes that thread. Omitted or blank, `thread_id` changes
+nothing. A thread id from another session does not answer that session&#x27;s
+confirmation, and with `approval_callback` the callback still decides.
+
+```python
+first = agent.run(&quot;Remember that I write code in Iosevka 14.&quot;)
+if first.metadata.get(&quot;respond_kind&quot;) == &quot;policy_confirmation_prompt&quot;:
+    # Answer the confirmation on the thread that is waiting for it.
+    answer = agent.run(&quot;yes&quot;, thread_id=first.thread_id)
+```
+
+Stable exported root symbols are recorded in `API_COMPATIBILITY.md`.
+Advanced turn lifecycle types are exported from `openminion.api` rather than
+added to the root package.
+
+</div></div><div style="--state:var(--ok)"><span class="chip s-new">translated</span><div class="md" data-md>### 2. API library Python
+
+Gunakan:
+
+1. `import openminion`
+2. `from openminion import Agent, ProviderError, tool`
+3. `from openminion.api import APIRuntime, Agent, RuntimeTurnHandle, TurnChunk, TurnResponse`
+
+Terbaik untuk:
+
+1. menyematkan OpenMinion ke dalam aplikasi Python,
+2. komposisi runtime langsung,
+3. eksekusi giliran eksplisit dari kode,
+4. integrasi tool/penyerahan bertipe.
+
+`Agent` memiliki sesi terisolasi secara default. Berikan `session_id` ke
+konstruktor atau ke `run()` ketika aplikasi sudah memiliki kunci kontinuitas.
+Berikan `config_path` untuk konfigurasi milik proyek dan `agent_id` untuk memilih
+profil yang dikonfigurasi. Panggilan agent mengembalikan hasilnya ke Python tanpa pengiriman konsol,
+dan `AgentRunResult.session_id` menampilkan kunci kontinuitas yang sudah diselesaikan.
+`Agent` juga mendukung `with Agent(...) as agent:` untuk pembersihan deterministik.
+`tools=None` mempertahankan eksposur tool default yang dikonfigurasi; `tools=[]` menonaktifkan
+aplikasi dan tool orkestrasi untuk giliran tersebut. `handoffs` eksplisit menambahkan
+tool transfer mereka ke dalam daftar. Permintaan tool yang dipaksa tidak menggantikan daftar putih yang kosong.
+Skema keluaran terstruktur internal masih dapat digunakan untuk penalaran runtime;
+mereka tidak dapat mengirimkan tool aplikasi.
+Metode `run_stream()`-nya adalah giliran sinkron dengan callback progres. Untuk
+streaming iterator, pembatalan, atau resolusi persetujuan eksplisit, panggil
+`APIRuntime.submit_turn()` dan gunakan `RuntimeTurnHandle` yang dikembalikan.
+`examples/sdk/submitted_stream.py` menunjukkan siklus hidup itu menggunakan impor publik.
+
+`Agent.run()` dan callback progres `run_stream()` menerima kontrol opsional
+`timeout_seconds`, `approval_callback`, dan `cancel_event` yang sudah dimiliki oleh ingress runtime.
+Hasil mereka menampilkan ID hasil kanonik, metadata, dan statistik bersamaan dengan keluaran dan bidang kontinuitas yang sudah ada.
+Laporan giliran `stats` mengamati panggilan LLM dan token input, output, dan pembacaan cache yang dilaporkan penyedia
+melintasi refleksi, entri, aksi, dan penilaian, termasuk langkah kelanjutan dalam run yang sama.
+Total ini juga mengisi metadata respons dan statistik pesan keluar yang dipertahankan.
+Peristiwa panggilan kanonik mendukung tampilan penggunaan token terperinci; pengulangan acara panggilan yang sama tidak menambah penggunaan lagi.
+Subtotal loop aksi tidak ditambahkan ke acara tersebut.
+
+Panggilan menghitung permintaan klien logis, bukan upaya ulang transport mereka.
+Koreksi keluaran terstruktur yang membuat permintaan lain adalah panggilan lain.
+Penggunaan yang diketahui bertahan dari respons kosong yang ditolak dan kegagalan kebijakan respons.
+Penggunaan yang tidak dilaporkan, termasuk penggunaan dari upaya transport yang gagal, tidak diketahui;
+nol dalam ringkasan numerik bukan bukti penagihan nol.
+Metadata respons `llm_usage_coverage` mencatat dimensi token yang dilaporkan, hilang, dan tidak valid.
+Ketika fakta acara tidak tersedia, total aksi warisan dan hitungan inferensi tetap menjadi cadangan,
+dengan hitungan yang dilabeli `unknown` daripada fase yang diduga.
+Pelaporan ini tidak menyelesaikan anggaran eksekusi anak atau mengagregasi hasil tool anak;
+itu terpisah dari pengamatan penggunaan LLM.
+
+Konfirmasi kebijakan aksi mencapai `approval_callback` sebelum eksekusi tool.
+Mengembalikan true memberi izin panggilan itu sekali; false atau kegagalan callback mencegah
+eksekusi. Tanpa callback, alur konfirmasi interaktif tetap ada.
+Giliran yang diserahkan mengirimkan permintaan yang sama melalui acara alir persetujuan.
+
+Fungsi `@tool` mana yang mendapatkan konfirmasi bergantung pada bagaimana mereka dideklarasikan.
+Di bawah kebijakan aksi default:
+
+- `@tool` tanpa atribut adalah penulisan lokal dengan kebalikan yang tidak diketahui,
+  jadi dikonfirmasi sebelum dijalankan;
+- `@tool(min_scope=&quot;READ_ONLY&quot;, idempotent=True)` adalah pembacaan tanpa efek samping
+  dan berjalan tanpa konfirmasi, seperti di `examples/sdk/tool_agent.py`.
+  Penolakan eksplisit, penanganan target sensitif, dan kebijakan operator tetap berlaku;
+- `idempotent=True` sendirian masih meninggalkan penulisan, yang dikonfirmasi;
+- `dangerous=True` bersifat destruktif dan tidak dapat dibatalkan, dan memerlukan konfirmasi
+  kecuali ada izin yang sesuai atau aturan kebijakan eksplisit yang menyelesaikannya terlebih dahulu;
+- `tags` dan `capabilities` tidak menyatakan risiko.
+
+Docstring dari `openminion.tool` mencantumkan pemetaan lengkap.
+
+Dalam alur itu, giliran diakhiri dengan metadata `respond_kind` `policy_confirmation_prompt`,
+dan panggilan menunggu di thread giliran.
+`run()` yang lebih kemudian tanpa thread memulai thread baru, jadi tidak menjawab konfirmasi.
+Untuk menjawabnya, berikan `thread_id` dari hasil sebelumnya ke `run()` atau `run_stream()`:
+runtime kemudian melanjutkan thread itu. Jika dihilangkan atau kosong, `thread_id` tidak mengubah apa pun.
+ID thread dari sesi lain tidak menjawab konfirmasi sesi tersebut, dan dengan `approval_callback` callback masih memutuskan.
+
+```python
+first = agent.run(&quot;Remember that I write code in Iosevka 14.&quot;)
+if first.metadata.get(&quot;respond_kind&quot;) == &quot;policy_confirmation_prompt&quot;:
+    # Answer the confirmation on the thread that is waiting for it.
+    answer = agent.run(&quot;yes&quot;, thread_id=first.thread_id)
+```
+
+Simbol akar yang diekspor stabil dicatat di `API_COMPATIBILITY.md`.
+Tipe siklus hidup giliran lanjutan diekspor dari `openminion.api`, bukan ditambahkan ke paket akar.
+
+</div></div></div><div class="row"><div><div class="md" data-md>### 3. API runtime / server surface
+
+Use:
+
+1. `openminion.api.APIRuntime`
+2. `openminion.api.dispatch_request`
+
+Best for:
+
+1. local HTTP-serving integration,
+2. request/response adaptation,
+3. runtime composition that should stay outside the interactive CLI.
+
+</div></div><div style="--state:var(--rule)"><span class="chip s-reused">reused</span><div class="md" data-md>### 3. Permukaan runtime/API server
+
+Penggunaan:
+
+1. `openminion.api.APIRuntime`
+2. `openminion.api.dispatch_request`
+
+Terbaik untuk:
+
+1. integrasi layanan HTTP lokal,
+2. adaptasi permintaan/response,
+3. komposisi runtime yang harus tetap berada di luar CLI interaktif.
+
+</div></div></div><div class="row"><div><div class="md" data-md>### 4. Companion operator CLIs
+
+Use when you need narrower subsystem control:
+
+1. `telemetryctl`
+2. `opsctl`
+3. `openminiond`
+4. `openminion-tool`
+5. `identityctl`
+6. `openminion-controlplane`
+7. `runtimectl`
+8. `brainctl`
+9. `memctl`
+10. `sessctl`
+11. `contextctl` / `ctxctl`
+12. `agentregctl`
+13. `artifactctl`
+14. `openminion-controlplane-telegram`
+15. `openminion-controlplane-slack`
+16. `skill` / `skillctl`
+17. `a2actl`
+18. `rlmctl`
+19. `retrievectl`
+20. `policyctl`
+
+Best for:
+
+1. deterministic operator workflows,
+2. subsystem inspection,
+3. explicit local maintenance flows.
+
+</div></div><div style="--state:var(--rule)"><span class="chip s-reused">reused</span><div class="md" data-md>### 4. CLI operator pendamping
+
+Gunakan saat Anda memerlukan kontrol subsistem yang lebih sempit:
+
+1. `telemetryctl`
+2. `opsctl`
+3. `openminiond`
+4. `openminion-tool`
+5. `identityctl`
+6. `openminion-controlplane`
+7. `runtimectl`
+8. `brainctl`
+9. `memctl`
+10. `sessctl`
+11. `contextctl` / `ctxctl`
+12. `agentregctl`
+13. `artifactctl`
+14. `openminion-controlplane-telegram`
+15. `openminion-controlplane-slack`
+16. `skill` / `skillctl`
+17. `a2actl`
+18. `rlmctl`
+19. `retrievectl`
+20. `policyctl`
+
+Terbaik untuk:
+
+1. alur kerja operator yang deterministik,
+2. inspeksi subsistem,
+3. alur pemeliharaan lokal yang eksplisit.
+
+</div></div></div><div class="row"><div><div class="md" data-md>### 5. Visual graph inspection
+
+Use:
+
+1. `openminion graph status`
+2. `openminion graph view --current`
+3. `openminion graph view --brain third --provider &lt;name&gt;`
+4. `/graph` inside the interactive CLI for copyable viewer commands
+
+Best for:
+
+1. checking whether the visual graph lens is ready before opening it,
+2. opening the current second-brain memory graph in the shared GraphFakos viewer,
+3. opening configured third-brain provider graphs when they expose a viewer
+   envelope or a PragmaGraph snapshot,
+4. inspecting nodes, relationships, provenance, citations, and provider status,
+5. embedding a provider-neutral graph lens in a host app without importing
+   OpenMinion internals.
+
+Notes:
+
+1. install `openminion[viewer]` to include GraphFakos and PragmaGraph snapshot
+   support,
+2. the visual surface is a lens over current graph state, not a memory backend
+   or graph indexer,
+3. `openminion graph status --json` reports GraphFakos availability, the
+   second-brain memory database path, active third-brain providers, visual
+   readiness, diagnostic codes, empty-memory guidance, and suggested next
+   commands,
+4. `openminion graph view --dry-run --json` builds the selected graph and
+   returns counts, filters, facets, provider details, empty-state metadata, and
+   a viewer-manifest summary without starting the local browser viewer,
+5. `openminion graph view --html-out viewer.html` writes a static visual page
+   for inspection or sharing,
+6. `openminion graph view --current --agent &lt;id&gt;` and
+   `openminion graph view --current --session &lt;id&gt;` narrow the second-brain
+   view to one memory scope,
+7. `openminion graph view --current --node-kind fact`, `--edge-kind`, `--tag`,
+   `--source`, `--min-score`, and `--evidence-filter` expose GraphFakos viewer
+   filters from the OpenMinion CLI,
+8. served local viewers route workbench forms through GraphFakos&#x27;
+   provider-neutral action handler, while the current Sophiagraph second-brain
+   lens returns explicit unsupported/provider-owned statuses for durable writes,
+9. served second-brain viewers can stream GraphFakos live `snapshot_reset`
+   patches through the local `/api/live` event stream when Sophiagraph memory
+   changes; static HTML and JSON probes refresh by rerunning the same viewer
+   command,
+10. see `docs/graph-viewer.md` and `examples/graph-viewer/` for a copyable
+   third-brain provider envelope.
+
+</div></div><div style="--state:var(--rule)"><span class="chip s-reused">reused</span><div class="md" data-md>### 5. Inspeksi grafik visual
+
+Gunakan:
+
+1. `openminion graph status`
+2. `openminion graph view --current`
+3. `openminion graph view --brain third --provider &lt;name&gt;`
+4. `/graph` di dalam CLI interaktif untuk perintah viewer yang dapat disalin
+
+Terbaik untuk:
+
+1. memeriksa apakah lensa grafik visual sudah siap sebelum membukanya,
+2. membuka grafik memori second-brain saat ini di viewer GraphFakos bersama,
+3. membuka grafik provider third-brain yang dikonfigurasi ketika mereka menampilkan envelope viewer atau snapshot PragmaGraph,
+4. memeriksa node, hubungan, asal-usul, kutipan, dan status provider,
+5. menyematkan lensa grafik netral provider di aplikasi host tanpa mengimpor internal OpenMinion.
+
+Catatan:
+
+1. pasang `openminion[viewer]` untuk menyertakan dukungan GraphFakos dan snapshot PragmaGraph,
+2. permukaan visual adalah lensa atas status grafik saat ini, bukan backend memori atau pengindeks grafik,
+3. `openminion graph status --json` melaporkan ketersediaan GraphFakos, jalur database memori second-brain, provider third-brain yang aktif, kesiapan visual, kode diagnostik, panduan memori kosong, dan perintah berikut yang disarankan,
+4. `openminion graph view --dry-run --json` membangun grafik yang dipilih dan mengembalikan jumlah, filter, facet, detail provider, metadata status kosong, dan ringkasan manifest viewer tanpa memulai viewer browser lokal,
+5. `openminion graph view --html-out viewer.html` menulis halaman visual statis untuk inspeksi atau berbagi,
+6. `openminion graph view --current --agent &lt;id&gt;` dan `openminion graph view --current --session &lt;id&gt;` mempersempit tampilan second-brain ke satu cakupan memori,
+7. `openminion graph view --current --node-kind fact`, `--edge-kind`, `--tag`, `--source`, `--min-score`, dan `--evidence-filter` memaparkan filter viewer GraphFakos dari CLI OpenMinion,
+8. viewer lokal yang disajikan mengarahkan formulir workbench melalui handler aksi netral provider GraphFakos, sementara lensa second-brain Sophiagraph saat ini mengembalikan status eksplisit unsupported/owned-by-provider untuk penulisan tahan lama,
+9. viewer second-brain yang disajikan dapat melakukan streaming patch langsung GraphFakos `snapshot_reset` melalui aliran peristiwa lokal `/api/live` ketika memori Sophiagraph berubah; probe HTML statis dan JSON menyegarkan dengan menjalankan ulang perintah viewer yang sama,
+10. lihat `docs/graph-viewer.md` dan `examples/graph-viewer/` untuk envelope provider third-brain yang dapat disalin.
+
+</div></div></div><div class="row"><div><div class="md" data-md>### 6. ACP and published MCP
+
+Use `openminion acp` for a local Agent Client Protocol connection. ACP sends
+assistant text plus tool-call lifecycle updates (`in_progress`, `completed`,
+or `failed`). Tool arguments and tool output are not copied into those progress
+updates; approvals continue through ACP&#x27;s permission request.
+
+When `runtime.mcp_publish` is enabled, `openminion mcp serve` publishes the
+allowed runtime tools over MCP. Published tools declare input and output
+schemas. Successful calls return the same JSON object as a text content block
+and as `structuredContent`; output that does not match the declared schema is
+returned as an MCP tool error.
+
+</div></div><div style="--state:var(--rule)"><span class="chip s-reused">reused</span><div class="md" data-md>### 6. ACP dan MCP yang dipublikasikan
+
+Gunakan `openminion acp` untuk koneksi lokal Agent Client Protocol. ACP mengirim teks asisten serta pembaruan siklus hidup panggilan alat (`in_progress`, `completed`, atau `failed`). Argumen alat dan keluaran alat tidak disalin ke dalam pembaruan kemajuan tersebut; persetujuan berlanjut melalui permintaan izin ACP.
+
+Saat `runtime.mcp_publish` diaktifkan, `openminion mcp serve` mempublikasikan alat runtime yang diizinkan melalui MCP. Alat yang dipublikasikan menyatakan skema input dan output. Panggilan yang berhasil mengembalikan objek JSON yang sama sebagai blok konten teks dan sebagai `structuredContent`; keluaran yang tidak sesuai skema yang dinyatakan dikembalikan sebagai kesalahan alat MCP.
+
+</div></div></div><div class="row"><div><div class="md" data-md>## Example surfaces
+
+The package-owned `examples/` tree is part of the public teaching surface:
+
+1. `examples/starter/provider.py`
+2. `examples/starter/channel.py`
+3. `examples/starter/hello.py`
+4. `examples/starter/tool.py`
+5. `examples/starter/hello.manifest.json`
+6. `examples/starter/quickstart.py`
+7. `examples/agents/hello/`
+8. `examples/skills/hello/`
+9. `examples/modules/sample/`
+
+The root `openminion` and `openminion.api` imports used by these examples are
+public package surfaces. Extension examples mirror the current scaffold output;
+their narrower deep imports are maintained teaching contracts for the pre-1.0
+line, not stability promises for the rest of their package trees.
+
+</div></div><div style="--state:var(--rule)"><span class="chip s-reused">reused</span><div class="md" data-md>## Contoh permukaan
+
+Pohon `examples/` milik paket merupakan bagian dari permukaan pengajaran publik:
+
+1. `examples/starter/provider.py`
+2. `examples/starter/channel.py`
+3. `examples/starter/hello.py`
+4. `examples/starter/tool.py`
+5. `examples/starter/hello.manifest.json`
+6. `examples/starter/quickstart.py`
+7. `examples/agents/hello/`
+8. `examples/skills/hello/`
+9. `examples/modules/sample/`
+
+Impor akar `openminion` dan `openminion.api` yang digunakan oleh contoh-contoh ini adalah permukaan paket publik. Contoh ekstensi mencerminkan output scaffold saat ini; impor dalam yang lebih sempit mereka dipertahankan sebagai kontrak pengajaran untuk lini sebelum versi 1.0, bukan janji stabilitas untuk sisa pohon paket mereka.
+
+</div></div></div><div class="row"><div><div class="md" data-md>## Not blanket public
+
+Importable does not automatically mean stable public API.
+
+Treat these trees as internal/package-owned unless a narrower doc says
+otherwise:
+
+1. `openminion.modules.*`
+2. `openminion.services.*`
+3. `openminion.tools.*`
+4. `tests/`
+5. `scripts/`
+
+One example worth naming: `openminion.modules.brain.runtime.approval` exports
+`gate_destructive_action` and `LLMActionApprovalVerifier`, but no in-tree production
+caller constructs or calls them, and its `enabled` flag defaults to false. That
+absence covers this repository only — external importers are not observable here,
+which is why the exports are retained rather than removed.
+Destructive-action approval is owned by the policy confirmation flow, which holds
+the confirmation, grant and replay contracts. The approval package is available
+code, not the gate that judges a destructive action today.
+</div></div><div style="--state:var(--ok)"><span class="chip s-new">translated</span><div class="md" data-md>## Tidak sepenuhnya publik
+
+Dapat diimpor tidak otomatis berarti API publik yang stabil.
+
+Perlakukan pohon-pohon ini sebagai milik internal/paket kecuali dokumen yang lebih sempit menyatakan lain:
+
+1. `openminion.modules.*`
+2. `openminion.services.*`
+3. `openminion.tools.*`
+4. `tests/`
+5. `scripts/`
+
+Satu contoh yang patut disebut: `openminion.modules.brain.runtime.approval` mengekspor
+`gate_destructive_action` dan `LLMActionApprovalVerifier`, tapi tidak ada pemanggil produksi dalam pohon repositori yang membuat atau memanggil mereka,
+dan bendera `enabled`-nya default ke false. Ketidakhadiran itu hanya mencakup repositori ini —
+importir eksternal tidak dapat diamati di sini, itulah sebabnya ekspor dipertahankan daripada dihapus.
+Persetujuan aksi destruktif dimiliki oleh alur konfirmasi kebijakan, yang memegang
+konfirmasi, kontrak izin dan pemutaran ulang. Paket persetujuan adalah kode yang tersedia,
+bukan gerbang yang menilai aksi destruktif hari ini.
+</div></div></div></details><details open><summary><span class="path">docs/turn-budgets.md</span><span class="chip s-new">2 changed</span></summary><div class="cols"><span>English source</span><span>Bahasa Indonesia</span></div><div class="row"><div><div class="md" data-md># Understanding turn budgets and token cost
+
+Start with the existing defaults and the turn&#x27;s actual stopping reason. A
+tool shortlist, an execution limit, a context-pack target and a provider&#x27;s
+output limit control different work. Increasing one does not fix exhaustion
+of another.
+
+</div></div><div style="--state:var(--rule)"><span class="chip s-reused">reused</span><div class="md" data-md># Memahami anggaran putaran dan biaya token
+
+Mulailah dengan pengaturan default yang ada dan alasan penghentian putaran yang sebenarnya. Daftar singkat alat, batas eksekusi, target paket-konteks dan batas keluaran provider mengendalikan pekerjaan yang berbeda. Meningkatkan salah satu tidak memperbaiki kehabisan batas yang lain.
+
+</div></div></div><div class="row"><div><div class="md" data-md>## What the defaults control
+
+| Setting or owner | Default | Meaning |
+| --- | --- | --- |
+| `runtime.tool_selection.max_tools_per_turn` | `6` | Maximum entries in the selection service&#x27;s shortlist, not executed calls per turn. |
+| `runtime.tool_selection.tool_prompt_token_budget` | `600` | Estimated prompt budget for that shortlist, not a complete model-request limit. |
+| General adaptive loop | `24` iterations, `64` tool calls | Loop execution bounds; adaptive extensions and other strategies have their own policies. |
+| `security.tool_policy.max_calls_per_run` | `160` | Runtime tool-call bound, separate from the adaptive loop&#x27;s bound. |
+| `runtime.session_context_token_budget` | `0` | Disable this optional additional session-context cap; purpose-specific pack and bucket budgets still apply. |
+| `runtime.tool_schema_shortlisting_enabled` | Unset; brain default `false` | Controls the optional preliminary schema-selection call in eligible adaptive paths. It does not disable exact-name tool discovery. |
+
+Agent/profile overrides can change the effective limits. Inspect the actual
+configuration and stop reason before attributing an early stop to a default.
+Do not remove approval requirements or automatically extend a turn to hide a
+budget failure.
+
+The decision-context target is `2,200` tokens for turns 1 through 5, `2,800`
+for turns 6 through 10 and `3,200` after turn 10. The first two turns retain a
+smaller recent-turn bucket because there is little history to include, but no
+longer use a smaller overall target. Judge and validation requests retain their
+separate `3,000`-token targets. These are context-pack targets, not provider
+output limits or complete request sizes.
+
+</div></div><div style="--state:var(--rule)"><span class="chip s-reused">reused</span><div class="md" data-md>## Apa yang dikendalikan oleh default
+
+| Pengaturan atau pemilik | Default | Makna |
+| --- | --- | --- |
+| `runtime.tool_selection.max_tools_per_turn` | `6` | Maksimum entri dalam daftar pendek layanan seleksi, bukan jumlah panggilan yang dijalankan per giliran. |
+| `runtime.tool_selection.tool_prompt_token_budget` | `600` | Perkiraan anggaran prompt untuk daftar pendek tersebut, bukan batas permintaan model secara lengkap. |
+| Loop adaptif umum | `24` iterasi, `64` panggilan alat | Batas eksekusi loop; ekstensi adaptif dan strategi lain memiliki kebijakan tersendiri. |
+| `security.tool_policy.max_calls_per_run` | `160` | Batas panggilan alat runtime, terpisah dari batas loop adaptif. |
+| `runtime.session_context_token_budget` | `0` | Menonaktifkan batas tambahan opsional konteks sesi; anggaran paket dan ember khusus tujuan tetap berlaku. |
+| `runtime.tool_schema_shortlisting_enabled` | Tidak disetel; default otak `false` | Mengendalikan panggilan pemilihan skema pendahuluan opsional dalam jalur adaptif yang memenuhi syarat. Ini tidak menonaktifkan penemuan alat dengan nama tepat. |
+
+Override agent/profil dapat mengubah batas efektif. Periksa konfigurasi aktual dan alasan penghentian sebelum mengaitkan pemberhentian awal pada default.
+Jangan menghapus persyaratan persetujuan atau memperpanjang giliran secara otomatis untuk menyembunyikan kegagalan anggaran.
+
+Target konteks keputusan adalah `2,200` token untuk giliran 1 hingga 5, `2,800` untuk giliran 6 hingga 10 dan `3,200` setelah giliran 10. Dua giliran pertama mempertahankan ember giliran terakhir yang lebih kecil karena sedikit riwayat yang harus disertakan, tetapi tidak lagi menggunakan target keseluruhan yang lebih kecil. Permintaan penilai dan validasi mempertahankan target token `3,000` mereka sendiri. Ini adalah target paket konteks, bukan batas output provider atau ukuran permintaan lengkap.
+
+</div></div></div><div class="row"><div><div class="md" data-md>## Catalog size is not request size
+
+The ordinary entry path offers control schemas and `tool.request`. The model
+requests exact tool names, and the adaptive loop exposes their schemas. Other
+available tools remain discoverable through the existing tool directory. A
+configured catalog of many tools therefore does not imply that every model
+request contains every full schema.
+
+Where `tool.request` is disallowed or another execution path is selected,
+exposure can differ. Inspect the outgoing request. Enabling preliminary
+shortlisting can add a model call in paths where it applies; it need not change
+an entry-selected path at all.
+
+Context-pack token reports are estimates for the pack, not the provider&#x27;s
+complete request. Prompts, schemas and tool transcripts can add tokens later.
+Pinned required context can leave a pack over its target; check `over_budget`,
+bucket usage and the trimming decisions instead of interpreting a target as a
+hard bound on the wire request. Local rebuilding time, repeated request bytes
+and provider-billed uncached tokens are separate measurements.
+
+</div></div><div style="--state:var(--rule)"><span class="chip s-reused">reused</span><div class="md" data-md>## Ukuran katalog bukan ukuran permintaan
+
+Jalur entri biasa menawarkan skema kontrol dan `tool.request`. Model meminta nama alat tepat, dan loop adaptif menampilkan skema mereka. Alat lain yang tersedia tetap dapat ditemukan melalui direktori alat yang ada. Oleh karena itu, katalog terkonfigurasi dengan banyak alat tidak berarti setiap permintaan model memuat setiap skema penuh.
+
+Jika `tool.request` tidak diizinkan atau jalur eksekusi lain dipilih, eksposur bisa berbeda. Periksa permintaan keluar. Mengaktifkan penyaringan awal dapat menambah panggilan model pada jalur yang relevan; ini tidak harus mengubah jalur yang dipilih dari entri sama sekali.
+
+Laporan token paket-konteks adalah perkiraan untuk paket, bukan permintaan lengkap provider. Prompt, skema, dan transkrip alat dapat menambah token kemudian. Konteks yang diperlukan yang dipasang dapat membuat paket melebihi targetnya; periksa penggunaan `over_budget`, penggunaan ember, dan keputusan pemangkasan daripada menginterpretasikan target sebagai batas keras pada permintaan wire. Waktu pembangunan ulang lokal, byte permintaan berulang dan token tak ter-cache yang ditagih oleh provider adalah pengukuran terpisah.
+
+</div></div></div><div class="row"><div><div class="md" data-md>## Automatic fact extraction
+
+Automatic fact extraction is enabled by default. When it runs, the turn makes
+one auxiliary structured model call before the user message is interpreted.
+The call asks for candidate facts, user preferences and tasks that the user
+stated explicitly. Its result is staged as memory candidates; it is not part of
+the reply.
+
+The supported switch is the top-level `brain.auto_fact_extraction` section:
+
+| Field | Default | Meaning |
+| --- | --- | --- |
+| `enabled` | `true` | Run extraction on eligible turns. |
+| `model_tier` | `reflect` | Model tier used to pick the extraction model. |
+| `max_items_per_turn` | `5` | Maximum candidates requested from one message. |
+| `min_user_message_chars` | `8` | Shorter messages, after trimming, are skipped. |
+| `initial_confidence` | `0.3` | Confidence given to staged candidates. |
+| `timeout_seconds` | `20` | Transport read timeout for the call; not a bound on total extraction time (#634). |
+
+```json
+{
+  &quot;brain&quot;: {
+    &quot;auto_fact_extraction&quot;: {&quot;enabled&quot;: false}
+  }
+}
+```
+
+An `auto_fact_extraction` key under `agents.&lt;id&gt;` currently has no effect. The
+agent-profile parser does not read it, and the top-level section stays in
+force.
+
+The model comes from the effective agent profile. With the default `reflect`
+tier, extraction uses `reflect_model`, then `decide_model`, then `act_model`,
+whichever is set first. It is not necessarily the model of the main action
+request. Another tier tries `&lt;tier&gt;_model`, then `reflect_model`, then
+`decide_model`.
+
+The call goes through the existing structured-output retry path. It is one
+logical extraction call, but it can make more than one provider request, and
+billed usage is a separate measurement. The turn&#x27;s LLM-call counter records it
+only when the structured call returns, so a provider failure can leave a model
+request uncounted; the counter is not a count of attempted provider requests.
+It offers only the forced `submit_output` structured-output
+tool. That tool list belongs to this auxiliary call: the turn&#x27;s later entry and
+action requests carry their own tools.
+
+Extraction does not run when:
+
+- `enabled` is `false`;
+- the message is shorter than `min_user_message_chars`;
+- the message is an explicit `tool &lt;name&gt; ...` command;
+- capture is excluded for the turn or memory writes are not authorized for it;
+- the turn skips its initial user-message append;
+- the LLM, context or memory service is unavailable, or no extraction model is
+  configured.
+
+A failed extraction emits `brain.auto_fact_extraction.skipped` with reason
+`extraction_failed`, and the turn continues. The `started`, `completed` and
+`skipped` events of `brain.auto_fact_extraction` show what happened on a given
+turn. When you measure request counts or cost, account for this call on its
+own, or compare with `enabled` set to `false` as one changed setting.
+
+</div></div><div style="--state:var(--ok)"><span class="chip s-new">translated</span><div class="md" data-md>## Ekstraksi fakta otomatis
+
+Ekstraksi fakta otomatis diaktifkan secara default. Saat dijalankan, giliran melakukan satu pemanggilan model terstruktur tambahan sebelum pesan pengguna diinterpretasikan. Pemanggilan tersebut meminta fakta kandidat, preferensi pengguna, dan tugas yang secara eksplisit dinyatakan oleh pengguna. Hasilnya disimpan sebagai kandidat memori; ini bukan bagian dari balasan.
+
+Sakelar yang didukung adalah bagian top-level `brain.auto_fact_extraction`:
+
+| Bidang | Default | Arti |
+| --- | --- | --- |
+| `enabled` | `true` | Menjalankan ekstraksi pada giliran yang memenuhi syarat. |
+| `model_tier` | `reflect` | Tingkatan model yang digunakan untuk memilih model ekstraksi. |
+| `max_items_per_turn` | `5` | Maksimum kandidat yang diminta dari satu pesan. |
+| `min_user_message_chars` | `8` | Pesan yang lebih pendek, setelah pemangkasan, diabaikan. |
+| `initial_confidence` | `0.3` | Keyakinan yang diberikan kepada kandidat yang disimpan. |
+| `timeout_seconds` | `20` | Timeout pembacaan transportasi untuk pemanggilan; bukan batasan waktu ekstraksi total (#634). |
+
+```json
+{
+  &quot;brain&quot;: {
+    &quot;auto_fact_extraction&quot;: {&quot;enabled&quot;: false}
+  }
+}
+```
+
+Kunci `auto_fact_extraction` di bawah `agents.&lt;id&gt;` saat ini tidak berpengaruh. Parser profil agent tidak membacanya, dan bagian top-level tetap berlaku.
+
+Model berasal dari profil agent yang efektif. Dengan tingkatan `reflect` default, ekstraksi menggunakan `reflect_model`, kemudian `decide_model`, lalu `act_model`, mana yang diatur lebih dulu. Itu tidak selalu merupakan model dari permintaan aksi utama. Tingkatan lain mencoba `&lt;tier&gt;_model`, kemudian `reflect_model`, lalu `decide_model`.
+
+Pemanggilan melewati jalur retry output terstruktur yang sudah ada. Ini adalah satu pemanggilan ekstraksi logis, tapi bisa membuat lebih dari satu permintaan provider, dan penggunaan yang ditagih adalah pengukuran terpisah. Penghitung panggilan LLM giliran mencatatnya hanya saat pemanggilan terstruktur kembali, sehingga kegagalan provider bisa membuat permintaan model tidak tercatat; penghitung tersebut bukan hitungan dari permintaan provider yang dicoba. Ini hanya menawarkan alat output terstruktur `submit_output` yang dipaksakan. Daftar alat itu berlaku untuk pemanggilan tambahan ini: entri dan permintaan aksi giliran berikutnya membawa alat mereka sendiri.
+
+Ekstraksi tidak dijalankan ketika:
+
+- `enabled` adalah `false`;
+- pesan lebih pendek dari `min_user_message_chars`;
+- pesan merupakan perintah eksplisit `tool &lt;name&gt; ...`;
+- penangkapan dikecualikan untuk giliran atau penulisan memori tidak diizinkan;
+- giliran melewati penambahan pesan pengguna awal;
+- layanan LLM, konteks, atau memori tidak tersedia, atau tidak ada model ekstraksi yang dikonfigurasi.
+
+Ekstraksi yang gagal mengeluarkan `brain.auto_fact_extraction.skipped` dengan alasan `extraction_failed`, dan giliran terus berlanjut. Peristiwa `started`, `completed` dan `skipped` dari `brain.auto_fact_extraction` menunjukkan apa yang terjadi pada giliran tertentu. Saat mengukur jumlah permintaan atau biaya, hitung pemanggilan ini secara terpisah, atau bandingkan dengan `enabled` yang diatur ke `false` sebagai satu pengaturan yang diubah.
+
+</div></div></div><div class="row"><div><div class="md" data-md>## Choose a change from evidence
+
+Use a bounded representative task and record:
+
+1. Package/commit, provider/model, effective profile, prompt and expected result.
+2. Every actual request&#x27;s purpose, schema count/size, input/output tokens and
+   cached tokens where the provider reports them. Keep unknown cache usage
+   distinct from zero, and omit credentials and private prompt content.
+3. Context-pack bucket usage, dropped segments and `over_budget`, plus local
+   assembly time separately from provider latency.
+4. Executed tool calls, loop iterations, exact stop reason, policy decisions
+   and whether the task completed correctly.
+
+Compare one setting at a time on equivalent isolated sessions. Keep tool access,
+policy and success criteria unchanged. Check necessary-tool discovery and a
+follow-up turn as well as cost. Repeat before claiming a speed or cost advantage;
+provider caching, latency and model choices vary between samples.
+
+Raise only the exhausted bound when a valid workload demonstrates that it is
+too small. If a pack adjustment is applied twice, fix that owner rather than
+inflating its default. If displayed totals disagree with the request trace,
+resolve the accounting discrepancy before using them to tune defaults.
+
+</div></div><div style="--state:var(--rule)"><span class="chip s-reused">reused</span><div class="md" data-md>## Memilih perubahan berdasarkan bukti
+
+Gunakan tugas representatif dengan batas dan catat:
+
+1. Paket/commit, provider/model, profil efektif, prompt dan hasil yang diharapkan.
+2. Setiap tujuan permintaan aktual, jumlah/ukuran skema, token input/output dan token cache yang dilaporkan oleh provider. Jaga penggunaan cache yang tidak diketahui berbeda dari nol, dan hilangkan kredensial serta konten prompt pribadi.
+3. Penggunaan ember paket-konteks, segmen yang hilang dan `over_budget`, serta waktu perakitan lokal terpisah dari latensi provider.
+4. Panggilan alat yang dieksekusi, iterasi loop, alasan penghentian tepat, keputusan kebijakan dan apakah tugas selesai dengan benar.
+
+Bandingkan satu pengaturan pada satu waktu dalam sesi terisolasi yang setara. Pertahankan akses alat, kebijakan dan kriteria keberhasilan tanpa perubahan. Periksa penemuan alat yang diperlukan dan putaran tindak lanjut serta biaya. Ulangi sebelum mengklaim keunggulan kecepatan atau biaya; caching provider, latensi dan pilihan model bervariasi antar sampel.
+
+Naikkan hanya batas yang habis ketika beban kerja yang valid menunjukkan bahwa batas tersebut terlalu kecil. Jika penyesuaian paket diterapkan dua kali, perbaiki pemilik tersebut daripada memperbesar defaultnya. Jika total yang ditampilkan tidak sesuai dengan jejak permintaan, selesaikan ketidaksesuaian akuntansi sebelum menggunakan mereka untuk menyetel default.
+
+</div></div></div><div class="row"><div><div class="md" data-md>## Maintainer assessment for issue #497
+
+An October 29, 2026 measurement on `bffd935d5` used the official MiniMax-M2.7
+profile with minimal thinking, fresh local state and a find/read/summarize
+fixture. The session-context cap was `0`; the paired runs differed in preliminary
+shortlisting being disabled or enabled. Both completed correctly with two
+executed file-tool calls and no tool errors.
+
+| Observation | Disabled | Enabled |
+| --- | --- | --- |
+| Actual provider requests | 6 | 6 |
+| Full schemas per request | 1, 8, 4, 5, 5, 1 | 1, 8, 4, 5, 5, 1 |
+| Provider-reported input tokens | 30,541 | 30,882 |
+| Provider-reported output tokens | 1,755 | 1,904 |
+| Provider-reported cached input tokens | 6,215 | 6,318 |
+| Measured turn time | 33.76 s | 42.04 s |
+| Total measured context-pack assembly time | 0.0430 s | 0.0393 s |
+
+These are two observations, not a comparative performance benchmark or a
+DeepSeek qualification. Neither exhausted the execution budget. Both used the
+entry-requested schema path, so this pair does not measure the benefit of the
+optional preliminary selector in other paths. The response summary reported
+only one LLM call and omitted some phase usage; the table uses captured provider
+responses instead. No pricing or billed-cost claim follows from these totals.
+
+The current recommendation is to retain the defaults above. A blanket increase,
+a global shortlisting flip or a new context cache is not supported by this
+evidence. Further tuning needs workload-specific proof and accurate whole-turn
+accounting. Follow the investigation and its linked fixes in
+[#497](https://github.com/openminion/openminion/issues/497); the independently
+reported double recent-window adjustment remains separate in
+[#482](https://github.com/openminion/openminion/issues/482).
+</div></div><div style="--state:var(--ok)"><span class="chip s-new">translated</span><div class="md" data-md>## Penilaian pemelihara untuk masalah #497
+
+Pengukuran pada 29 Oktober 2026 di `bffd935d5` menggunakan profil resmi MiniMax-M2.7
+dengan pemikiran minimal, status lokal baru, dan perlengkapan cari/baca/rangkum.
+Batas konteks sesi adalah `0`; pasangan percobaan berbeda pada fitur pemilihan awal
+yang dinonaktifkan atau diaktifkan. Keduanya selesai dengan benar dengan dua
+pemanggilan alat file yang dieksekusi dan tanpa kesalahan alat.
+
+| Pengamatan | Dinonaktifkan | Diaktifkan |
+| --- | --- | --- |
+| Permintaan provider aktual | 6 | 6 |
+| Skema lengkap per permintaan | 1, 8, 4, 5, 5, 1 | 1, 8, 4, 5, 5, 1 |
+| Token input dilaporkan provider | 30,541 | 30,882 |
+| Token output dilaporkan provider | 1,755 | 1,904 |
+| Token input cache dilaporkan provider | 6,215 | 6,318 |
+| Waktu giliran terukur | 33.76 s | 42.04 s |
+| Total waktu perakitan paket konteks terukur | 0.0430 s | 0.0393 s |
+
+Ini adalah dua pengamatan, bukan tolok ukur kinerja perbandingan atau kualifikasi DeepSeek.
+Keduanya tidak menghabiskan anggaran eksekusi. Keduanya menggunakan jalur skema yang diminta masuk,
+jadi pasangan ini tidak mengukur manfaat dari pemilih awal opsional pada jalur lain.
+Ringkasan respons hanya melaporkan satu panggilan LLM dan menghilangkan beberapa fase penggunaan;
+tabel menggunakan tanggapan provider yang diambil sebagai gantinya.
+Tidak ada klaim harga atau biaya yang ditagih berdasarkan total ini.
+
+Rekomendasi saat ini adalah mempertahankan pengaturan default di atas.
+Peningkatan menyeluruh, pembalikan pemilihan global, atau cache konteks baru
+tidak didukung oleh bukti ini. Penyempurnaan lebih lanjut membutuhkan bukti khusus beban kerja dan
+akuntansi giliran secara menyeluruh dan akurat. Ikuti penyelidikan dan perbaikannya yang terkait di
+[#497](https://github.com/openminion/openminion/issues/497); penyesuaian jendela ganda yang dilaporkan secara mandiri tetap terpisah di
+[#482](https://github.com/openminion/openminion/issues/482).
+</div></div></div></details><details><summary><span class="path">docs/provider-capabilities.md</span><span class="chip s-reused">unchanged</span></summary><div class="cols"><span>English source</span><span>Bahasa Indonesia</span></div><div class="row"><div><div class="md" data-md># Provider Capabilities
+
+OpenMinion provider profiles declare the features they support. Runtime requests
+can require those features before a provider call starts, which keeps routing
+deterministic and avoids probing providers with unsupported requests.
+
+</div></div><div style="--state:var(--rule)"><span class="chip s-reused">reused</span><div class="md" data-md># Kapabilitas Provider
+
+Profil provider OpenMinion menyatakan fitur-fitur yang mereka dukung. Permintaan runtime dapat membutuhkan fitur-fitur tersebut sebelum panggilan provider dimulai, yang menjaga perutean tetap deterministik dan menghindari pengujian provider dengan permintaan yang tidak didukung.
+
+</div></div></div><div class="row"><div><div class="md" data-md>## Profile facts
+
+A profile may declare these transport capabilities:
+
+- `supports_json`
+- `supports_tools`
+- `supports_vision`
+- `supports_streaming`
+- `supports_prompt_caching`
+
+The runtime capability matrix also reports whether the profile includes cost
+metadata and an authentication reference. Those are configuration facts, not
+claims that credentials are valid or that an endpoint is currently reachable.
+
+```yaml
+profiles:
+  - id: primary
+    provider: openai-compatible
+    model: example-model
+    auth_ref: env:PROVIDER_API_KEY
+    capabilities:
+      supports_json: true
+      supports_tools: true
+      supports_streaming: true
+    cost_hint:
+      input_per_1k: 0.001
+      output_per_1k: 0.002
+```
+
+</div></div><div style="--state:var(--rule)"><span class="chip s-reused">reused</span><div class="md" data-md>## Fakta Profil
+
+Sebuah profil dapat menyatakan kapabilitas transport berikut:
+
+- `supports_json`
+- `supports_tools`
+- `supports_vision`
+- `supports_streaming`
+- `supports_prompt_caching`
+
+Matriks kapabilitas runtime juga melaporkan apakah profil menyertakan metadata biaya dan referensi autentikasi. Ini adalah fakta konfigurasi, bukan klaim bahwa kredensial valid atau bahwa endpoint saat ini dapat dijangkau.
+
+```yaml
+profiles:
+  - id: primary
+    provider: openai-compatible
+    model: example-model
+    auth_ref: env:PROVIDER_API_KEY
+    capabilities:
+      supports_json: true
+      supports_tools: true
+      supports_streaming: true
+    cost_hint:
+      input_per_1k: 0.001
+      output_per_1k: 0.002
+```
+
+</div></div></div><div class="row"><div><div class="md" data-md>## Request requirements
+
+`RuntimeLLMRequest.required_capabilities` accepts explicit capability names:
+
+```python
+from openminion.modules.llm.orchestration import RuntimeLLMRequest
+
+request = RuntimeLLMRequest(
+    purpose=&quot;act&quot;,
+    required_capabilities=[&quot;tools&quot;, &quot;streaming&quot;],
+)
+```
+
+Structured-output requests automatically require `json`. A profile that lacks
+any required capability is rejected with `INVALID_ARGUMENT` before its provider
+transport is called. Agent routing may then use its configured fallback profiles
+without first sending an incompatible request to the primary profile.
+
+The runtime does not infer capabilities from provider names, model names,
+responses, or failed calls. Update the profile configuration when provider facts
+change.
+
+</div></div><div style="--state:var(--rule)"><span class="chip s-reused">reused</span><div class="md" data-md>## Persyaratan Permintaan
+
+`RuntimeLLMRequest.required_capabilities` menerima nama kapabilitas secara eksplisit:
+
+```python
+from openminion.modules.llm.orchestration import RuntimeLLMRequest
+
+request = RuntimeLLMRequest(
+    purpose=&quot;act&quot;,
+    required_capabilities=[&quot;tools&quot;, &quot;streaming&quot;],
+)
+```
+
+Permintaan output terstruktur secara otomatis membutuhkan `json`. Profil yang tidak memiliki kapabilitas yang diperlukan akan ditolak dengan `INVALID_ARGUMENT` sebelum transport provider-nya dipanggil. Perutean agent kemudian dapat menggunakan profil fallback yang dikonfigurasikan tanpa terlebih dahulu mengirim permintaan yang tidak kompatibel ke profil utama.
+
+Runtime tidak melakukan inferensi kapabilitas dari nama provider, nama model, respons, atau panggilan yang gagal. Perbarui konfigurasi profil saat fakta provider berubah.
+
+</div></div></div><div class="row"><div><div class="md" data-md>## Inspecting the matrix
+
+Library callers can build a reproducible matrix from the loaded catalog:
+
+```python
+from openminion.modules.llm.orchestration import provider_capability_matrix
+
+for row in provider_capability_matrix(catalog):
+    print(row.as_dict())
+```
+
+This matrix describes configured facts. Provider certification remains a
+separate exercise that proves endpoint access and behavior with live evidence.
+
+</div></div><div style="--state:var(--rule)"><span class="chip s-reused">reused</span><div class="md" data-md>## Memeriksa Matriks
+
+Pemanggil library dapat membangun matriks yang dapat direproduksi dari katalog yang dimuat:
+
+```python
+from openminion.modules.llm.orchestration import provider_capability_matrix
+
+for row in provider_capability_matrix(catalog):
+    print(row.as_dict())
+```
+
+Matriks ini menggambarkan fakta konfigurasi. Sertifikasi provider tetap merupakan latihan terpisah yang membuktikan akses endpoint dan perilaku dengan bukti langsung.
+
+</div></div></div><div class="row"><div><div class="md" data-md>## HTTP connection reuse
+
+OpenMinion reuses provider HTTP connections by default for OpenAI, OpenRouter,
+Anthropic, Cerebras, Groq, Ollama, and Cortensor. Reuse is owned by each provider
+instance and does not change routing, retries, prompts, or response parsing.
+
+Set `http_connection_reuse_enabled: false` on a provider to return that provider
+to one HTTP connection per request:
+
+```yaml
+providers:
+  openrouter:
+    http_connection_reuse_enabled: false
+```
+
+The provider client is closed when its agent runtime is evicted or the API
+runtime shuts down.
+</div></div><div style="--state:var(--rule)"><span class="chip s-reused">reused</span><div class="md" data-md>## Penggunaan Kembali Koneksi HTTP
+
+OpenMinion menggunakan kembali koneksi HTTP provider secara default untuk OpenAI, OpenRouter, Anthropic, Cerebras, Groq, Ollama, dan Cortensor. Penggunaan kembali dimiliki oleh setiap instansi provider dan tidak mengubah perutean, pengulangan, prompt, atau parsing respons.
+
+Tetapkan `http_connection_reuse_enabled: false` pada sebuah provider untuk mengembalikan provider tersebut ke satu koneksi HTTP per permintaan:
+
+```yaml
+providers:
+  openrouter:
+    http_connection_reuse_enabled: false
+```
+
+Klien provider akan ditutup saat runtime agent-nya dikeluarkan atau runtime API dimatikan.
+</div></div></div></details><details open><summary><span class="path">docs/configuration-compatibility.md</span><span class="chip s-new">5 changed</span></summary><div class="cols"><span>English source</span><span>Bahasa Indonesia</span></div><div class="row"><div><div class="md" data-md># Configuration compatibility notes
+
+Status: public preview
+
+Some settings are accepted, parsed and re-serialized by the configuration loader
+without changing runtime behaviour, because the behaviour they once described was
+removed or is owned elsewhere. This page is the single canonical note for each
+one, so operators can tell a supported knob from a compatibility field without
+reading the source.
+
+</div></div><div style="--state:var(--ok)"><span class="chip s-new">translated</span><div class="md" data-md># Catatan kompatibilitas konfigurasi
+
+Status: pratinjau publik
+
+Beberapa pengaturan diterima, diurai, dan diserialisasi ulang oleh pemuat konfigurasi tanpa mengubah perilaku runtime, karena perilaku yang pernah mereka gambarkan telah dihapus atau dimiliki di tempat lain. Halaman ini adalah catatan kanonik tunggal untuk masing-masing, sehingga operator dapat membedakan kenop yang didukung dari bidang kompatibilitas tanpa harus membaca sumbernya.
+
+</div></div></div><div class="row"><div><div class="md" data-md>## `self_improvement.max_applied_notes`
+
+Top-level key under `self_improvement` in the stored configuration.
+
+- **Accepted and preserved.** The parser reads it and the serializer writes it
+  back. The parser normalizes `0` to `1`; serializer formatting is a separate
+  concern from the value itself.
+- **No current production consumer in the note-selection path.** The effective
+  cap is `CONTEXT_IMPROVEMENT_NOTE_LIMIT = 6` in `modules/context/config.py`,
+  applied when the context pack is ranked for the `decide` purpose in
+  `modules/context/retrieval/bundle.py`. This setting does not change it.
+- **Operator guidance:** leave it unset. Changing the effective cap is a source
+  change in the context owner, not a configuration change.
+
+</div></div><div style="--state:var(--ok)"><span class="chip s-new">translated</span><div class="md" data-md>## `self_improvement.max_applied_notes`
+
+Kunci tingkat atas di bawah `self_improvement` dalam konfigurasi yang disimpan.
+
+- **Diterima dan dipertahankan.** Parser membacanya dan serializer menulisnya kembali. Parser menormalkan `0` ke `1`; format serializer adalah hal terpisah dari nilai itu sendiri.
+- **Tidak ada konsumen produksi saat ini dalam jalur pemilihan catatan.** Batas efektif adalah `CONTEXT_IMPROVEMENT_NOTE_LIMIT = 6` dalam `modules/context/config.py`, diterapkan ketika paket konteks diberi peringkat untuk tujuan `decide` di `modules/context/retrieval/bundle.py`. Pengaturan ini tidak mengubahnya.
+- **Panduan operator:** biarkan tidak diatur. Mengubah batas efektif adalah perubahan sumber di pemilik konteks, bukan perubahan konfigurasi.
+
+</div></div></div><div class="row"><div><div class="md" data-md>## `self_improvement.min_token_overlap`
+
+Top-level key under `self_improvement` in the stored configuration.
+
+- **Accepted and preserved**, but inert.
+- **Historical note:** it selected notes by token overlap before the lexical
+  overlap selector was removed under SIRH-03. It does not re-enable that
+  behaviour, and current matching is structural: active status, agent ownership,
+  and `tool:*` / `error:*` tags.
+- **Operator guidance:** leave it unset. Setting it cannot restore lexical
+  matching, and no current in-tree runtime note-selection path reads it. The
+  parser and serializer do handle the key; out-of-tree consumers were not
+  audited.
+
+</div></div><div style="--state:var(--ok)"><span class="chip s-new">translated</span><div class="md" data-md>## `self_improvement.min_token_overlap`
+
+Kunci tingkat atas di bawah `self_improvement` dalam konfigurasi yang disimpan.
+
+- **Diterima dan dipertahankan**, namun tidak aktif.
+- **Catatan historis:** kunci ini memilih catatan berdasarkan tumpang tindih token sebelum pemilih tumpang tindih leksikal dihapus di bawah SIRH-03. Ini tidak mengaktifkan kembali perilaku tersebut, dan pencocokan saat ini bersifat struktural: status aktif, kepemilikan agent, dan tag `tool:*` / `error:*`.
+- **Panduan operator:** biarkan tidak diatur. Mengaturnya tidak dapat mengembalikan pencocokan leksikal, dan tidak ada jalur pemilihan catatan runtime dalam pohon sumber yang membacanya. Parser dan serializer memang menangani kunci ini; konsumen luar pohon tidak diaudit.
+
+</div></div></div><div class="row"><div><div class="md" data-md>## Measured behaviour these fields do not change
+
+With eight active matching notes and candidate/foreign-agent neighbours present:
+
+| setting | overlay cards | final note references |
+| --- | --- | --- |
+| default (`max_applied_notes: 3`) | 8 | 6 |
+| `max_applied_notes: 1` | 8 | 6 |
+| `max_applied_notes: 100` | 8 | 6 |
+| `min_token_overlap: 999` | 8 | 6 |
+
+Disabling self-improvement produces no overlay at all, candidate and
+foreign-agent notes stay out, and a turn with no matching tool context produces
+no overlay. The context-owner limit of six is what bounds the references.
+
+</div></div><div style="--state:var(--ok)"><span class="chip s-new">translated</span><div class="md" data-md>## Perilaku terukur yang tidak diubah oleh bidang-bidang ini
+
+Dengan delapan catatan pencocokan aktif dan tetangga calon/agent asing yang hadir:
+
+| pengaturan | kartu overlay | referensi catatan akhir |
+| --- | --- | --- |
+| default (`max_applied_notes: 3`) | 8 | 6 |
+| `max_applied_notes: 1` | 8 | 6 |
+| `max_applied_notes: 100` | 8 | 6 |
+| `min_token_overlap: 999` | 8 | 6 |
+
+Menonaktifkan self-improvement sama sekali tidak menghasilkan overlay, catatan calon dan agent asing tetap keluar, dan giliran tanpa konteks alat yang cocok tidak menghasilkan overlay. Batas pemilik konteks sebanyak enam adalah yang membatasi referensi.
+
+</div></div></div><div class="row"><div><div class="md" data-md>## Related
+
+- [`runtime-surfaces.md`](runtime-surfaces.md) for the supported runtime
+  surfaces these settings sit behind.
+- [`turn-budgets.md`](turn-budgets.md) for the context and turn budgets that the
+  effective cap belongs to.
+</div></div><div style="--state:var(--ok)"><span class="chip s-new">translated</span><div class="md" data-md>## Terkait
+
+- [`runtime-surfaces.md`](runtime-surfaces.md) untuk runtime yang didukung tempat permukaan pengaturan ini berada.
+- [`turn-budgets.md`](turn-budgets.md) untuk konteks dan anggaran giliran yang termasuk dalam batas efektif.
+</div></div></div></details><details open><summary><span class="path">examples/sdk/README.md</span><span class="chip s-new">2 changed</span></summary><div class="cols"><span>English source</span><span>Bahasa Indonesia</span></div><div class="row"><div><div class="md" data-md># Python SDK Examples
+
+These programs are copyable references for OpenMinion&#x27;s public Python API.
+They expect a configured model provider unless the example says otherwise.
+
+Install the current package and configure a provider first:
+
+```bash
+python3.11 -m venv .venv
+source .venv/bin/activate
+python -m pip install openminion
+openminion setup --no-chat
+openminion doctor --check-turn
+```
+
+For a source preview, clone the repository and run `python -m pip install -e .`
+from that checkout instead of pinning an old commit.
+
+Run an example from the repository root:
+
+```bash
+python examples/sdk/tool_agent.py
+```
+
+</div></div><div style="--state:var(--rule)"><span class="chip s-reused">reused</span><div class="md" data-md># Contoh SDK Python
+
+Program-program ini adalah referensi yang dapat disalin untuk API Python publik OpenMinion.
+Mereka mengharapkan provider model yang telah dikonfigurasi kecuali contoh menyatakan sebaliknya.
+
+Pasang paket yang sedang digunakan dan konfigurasikan provider terlebih dahulu:
+
+```bash
+python3.11 -m venv .venv
+source .venv/bin/activate
+python -m pip install openminion
+openminion setup --no-chat
+openminion doctor --check-turn
+```
+
+Untuk melihat pratinjau sumber, kloning repositori dan jalankan `python -m pip install -e .`
+dari hasil checkout itu daripada menggunakan commit lama yang ditentukan.
+
+Jalankan contoh dari akar repositori:
+
+```bash
+python examples/sdk/tool_agent.py
+```
+
+</div></div></div><div class="row"><div><div class="md" data-md>## Example map
+
+| File | Use it for |
+| --- | --- |
+| `tool_agent.py` | Decorated Python tools and a forced first tool call |
+| `structured_output.py` | Pydantic-validated output |
+| `sessions.py` | Shared and isolated session IDs |
+| `streaming_progress.py` | Synchronous runs with progress callbacks |
+| `submitted_stream.py` | Typed iterator streaming and approval resolution |
+| `delegation.py` | Peer handoffs (with the approval pause) and bounded subagents |
+| `application_runtime.py` | Application-owned `APIRuntime` lifecycle |
+| `provider_switching.py` | Selecting configured agents without changing code |
+| `error_handling.py` | Provider, turn-deadline and output-validation failures |
+
+Use `python &lt;file&gt; --help` to see each program&#x27;s options. Provider setup and
+switching commands live in `examples/providers/README.md`.
+
+Structured-output examples ask providers for exact JSON. OpenMinion also keeps
+the bounded `0.1.x` behavior that accepts one schema-valid JSON object wrapped
+in provider prose.
+
+</div></div><div style="--state:var(--ok)"><span class="chip s-new">translated</span><div class="md" data-md>## Peta contoh
+
+| Berkas | Gunakan untuk |
+| --- | --- |
+| `tool_agent.py` | Alat Python yang dihias dan panggilan alat pertama yang dipaksa |
+| `structured_output.py` | Output yang tervalidasi menggunakan Pydantic |
+| `sessions.py` | ID sesi yang dibagikan dan terisolasi |
+| `streaming_progress.py` | Jalankan sinkron dengan callback kemajuan |
+| `submitted_stream.py` | Streaming iterator bertipe dan resolusi persetujuan |
+| `delegation.py` | Penyerahan rekan (dengan jeda persetujuan) dan subagen terbatas |
+| `application_runtime.py` | Siklus hidup `APIRuntime` yang dimiliki aplikasi |
+| `provider_switching.py` | Memilih agen yang dikonfigurasi tanpa mengubah kode |
+| `error_handling.py` | Kegagalan provider, tenggat waktu giliran, dan validasi output |
+
+Gunakan `python &lt;file&gt; --help` untuk melihat opsi setiap program. Perintah penyiapan dan penggantian provider ada di `examples/providers/README.md`.
+
+Contoh output terstruktur meminta provider untuk JSON yang tepat. OpenMinion juga menjaga perilaku `0.1.x` terbatas yang menerima satu objek JSON yang valid secara skema yang dibungkus dalam prosa provider.
+
+</div></div></div><div class="row"><div><div class="md" data-md>## Handoff approval
+
+`delegation.py --mode handoff` exposes the researcher as a
+`transfer_to_researcher` tool. A `Handoff` declares no risk metadata, so the
+policy keeps it on the unknown-reversibility default and pauses for
+confirmation before the target runs.
+
+- Without an `approval_callback`, the run ends at that pause: `result.text` is
+  the operator prompt (&quot;Policy confirmation required. …&quot;), not the
+  researcher&#x27;s answer, and `result.metadata[&quot;respond_kind&quot;]` is
+  `policy_confirmation_prompt`. Application code that keeps its Agent open
+  answers it on the waiting thread with `agent.run(&quot;yes&quot;,
+  thread_id=result.thread_id)`; a plain later `run()` starts a new thread and
+  does not answer it.
+- With `approval_callback`, the callback decides for that call before the
+  target runs: returning true allows that one invocation; returning false
+  ends the turn with &quot;Confirmation denied. The action was not run.&quot;; a
+  callback that raises fails the run with that error. In both failure cases
+  the researcher does not run.
+
+The example&#x27;s `--approval` flag exercises each path; the script prints the
+operator&#x27;s view and exits:
+
+```bash
+python examples/sdk/delegation.py --mode handoff
+python examples/sdk/delegation.py --mode handoff --approval allow_once
+python examples/sdk/delegation.py --mode handoff --approval deny
+```
+
+The example callback decides only for `transfer_to_researcher`: a
+confirmation for any other tool is denied, and its allowance is consumed
+once.
+</div></div><div style="--state:var(--ok)"><span class="chip s-new">translated</span><div class="md" data-md>## Persetujuan penyerahan
+
+`delegation.py --mode handoff` mengekspos researcher sebagai alat `transfer_to_researcher`. Sebuah `Handoff` menyatakan tidak ada metadata risiko, sehingga kebijakan menempatkannya pada default ketidakpastian kebalikan dan menjeda untuk konfirmasi sebelum target dijalankan.
+
+- Tanpa `approval_callback`, jalannya berakhir pada jeda itu: `result.text` adalah prompt operator (&quot;Policy confirmation required. …&quot;), bukan jawaban researcher, dan `result.metadata[&quot;respond_kind&quot;]` adalah `policy_confirmation_prompt`. Kode aplikasi yang menjaga Agent-nya tetap terbuka menjawabnya di thread yang menunggu dengan `agent.run(&quot;yes&quot;,
+  thread_id=result.thread_id)`; sebuah `run()` biasa yang datang kemudian memulai thread baru dan tidak menjawabnya.
+- Dengan `approval_callback`, callback memutuskan untuk panggilan itu sebelum target dijalankan: mengembalikan true mengizinkan panggilan tersebut; mengembalikan false mengakhiri giliran dengan &quot;Confirmation denied. The action was not run.&quot;; callback yang melempar kesalahan menyebabkan jalannya gagal dengan error tersebut. Dalam kedua kasus kegagalan itu, researcher tidak dijalankan.
+
+Bendera `--approval` pada contoh menguji setiap jalur; skrip mencetak tampilan operator dan keluar:
+
+```bash
+python examples/sdk/delegation.py --mode handoff
+python examples/sdk/delegation.py --mode handoff --approval allow_once
+python examples/sdk/delegation.py --mode handoff --approval deny
+```
+
+Callback contoh hanya memutuskan untuk `transfer_to_researcher`: konfirmasi untuk alat lain ditolak, dan izinnya digunakan sekali.
+</div></div></div></details>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/marked@12.0.2/marked.min.js"></script>
+<script>
+document.querySelectorAll('[data-md]').forEach(function(el){try{el.innerHTML=marked.parse(el.textContent)}catch(e){}});
+</script>
+</html>

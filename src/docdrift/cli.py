@@ -22,6 +22,10 @@ import openminion
 
 from . import agents, report, scan
 from .cli_check import openminion_executable
+from .extract import OPENMINION as OPENMINION_PROFILE
+from .extract import PROJECT as PROJECT_PROFILE
+from .extract import Profile, detect_profile
+from .project import pinned_openminion
 from .sections import DEFAULT_SECTIONS, load_section
 from .tools import CTX
 
@@ -58,7 +62,12 @@ def isolate_runtime() -> None:
 
 
 def installed_version() -> str:
-    return openminion.__version__
+    version = getattr(openminion, "__version__", "")
+    if not version:
+        from importlib.metadata import version as dist_version
+
+        version = dist_version("openminion")
+    return version
 
 
 def default_docs_root() -> Path:
@@ -66,6 +75,9 @@ def default_docs_root() -> Path:
 
 
 def docs_ref(root: Path) -> str:
+    root = root.resolve()
+    if not (root / ".git").exists():
+        return root.name  # do not report a parent directory's repository
     try:
         sha = subprocess.run(
             ["git", "-C", str(root), "rev-parse", "--short", "HEAD"], capture_output=True, text=True, check=True
@@ -133,7 +145,7 @@ def cmd_fetch(args: argparse.Namespace) -> int:
         return 0
     CACHE.mkdir(exist_ok=True)
     print(f"cloning {REPO_URL} at {ref} -> {dest}")
-    return subprocess.call(["git", "clone", "--quiet", "--depth", "1", "--branch", ref, REPO_URL, str(dest)])
+    return subprocess.call(["git", "-c", "advice.detachedHead=false", "clone", "--quiet", "--depth", "1", "--branch", ref, REPO_URL, str(dest)])
 
 
 def _docs_root(args: argparse.Namespace) -> Path | None:
@@ -144,21 +156,38 @@ def _docs_root(args: argparse.Namespace) -> Path | None:
     return root
 
 
+def _profile(args: argparse.Namespace, root: Path) -> Profile:
+    choice = getattr(args, "profile", "auto")
+    if choice == "openminion":
+        return OPENMINION_PROFILE
+    if choice == "project":
+        return PROJECT_PROFILE
+    return detect_profile(root)
+
+
 def cmd_scan(args: argparse.Namespace) -> int:
     root = _docs_root(args)
     if root is None:
         return 2
-    print(f"openminion {installed_version()} vs docs {docs_ref(root)}")
-    snippets, candidates = scan.scan(root)
-    scan.write_evidence(OUT / "evidence.json", root, snippets, candidates, installed_version())
-    print(
-        f"checked {len(snippets)} snippets "
-        f"({sum(s.kind == 'python' for s in snippets)} python, {sum(s.kind == 'shell' for s in snippets)} shell)"
+    profile = _profile(args, root)
+    pins = pinned_openminion(root) if profile.name == "project" else {}
+    print(f"openminion {installed_version()} vs {docs_ref(root)}  (profile: {profile.name})")
+    if pins:
+        print(f"project pins openminion: declared {pins['declared'] or '-'}, locked {pins['locked'] or '-'}")
+    snippets, candidates = scan.scan(root, profile, env=not args.no_env)
+    out_path = Path(args.out) if args.out else OUT / "evidence.json"
+    scan.write_evidence(
+        out_path, root, snippets, candidates, installed_version(), {"profile": profile.name, "pins": pins}
     )
-    for c in candidates:
-        hint = f"  (did you mean {', '.join(c.suggestions)}?)" if c.suggestions else ""
-        print(f"  [{c.kind}] {c.path}:{c.line}  {c.detail}{hint}")
-    print(f"{len(candidates)} candidate(s); evidence written to {(OUT / 'evidence.json').as_posix()}")
+    if not args.quiet:
+        print(
+            f"checked {len(snippets)} snippets "
+            f"({sum(s.kind == 'python' for s in snippets)} python, {sum(s.kind == 'shell' for s in snippets)} shell)"
+        )
+        for c in candidates:
+            hint = f"  (did you mean {', '.join(c.suggestions)}?)" if c.suggestions else ""
+            print(f"  [{c.kind}] {c.path}:{c.line}  {c.detail}{hint}")
+    print(f"{len(candidates)} candidate(s); evidence written to {out_path.as_posix()}")
     return 1 if (args.strict and candidates) else 0
 
 
@@ -203,8 +232,9 @@ def cmd_run(args: argparse.Namespace) -> int:
     log = agents.RunLog(session_id=f"docdrift-{datetime.now():%Y%m%d-%H%M%S}")
     previous = report.load_previous(OUT)
 
-    print(f"[1/5] scan: openminion {version} vs {docs_ref(root)}")
-    snippets, candidates = scan.scan(root)
+    profile = _profile(args, root)
+    print(f"[1/5] scan: openminion {version} vs {docs_ref(root)}  (profile: {profile.name})")
+    snippets, candidates = scan.scan(root, profile)
     candidates = candidates[: args.max_candidates]
     print(f"      {len(snippets)} snippets, {len(candidates)} candidate(s)")
 
@@ -221,6 +251,8 @@ def cmd_run(args: argparse.Namespace) -> int:
         print("[2/5] triage: skipped")
 
     claims: dict[str, list[agents.Claim]] = {}
+    if profile.name == "project" and not args.section:
+        args.no_claims = True  # the default sections are OpenMinion doc pages
     if not args.no_claims:
         specs = args.section or list(DEFAULT_SECTIONS)
         sections = [load_section(root, spec) for spec in specs]
@@ -330,13 +362,19 @@ def main(argv: list[str] | None = None) -> int:
     p.add_argument("--ref", help="git tag or branch (default: v<installed version>)")
     p.set_defaults(func=cmd_fetch)
 
+    profile_help = "openminion = the OpenMinion repo's docs; project = any repo built on OpenMinion; auto detects"
     p = sub.add_parser("scan", help="deterministic checks only (no model)")
-    p.add_argument("--docs", help="path to an OpenMinion source checkout")
+    p.add_argument("--docs", help="path to an OpenMinion checkout or to any project that uses OpenMinion")
+    p.add_argument("--profile", choices=("auto", "openminion", "project"), default="auto", help=profile_help)
+    p.add_argument("--out", help="evidence JSON path (default out/evidence.json)")
+    p.add_argument("--no-env", action="store_true", help="skip the OPENMINION_* env var check")
+    p.add_argument("--quiet", action="store_true", help="print only the summary line")
     p.add_argument("--strict", action="store_true", help="exit 1 when any candidate is found (for CI)")
     p.set_defaults(func=cmd_scan)
 
     p = sub.add_parser("run", help="scan + agent triage, claim checks, review and report")
-    p.add_argument("--docs", help="path to an OpenMinion source checkout")
+    p.add_argument("--docs", help="path to an OpenMinion checkout or to any project that uses OpenMinion")
+    p.add_argument("--profile", choices=("auto", "openminion", "project"), default="auto", help=profile_help)
     p.add_argument("--agent", default="docdrift", help="agent id in .openminion/agents.json")
     p.add_argument("--section", action="append", help='doc section to verify, "path#Heading" (repeatable)')
     p.add_argument("--max-claims", type=int, default=5)

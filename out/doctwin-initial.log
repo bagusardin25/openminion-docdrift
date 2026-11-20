@@ -1,0 +1,26 @@
+DocTwin sync: openminion-v0.1.18 @ b879519 -> D:\Project\docdrift\translations\id (id)
+  README.md: 14 sections, 14 to translate (15 parts), 0 to re-review, 0 reused
+    README.md [_preamble, read-this-first, trust-and-brand-safety, at-a-glance, common-commands, install]: 6/6 accepted, 0 need review, 0 unreviewed, 0 kept in English
+    README.md [quick-start::p1, quick-start::p2, what-openminion-provides, what-openminion-does-not-provide]: 3/4 accepted, 0 need review, 0 unreviewed, 1 kept in English
+    README.md [runtime-surfaces, repository-map, development, docs-and-release, license-and-brand-use-boundary]: 5/5 accepted, 0 need review, 0 unreviewed, 0 kept in English
+  docs/getting-started.md: 11 sections, 11 to translate (13 parts), 0 to re-review, 0 reused
+    docs/getting-started.md [openminion-getting-started, fast-bootstrap, first-run, persistent-action-policy-defaults]: 4/4 accepted, 0 need review, 0 unreviewed, 0 kept in English
+    docs/getting-started.md [start-a-local-human-plus-agents-room::p1]: 1/1 accepted, 0 need review, 0 unreviewed, 0 kept in English
+    docs/getting-started.md [start-a-local-human-plus-agents-room::p2, start-a-local-human-plus-agents-room::p3]: 2/2 accepted, 0 need review, 0 unreviewed, 0 kept in English
+    docs/getting-started.md [per-agent-command-access, read-first, normal-execution-loop, pull-request-shape, commit-message-shape, boundary-reminder]: 6/6 accepted, 0 need review, 0 unreviewed, 0 kept in English
+  docs/runtime-surfaces.md: 10 sections, 10 to translate (11 parts), 0 to re-review, 0 reused
+    docs/runtime-surfaces.md [openminion-runtime-surfaces, primary-surfaces, 1-interactive-cli, 2-python-library-api::p1, 2-python-library-api::p2, 3-api-runtime-server-surface, 4-companion-operator-clis]: 7/7 accepted, 0 need review, 0 unreviewed, 0 kept in English
+    docs/runtime-surfaces.md [5-visual-graph-inspection, 6-acp-and-published-mcp, example-surfaces, not-blanket-public]: 4/4 accepted, 0 need review, 0 unreviewed, 0 kept in English
+  docs/turn-budgets.md: 5 sections, 5 to translate, 0 to re-review, 0 reused
+    docs/turn-budgets.md [understanding-turn-budgets-and-token-cost, what-the-defaults-control, catalog-size-is-not-request-size, choose-a-change-from-evidence]: 4/4 accepted, 0 need review, 0 unreviewed, 0 kept in English
+    docs/turn-budgets.md [maintainer-assessment-for-issue-497]: 0/1 accepted, 0 need review, 0 unreviewed, 1 kept in English
+  docs/provider-capabilities.md: 5 sections, 5 to translate, 0 to re-review, 0 reused
+    docs/provider-capabilities.md [provider-capabilities, profile-facts, request-requirements, inspecting-the-matrix, http-connection-reuse]: 5/5 accepted, 0 need review, 0 unreviewed, 0 kept in English
+  examples/sdk/README.md: 2 sections, 2 to translate, 0 to re-review, 0 reused
+    examples/sdk/README.md [python-sdk-examples, example-map]: 2/2 accepted, 0 need review, 0 unreviewed, 0 kept in English
+  validating commands and code in the translated files with DocDrift ...
+
+done: 45 translated, 0 reused, 0 need review, 0 not reviewed, 2 kept in English
+report:  D:/Project/docdrift/translations/id/.doctwin/reports/20261119-144226/report.md
+preview: D:/Project/docdrift/translations/id/.doctwin/preview.html
+exit=0

@@ -82,7 +82,7 @@ def unknown_env_vars(root: Path, doc_paths: list[Path]) -> dict[str, list[EnvUsa
     source = package_text()
     out: dict[str, list[EnvUsage]] = defaultdict(list)
     for path in doc_paths:
-        names = sorted(set(ENV_NAME.findall(path.read_text(encoding="utf-8"))))
+        names = sorted(set(ENV_NAME.findall(path.read_text(encoding="utf-8", errors="replace"))))
         for name in names:
             if name not in source:
                 out[path.relative_to(root).as_posix()].append(usage_in_checkout(root, name))

@@ -95,6 +95,16 @@ def _stats_dict(stats: Any) -> dict[str, Any]:
     return {"value": str(stats)}
 
 
+# OpenMinion 0.1.23 answers a user message longer than 12,000 characters with this
+# canned text and run_state="completed" instead of raising (see WHAT_WE_LEARNED §7).
+CAPACITY_REFUSAL = "could not safely update the task conditions"
+MAX_REQUEST_CHARS = 11_500
+CAPACITY_ERROR = (
+    "task-context capacity refusal: OpenMinion returned its canned 'could not safely update the "
+    "task conditions' reply (input over the 12,000-character task limit) as a completed run"
+)
+
+
 def format_reminder(model: type[BaseModel]) -> str:
     schema = json.dumps(model.model_json_schema(), separators=(",", ":"))
     keys = ", ".join(model.model_fields)
@@ -191,30 +201,39 @@ def _run(
                 )
             )
             _attach_calls(log, before)
+            if CAPACITY_REFUSAL in (exc.raw_text or ""):
+                # A longer repair message would hit the same limit; let the caller split.
+                log.turns[-1].error = CAPACITY_ERROR
+                return None
             if attempt <= retries:
                 # Repair turn: keep the evidence the model already gathered and
                 # ask only for the JSON, instead of redoing every tool call.
-                message = (
+                repair = (
                     f"{original}\n\nYou already investigated this. Your previous final reply was "
                     f"prose, not JSON. Here it is:\n<<<\n{(exc.raw_text or '')[:6000]}\n>>>\n"
                     "Convert it into the required JSON object now. Do not call tools."
                 )
+                if len(repair) > MAX_REQUEST_CHARS:
+                    return None  # the repair itself would exceed the task-context limit
+                message = repair
                 continue
             return None
+        refused = CAPACITY_REFUSAL in (result.text or "")
         log.turns.append(
             TurnRecord(
                 role,
                 label,
-                True,
+                not refused,
                 time.monotonic() - started,
                 len(CTX.calls) - before,
                 run_id=str(result.run_id or ""),
+                error=CAPACITY_ERROR if refused else "",
                 stats=_stats_dict(result.stats),
                 raw=(result.text or "")[:1500],
             )
         )
         _attach_calls(log, before)
-        return result
+        return None if refused else result
 
 
 # --------------------------------------------------------------------------
