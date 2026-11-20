@@ -1,0 +1,95 @@
+{
+  "generated_at": "2026-11-19T08:07:15+00:00",
+  "lang": "id",
+  "source": ".cache\\openminion-v0.1.23",
+  "source_ref": "openminion-v0.1.23 @ 695ba66",
+  "session_id": "doctwin-id-20261119-150630",
+  "wall_seconds": 44.1,
+  "counts": {
+    "unchanged": 2,
+    "translated": 1
+  },
+  "words": {
+    "unchanged": 157,
+    "translated": 154
+  },
+  "files": [
+    {
+      "file": "examples/sdk/README.md",
+      "status": "written",
+      "sections": 3,
+      "removed": [],
+      "code_blocks_identical": true
+    }
+  ],
+  "sections": [
+    {
+      "file": "examples/sdk/README.md",
+      "key": "python-sdk-examples#1",
+      "action": "unchanged",
+      "attempts": 0,
+      "gate_errors": [],
+      "review_issues": [],
+      "words": 59,
+      "parts": 1
+    },
+    {
+      "file": "examples/sdk/README.md",
+      "key": "python-sdk-examples/example-map#1",
+      "action": "unchanged",
+      "attempts": 0,
+      "gate_errors": [],
+      "review_issues": [],
+      "words": 98,
+      "parts": 1
+    },
+    {
+      "file": "examples/sdk/README.md",
+      "key": "python-sdk-examples/handoff-approval#1",
+      "action": "translated",
+      "attempts": 1,
+      "gate_errors": [],
+      "review_issues": [],
+      "words": 154,
+      "parts": 1
+    }
+  ],
+  "glossary_proposals": [],
+  "glossary_added": [],
+  "validation": {
+    "candidates": [],
+    "summary": "no broken commands or imports"
+  },
+  "turns": [
+    {
+      "role": "translate",
+      "label": "examples/sdk/README.md [handoff-approval]",
+      "ok": true,
+      "seconds": 33.78099999995902,
+      "tool_calls": 1,
+      "run_id": "c046b5ff5c0747478c721dd164958dbf",
+      "error": "",
+      "stats": {
+        "value": "{'input_tokens': 36908, 'output_tokens': 2073, 'cache_read_tokens': 3840, 'llm_calls': 7, 'tool_calls': 1, 'tool_errors': 0, 'duration_ms': 30717}"
+      },
+      "raw": "docdrift: {\"sections\":[{\"key\":\"python-sdk-examples/handoff-approval#1\",\"text\":\"## Persetujuan penyerahan\\n\\n⟦IC1⟧ mengekspos researcher sebagai alat ⟦IC2⟧. Sebuah ⟦IC3⟧ menyatakan tidak ada metadata risiko, sehingga kebijakan menempatkannya pada default ketidakpastian kebalikan dan menjeda untuk konfirmasi sebelum target dijalankan.\\n\\n- Tanpa ⟦IC4⟧, jalannya berakhir pada jeda itu: ⟦IC5⟧ adalah prompt operator (⟦Q1⟧), bukan jawaban researcher, dan ⟦IC6⟧ adalah ⟦IC7⟧. Kode aplikasi yang menjaga Agent-nya tetap terbuka menjawabnya di thread yang menunggu dengan ⟦IC8⟧; sebuah ⟦IC9⟧ biasa yang datang kemudian memulai thread baru dan tidak menjawabnya.\\n- Dengan ⟦IC10⟧, callback memutuskan untuk panggilan itu sebelum target dijalankan: mengembalikan true mengizinkan panggilan tersebut; mengembalikan false mengakhiri giliran dengan ⟦Q2⟧; callback yang melempar kesalahan menyebabkan jalannya gagal dengan error tersebut. Dalam kedua kasus kegagalan itu, researcher tidak dijalankan.\\n\\nBendera ⟦IC11⟧ pada contoh menguji setiap jalur; skrip mencetak tampilan operator dan keluar:\\n\\n⟦CODE1⟧\\n\\nCallback contoh hanya memutuskan untuk ⟦IC12⟧: konfirmasi untuk alat lain ditolak, dan izinnya digunakan sekali.\"}],\"new_terms\":[]}\n{\"sections\":[{\"key\":\"python-sdk-examples/handoff-approval#1\",\"text\":\"## Persetujuan penyerahan\\n\\n⟦IC1⟧ mengekspos researcher sebagai alat ⟦IC2⟧. Sebuah ⟦IC3⟧ menyatakan tidak ada metadata risiko, sehingga kebijakan menempatkannya pada default ketidakpastian kebalika",
+      "calls": [
+        "glossary_lookup('researcher')"
+      ]
+    },
+    {
+      "role": "review",
+      "label": "examples/sdk/README.md [handoff-approval]",
+      "ok": true,
+      "seconds": 4.797000000020489,
+      "tool_calls": 0,
+      "run_id": "a28f31c8c8ae4262bddec4002296d653",
+      "error": "",
+      "stats": {
+        "value": "{'input_tokens': 8571, 'output_tokens': 156, 'cache_read_tokens': 0, 'llm_calls': 3, 'tool_calls': 0, 'tool_errors': 0, 'duration_ms': 4277}"
+      },
+      "raw": "docdrift: {\"sections\":[{\"key\":\"python-sdk-examples/handoff-approval#1\",\"faithful\":true,\"issues\":[]}]}",
+      "calls": []
+    }
+  ]
+}

@@ -1,25 +1,26 @@
 # Building Blocks Tested
 
 OpenMinion `0.1.23` from PyPI · Python 3.12 · Windows 11 · provider preset
-`openai` with `gpt-4.1-mini` · DocDrift `0.1.0`.
+`openai` with `gpt-4.1-mini` · DocTwin + DocDrift `0.1.0`.
 
-Legend: ✅ worked as documented · ⚠️ worked with a workaround · ❌ did not work ·
-➖ not used.
+✅ worked as documented · ⚠️ worked with a workaround · ❌ did not work ·
+➖ evaluated, not used. Section numbers refer to [WHAT_WE_LEARNED.md](WHAT_WE_LEARNED.md).
 
-| Building block | Used how | Result | Notes |
+| Building block | How we used it | Result | Notes |
 | --- | --- | --- | --- |
-| **Agent execution** (`Agent.run`) | 4 roles, one OpenMinion session per DocDrift run | ✅ | Context manager closes the runtime cleanly. |
-| **Models / provider presets** | `openminion setup --provider openai`, config-only switch to Gemini or Cortensor Portal | ✅ | The key stays in `.env`. `agents.json` stores only `api_key_env`; we checked that no file under `.openminion/` contains the key. |
-| **Tools** (`@tool`) | 6 evidence tools, 1 write tool | ✅ | Docstrings become tool descriptions. Typed params work. |
-| **Permissions** (`min_scope`, action policy) | evidence tools `READ_ONLY` + `idempotent`; write tool at default `WRITE_SAFE` | ✅ | Read-only tools never prompted. The write tool always reached `approval_callback`. |
-| **Human approval** (`approval_callback`) | operator `y/N` before each issue draft | ✅ | `docdrift approval-check` passed 6/6: deny → "Confirmation denied. The action was not run." and no file; approve → file written. In run 1, 1 of 4 forced-tool turns ended without calling the tool (not reproduced). |
-| **Structured output** (`output_type=`) | Pydantic models for triage, claims, review | ⚠️ | The schema is never sent to the provider. Compliance was 0/4 without tools and 2/4 with tools in a probe. After we put the schema in the user turn: 13/13 (run 1), 9/10 plus 1 fixed by our repair turn (run 2), 9/9 (run 3). See [WHAT_WE_LEARNED.md](WHAT_WE_LEARNED.md) §1. |
-| **Delegation** (`subagent`) | bounded reviewer that re-checks every negative verdict | ✅ | Own instructions, tools, output type and timeout. |
-| **Forced tools** (`forced_tools=`) | issue writer must call `write_issue_draft` first | ✅ | |
-| **Sessions / threads** | `session_id=docdrift-<timestamp>`, new thread per item | ✅ | State stays in the project via `OPENMINION_HOME` / `OPENMINION_DATA_ROOT`. |
-| **Diagnostics** (`ProviderError`, `TurnTimeoutError`, `AgentOutputValidationError`, `result.stats`, `run_id`) | every turn's seconds, tool calls (with arguments), errors and reply are logged into `report.json` | ⚠️ | `AgentOutputValidationError` reports the wrong cause after JSON recovery (§2). `OPENMINION_TRACE_REQUESTS=1` wrote no trace files for SDK runs (§6). |
-| **CLI surface** | `--help` for every documented command (58 command paths) | ✅ | All 145 shell snippets in the v0.1.23 docs match the installed CLI. |
-| **Memory** | — | ➖ | Not needed. Each run is independent; the previous `report.json` is used to mark new findings. |
-| **Skills / tasks / scheduling** | — | ➖ | Not needed for a single-pass checker. |
+| **Agent execution** (`Agent.run`) | DocTwin: translator, reviewer, glossary keeper. DocDrift: triage, claims, reviewer, issue writer | ⚠️ | Works. Input over 12,000 characters returns a canned reply as a *completed* run (A3), so DocTwin budgets every request and detects the text. |
+| **Models / provider presets** | `openminion setup --provider openai`; Gemini and `cortensor-portal` are config-only switches | ✅ | Only `api_key_env` is stored; no file under `.openminion/` contains the key. |
+| **Tools** (`@tool`) | `glossary_lookup`, six DocDrift evidence tools, two write tools | ✅ | The translator called `glossary_lookup` on its own (for example for "transport capabilities", "fallback profiles"). |
+| **Permissions** (`min_scope`, action policy) | evidence tools `READ_ONLY` + `idempotent`; write tools at default `WRITE_SAFE` | ✅ | Read-only tools never prompted; every write reached the callback. |
+| **Human approval** (`approval_callback`) | glossary additions (`add_glossary_term`), issue drafts (`write_issue_draft`) | ✅ | `docdrift approval-check` 6/6. A real sync asked once per proposed term (5 in one run). Denied → nothing written. |
+| **Forced tools** (`forced_tools=`) | glossary keeper and issue writer must call their write tool | ✅ | 1 of 4 issue-writer turns in one early run ended without the tool call (not reproduced). |
+| **Structured output** (`output_type=`) | Pydantic batches for translation, review, triage, claims | ⚠️ | The schema is never sent to the model (A1). Workaround: schema in the user turn + one JSON repair turn. Validation errors point at the wrong cause (A2, fix PR ready). |
+| **Delegation** (`subagent`) | DocTwin reviewer and DocDrift reviewer | ✅ | Own instructions, tools, output type and timeout. Same-model self-review rubber-stamped until we gave it facts and asked it to disprove (B1). |
+| **Sessions / threads** | one `session_id` per sync or run, a new thread per turn | ✅ | A one-session vs fresh-session probe showed no difference. State stays in the project (`OPENMINION_HOME`). |
+| **Task context** (implicit) | not used directly | ❌ | Its 12,000-character objective limit is what A3 hits, and it is not mentioned in the SDK docs. |
+| **Diagnostics** (`ProviderError`, `TurnTimeoutError`, `AgentOutputValidationError`, `run_id`, `stats`) | per-turn table in every report: seconds, tool calls with arguments, errors, reply | ⚠️ | A2 makes validation errors misleading. `OPENMINION_TRACE_REQUESTS=1` wrote nothing for SDK runs (A7). |
+| **CLI surface** | `--help` for all 58 command paths in the docs | ✅ | All 145 shell snippets in the v0.1.23 docs match the installed CLI. |
+| **Memory** | wanted for the glossary | ➖ | No `Agent`-level scoped put/get. `MemoryBundle` is portability only (A8). The glossary is a JSON file behind an approval-gated tool. |
+| **Skills / tasks / scheduling** | — | ➖ | A sync is one pass; scheduling is left to the user's CI or cron. |
 | **Handoffs** (`Handoff`) | — | ➖ | `subagent` fit better because the reviewer returns to the coordinator. |
-| **Cortensor Portal** | provider preset documented in README | ➖ | No Portal access during the build. Switching is config-only: `uv run docdrift init --provider cortensor-portal`. |
+| **Cortensor Portal** | provider preset | ➖ | No Portal access during the build. `uv run docdrift init --provider cortensor-portal` switches it. |

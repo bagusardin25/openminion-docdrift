@@ -1,0 +1,78 @@
+{
+  "lang": "id",
+  "version": 1,
+  "terms": {
+    "agent": {
+      "target": "agent",
+      "note": "keep English, common in Indonesian AI writing"
+    },
+    "API": {
+      "target": "API",
+      "note": "keep"
+    },
+    "approval": {
+      "target": "persetujuan",
+      "note": "standard Indonesian"
+    },
+    "CLI": {
+      "target": "CLI",
+      "note": "keep"
+    },
+    "Cortensor": {
+      "target": "Cortensor",
+      "note": "product name"
+    },
+    "endpoint": {
+      "target": "endpoint",
+      "note": "keep English"
+    },
+    "library": {
+      "target": "library",
+      "note": "software library; never 'perpustakaan' (a building)"
+    },
+    "MCP": {
+      "target": "MCP",
+      "note": "keep"
+    },
+    "OpenMinion": {
+      "target": "OpenMinion",
+      "note": "product name"
+    },
+    "prompt": {
+      "target": "prompt",
+      "note": "keep English"
+    },
+    "provider": {
+      "target": "provider",
+      "note": "keep English"
+    },
+    "Python": {
+      "target": "Python",
+      "note": "name"
+    },
+    "repository": {
+      "target": "repositori",
+      "note": "standard Indonesian"
+    },
+    "runtime": {
+      "target": "runtime",
+      "note": "keep English"
+    },
+    "SDK": {
+      "target": "SDK",
+      "note": "keep"
+    },
+    "session": {
+      "target": "sesi",
+      "note": "standard Indonesian"
+    },
+    "token": {
+      "target": "token",
+      "note": "keep English"
+    },
+    "workspace": {
+      "target": "workspace",
+      "note": "keep English"
+    }
+  }
+}

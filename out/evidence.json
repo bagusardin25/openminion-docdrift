@@ -1,94 +1,13 @@
 {
-  "openminion_version": "0.1.10",
-  "docs_root": ".cache\\openminion-v0.1.23",
-  "snippets_checked": 165,
-  "python_snippets": 20,
-  "shell_snippets": 145,
-  "candidates": [
-    {
-      "id": "D4b409f2",
-      "source": "cli",
-      "kind": "unknown_flag",
-      "path": "docs/system-operations.md",
-      "line": 215,
-      "snippet": "openminion tasks show TASK_ID --runs-limit 20 --json",
-      "detail": "`openminion tasks show` does not accept `--runs-limit`",
-      "suggestions": [
-        "--limit"
-      ]
-    },
-    {
-      "id": "D9d79f3b",
-      "source": "python",
-      "kind": "missing_name",
-      "path": "docs/a2a-remote.md",
-      "line": 72,
-      "snippet": "from openminion.modules.a2a.transport import HTTPTransport",
-      "detail": "`openminion.modules.a2a.transport` has no `HTTPTransport`",
-      "suggestions": [
-        "Transport",
-        "InProcTransport"
-      ]
-    },
-    {
-      "id": "D3cdd8d1",
-      "source": "env",
-      "kind": "unknown_env_var",
-      "path": "docs/guides/blockchain-tools.md",
-      "line": 1,
-      "snippet": "OPENMINION_BLOCKCHAIN_TESTNET_WRITE_APPROVED_ARGUMENTS_DIGEST, OPENMINION_BLOCKCHAIN_TESTNET_WRITE_APPROVED_ATTEMPT_ID, OPENMINION_BLOCKCHAIN_TESTNET_WRITE_APPROVED_ATTEMPT_ROOT, OPENMINION_BLOCKCHAIN_TESTNET_WRITE_APPROVED_CHAIN_ID, OPENMINION_BLOCKCHAIN_TESTNET_WRITE_APPROVED_CHECKPOINT_DIGEST, OPENMINION_BLOCKCHAIN_TESTNET_WRITE_APPROVED_CONFIG_SHA256, OPENMINION_BLOCKCHAIN_TESTNET_WRITE_APPROVED_CONFIRMATION_DEPTH, OPENMINION_BLOCKCHAIN_TESTNET_WRITE_APPROVED_CONTRACT_ADDRESS, OPENMINION_BLOCKCHAIN_TESTNET_WRITE_APPROVED_FUNCTION_SIGNATURE, OPENMINION_BLOCKCHAIN_TESTNET_WRITE_APPROVED_GENESIS_HASH, OPENMINION_BLOCKCHAIN_TESTNET_WRITE_APPROVED_MAX_BROADCASTS, OPENMINION_BLOCKCHAIN_TESTNET_WRITE_APPROVED_MAX_DURATION_SECONDS, OPENMINION_BLOCKCHAIN_TESTNET_WRITE_APPROVED_MAX_TOTAL_FEE_WEI, OPENMINION_BLOCKCHAIN_TESTNET_WRITE_APPROVED_MUTATION_INVOCATIONS, OPENMINION_BLOCKCHAIN_TESTNET_WRITE_APPROVED_OPERATOR_ID, OPENMINION_BLOCKCHAIN_TESTNET_WRITE_APPROVED_PARENT_ROOT, OPENMINION_BLOCKCHAIN_TESTNET_WRITE_APPROVED_POSTCONDITION_DIGEST, OPENMINION_BLOCKCHAIN_TESTNET_WRITE_APPROVED_PRECONDITION_DIGEST, OPENMINION_BLOCKCHAIN_TESTNET_WRITE_APPROVED_RPC_ORIGIN, OPENMINION_BLOCKCHAIN_TESTNET_WRITE_APPROVED_SIGNER_ADDRESS, OPENMINION_BLOCKCHAIN_TESTNET_WRITE_APPROVED_SOURCE_COMMIT, OPENMINION_BLOCKCHAIN_TESTNET_WRITE_APPROVED_VALUE_WEI, OPENMINION_BLOCKCHAIN_TESTNET_WRITE_CONFIG, OPENMINION_BLOCKCHAIN_TESTNET_WRITE_E2E, OPENMINION_BLOCKCHAIN_TESTNET_WRITE_SCAN_ATTESTATION, OPENMINION_ROOT",
-      "detail": "26 OPENMINION_* variable(s) in this doc are never referenced by the installed package",
-      "suggestions": []
-    },
-    {
-      "id": "Dde1f158",
-      "source": "env",
-      "kind": "unknown_env_var",
-      "path": "docs/runtime-database-upgrades.md",
-      "line": 1,
-      "snippet": "OPENMINION_TEST_POSTGRES_URL",
-      "detail": "1 OPENMINION_* variable(s) in this doc are never referenced by the installed package",
-      "suggestions": []
-    },
-    {
-      "id": "D9691405",
-      "source": "env",
-      "kind": "unknown_env_var",
-      "path": "docs/security-scanning.md",
-      "line": 1,
-      "snippet": "OPENMINION_CLI_FOCUS_E2E_AGENT, OPENMINION_CLI_FOCUS_E2E_ARTIFACT_ROOT, OPENMINION_CLI_FOCUS_E2E_CONFIG, OPENMINION_LIVE_CLI_FOCUS_E2E, OPENMINION_LIVE_SECURITY_LOCAL_LAB, OPENMINION_LIVE_SECURITY_REMEDIATION, OPENMINION_SECURITY_LIVE_MAX_TOKENS, OPENMINION_SECURITY_SCHEDULE_CONFIG, OPENMINION_TEST_DOCKER_SECURITY_LAB, OPENMINION_TEST_INSTALLED_SECURITY, OPENMINION_TEST_INSTALLED_TRIVY, OPENMINION_TEST_SECURITY_LAB_DOCKER_SOCKET, OPENMINION_TEST_SECURITY_LAB_TARGET_IMAGE, OPENMINION_TEST_SECURITY_LAB_WORKER_IMAGE",
-      "detail": "14 OPENMINION_* variable(s) in this doc are never referenced by the installed package",
-      "suggestions": []
-    },
-    {
-      "id": "D2472d8f",
-      "source": "env",
-      "kind": "unknown_env_var",
-      "path": "docs/system-operations.md",
-      "line": 1,
-      "snippet": "OPENMINION_LIVE_OPS_SSH, OPENMINION_OPS_SSH_HOST, OPENMINION_OPS_SSH_HOST_KEY, OPENMINION_OPS_SSH_KEY, OPENMINION_OPS_SSH_PASSWORD, OPENMINION_OPS_SSH_USER",
-      "detail": "6 OPENMINION_* variable(s) in this doc are never referenced by the installed package",
-      "suggestions": []
-    },
-    {
-      "id": "D22f9339",
-      "source": "env",
-      "kind": "unknown_env_var",
-      "path": "docs/testing-and-validation.md",
-      "line": 1,
-      "snippet": "OPENMINION_CLI_FOCUS_E2E_AGENT, OPENMINION_CLI_FOCUS_E2E_CONFIG, OPENMINION_CLI_FOCUS_E2E_RUNNER_TIMEOUT_SECONDS, OPENMINION_LIVE_CLI_FOCUS_COMPLEX_E2E, OPENMINION_LIVE_CLI_FOCUS_E2E",
-      "detail": "5 OPENMINION_* variable(s) in this doc are never referenced by the installed package",
-      "suggestions": []
-    },
-    {
-      "id": "Dfed1de4",
-      "source": "env",
-      "kind": "unknown_env_var",
-      "path": "examples/security/offline/README.md",
-      "line": 1,
-      "snippet": "OPENMINION_SECURITY_SCAN_CONFIG, OPENMINION_SECURITY_SCHEDULE_CONFIG",
-      "detail": "2 OPENMINION_* variable(s) in this doc are never referenced by the installed package",
-      "suggestions": []
-    }
-  ]
+  "openminion_version": "0.1.23",
+  "docs_root": ".",
+  "profile": "project",
+  "pins": {
+    "declared": ">=0.1.8,<0.2",
+    "locked": "0.1.23"
+  },
+  "snippets_checked": 15,
+  "python_snippets": 13,
+  "shell_snippets": 2,
+  "candidates": []
 }

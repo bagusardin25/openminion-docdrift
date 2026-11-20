@@ -1,101 +1,112 @@
-# Demo video script (target 3–4 minutes)
+# Demo video script (target ~3 minutes)
 
-Record the terminal full-screen with a large font (VS Code terminal or Windows
-Terminal at ~18pt). Windows: `Win+Alt+R` (Xbox Game Bar) records the active
-window; OBS works too. Narrate in English or Indonesian, or add on-screen
-captions using the text in quotes below.
+Total model cost of this script: **one sync of one section**, about two model
+turns (~50k tokens on `gpt-4.1-mini`, roughly US$0.02). Every other step runs
+locally without a model.
 
-Before recording:
+Record the terminal full screen with a large font (Windows Terminal or the VS
+Code terminal at ~18 pt). `Win+Alt+R` (Xbox Game Bar) records the active window;
+OBS also works. Narrate, or add the quoted lines as captions.
+
+## Before recording (not on camera)
 
 ```powershell
 cd D:\Project\docdrift
 uv sync
-uv run docdrift fetch
-# Delete the old report so "new since last run" does not show up mid-demo:
-Remove-Item out\report.* -ErrorAction SilentlyContinue
+uv run doctwin fetch --ref v0.1.23
+uv run python scripts/make_demo_source.py     # v0.1.23 docs + one changed sentence, and a copy of the translations
 ```
+
+Open these in a browser beforehand: `translations\id\.doctwin\preview.html`
+(double-click the file) and this repo's README on GitHub.
 
 ---
 
-## 0:00 – 0:20 · The problem
+## 0:00 – 0:25 · The problem
 
-Show the README top section.
+Show the README top section on GitHub.
 
-> "OpenMinion shipped 23 releases in its 0.1 line. People pin a version and
-> read docs written for main. DocDrift is an OpenMinion agent that checks
-> whether the docs still tell the truth about the SDK you actually installed."
+> "Docs change every release. Translations fall behind, or break commands while
+> translating them. DocTwin is a set of OpenMinion agents that keep a translated
+> copy of the docs in sync with the English source, without breaking a single
+> command, link or code block."
 
-## 0:20 – 1:00 · Deterministic scan (no model)
+## 0:25 – 1:05 · It already did the real job
 
-```powershell
-uv run docdrift scan
-```
+Show `translations\id\.doctwin\preview.html` (English left, Bahasa Indonesia
+right). Scroll a little, and point at a code block and the green "translated"
+chips.
 
-> "First, a deterministic pass. 165 snippets: every `openminion` command is
-> checked against the real `--help`, every Python snippet against the installed
-> package, every OPENMINION_* env var against the source. On 0.1.23 the code
-> examples are clean. Only five env-var mentions need judgement."
+> "We translated the OpenMinion docs into Bahasa Indonesia at v0.1.18, then
+> synced to v0.1.23. Of 54 sections, only the 14 that changed went to the model.
+> The other 40 were reused. Code blocks are byte-identical to the source in
+> every file."
 
-Then show that it catches real drift against an older install:
+Open `docs\turn-budgets.md` in the preview and point at `33.76 s` in the table.
 
-```powershell
-uv run --isolated --no-project --python 3.12 --with "openminion==0.1.10" --with-editable . docdrift scan --docs .cache/openminion-v0.1.23
-```
+> "On the first sync, the translator turned 33.76 into the Indonesian 33,76. A
+> number gate refused it, so that section stayed in English until a clean
+> translation passed. Wrong numbers never ship."
 
-> "Against 0.1.10, the same docs reference a `--runs-limit` flag and an
-> `HTTPTransport` class that don't exist yet. That's what you'd hit after
-> pinning an older version."
-
-## 1:00 – 2:40 · The agent run (real model)
+## 1:05 – 2:15 · Live: the English docs change
 
 ```powershell
-uv run docdrift run --max-claims 4
+uv run doctwin plan --source .cache/demo-source --out .cache/demo-twin
 ```
 
-It takes about 4–5 minutes. Either speed up the middle when editing, or start
-it before the scan segment and come back. While it runs, point out each stage
-as it prints:
-
-> "Step 2: the triage agent uses six read-only OpenMinion tools to decide
-> whether each candidate is real drift or just a test-suite variable. All five
-> are test-suite variables. In our first run the agent got four of them wrong,
-> so DocDrift now hands it deterministic facts about where each name is used."
->
-> "Step 3: the claims agent reads prose sections, pulls out checkable claims
-> like defaults and limits, and verifies them in the installed source."
->
-> "Step 4: an OpenMinion subagent re-checks every negative verdict and is told
-> to try to disprove it."
-
-Then show the approval gate (about 30 s):
+> "One sentence changed upstream. The ledger knows exactly which section that
+> is: 1 of 54."
 
 ```powershell
-uv run docdrift approval-check
+uv run doctwin sync --source .cache/demo-source --out .cache/demo-twin --terms ask
 ```
 
-> "Writing an issue draft is a write, so OpenMinion's action policy pauses it
-> and calls our approval callback. Denied: no file. Approved: the draft is
-> written."
+While it runs:
 
-## 2:40 – 3:30 · The result
+> "The changed section is protected first: code, inline code and links become
+> placeholders the model cannot touch. The translator agent works with a
+> glossary tool. Deterministic gates check placeholders, headings, numbers,
+> lists and glossary terms. Then a skeptical reviewer subagent checks the
+> meaning. If the translator proposes a new term, OpenMinion's action policy
+> pauses and asks me before the glossary file is written."
+
+If an approval prompt appears, answer `y` once and `n` once. At the end, DocDrift
+validates every command and import in the output.
 
 ```powershell
-code out\report.md      # or: notepad out\report.md
+code .cache\demo-twin\.doctwin\report.md
 ```
 
-Scroll through: Summary, Confirmed/Disputed, Verified claims with file:line
-evidence, and Run diagnostics (seconds and tool calls per turn).
+> "1 translated, 53 reused, 0 need review. Code blocks identical. No broken
+> commands."
 
-> "Every claim cites file and line in the installed package. The diagnostics
-> table is how we found our own OpenMinion feedback."
+## 2:15 – 2:45 · Respecting humans
 
-Open `WHAT_WE_LEARNED.md` for a few seconds:
+```powershell
+Add-Content .cache\demo-twin\docs\provider-capabilities.md "`nCatatan dari editor manusia."
+uv run doctwin sync --source .cache/demo-source --out .cache/demo-twin --terms skip --no-validate
+```
+
+> "A human edited a translated file. DocTwin notices and leaves it alone, so
+> hand edits are never overwritten."
+
+(Every section is already in sync at this point, so this sync makes no model
+call.)
+
+## 2:45 – 3:10 · What we found in OpenMinion
+
+Open `WHAT_WE_LEARNED.md` and scroll through Part A, then open
+https://github.com/openminion/openminion/pull/810 and show the green
+"Merged" badge and the maintainer's approval.
 
 > "Building it, we found that `output_type` never sends the schema to the
-> model, plus a validation error that hides its real cause. We sent a fix PR
-> for that one."
+> model, that a user message over 12,000 characters comes back as a canned
+> reply marked completed, and that validation errors hide their real cause. We
+> reported that last one as issue 803. The maintainers confirmed it, and our fix
+> PR, 810, passed all 18 CI checks and was merged into OpenMinion. DocDrift,
+> our first prototype, now checks the commands in every translation."
 
-## 3:30 – 3:45 · Close
+## 3:10 · Close
 
-> "DocDrift: a small, repeatable OpenMinion agent that keeps the docs honest.
-> Source and setup are in the README."
+> "DocTwin: translated docs that stay in sync and stay correct. Built on
+> OpenMinion."

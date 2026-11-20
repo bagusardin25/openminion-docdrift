@@ -1,0 +1,1158 @@
+{
+  "generated_at": "2026-11-19T07:58:05+00:00",
+  "lang": "id",
+  "source": ".cache\\openminion-v0.1.23",
+  "source_ref": "openminion-v0.1.23 @ 695ba66",
+  "session_id": "doctwin-id-20261119-144619",
+  "wall_seconds": 706.8,
+  "counts": {
+    "unchanged": 40,
+    "translated": 14
+  },
+  "words": {
+    "unchanged": 3125,
+    "translated": 3777
+  },
+  "files": [
+    {
+      "file": "README.md",
+      "status": "written",
+      "sections": 14,
+      "removed": [],
+      "code_blocks_identical": true
+    },
+    {
+      "file": "docs/getting-started.md",
+      "status": "written",
+      "sections": 11,
+      "removed": [],
+      "code_blocks_identical": true
+    },
+    {
+      "file": "docs/runtime-surfaces.md",
+      "status": "written",
+      "sections": 10,
+      "removed": [],
+      "code_blocks_identical": true
+    },
+    {
+      "file": "docs/turn-budgets.md",
+      "status": "written",
+      "sections": 6,
+      "removed": [],
+      "code_blocks_identical": true
+    },
+    {
+      "file": "docs/provider-capabilities.md",
+      "status": "unchanged",
+      "sections": 5,
+      "removed": [],
+      "code_blocks_identical": true
+    },
+    {
+      "file": "docs/configuration-compatibility.md",
+      "status": "written",
+      "sections": 5,
+      "removed": [],
+      "code_blocks_identical": true
+    },
+    {
+      "file": "examples/sdk/README.md",
+      "status": "written",
+      "sections": 3,
+      "removed": [],
+      "code_blocks_identical": true
+    }
+  ],
+  "sections": [
+    {
+      "file": "README.md",
+      "key": "_preamble#1",
+      "action": "unchanged",
+      "attempts": 0,
+      "gate_errors": [],
+      "review_issues": [],
+      "words": 74,
+      "parts": 1
+    },
+    {
+      "file": "README.md",
+      "key": "read-this-first#1",
+      "action": "unchanged",
+      "attempts": 0,
+      "gate_errors": [],
+      "review_issues": [],
+      "words": 56,
+      "parts": 1
+    },
+    {
+      "file": "README.md",
+      "key": "trust-and-brand-safety#1",
+      "action": "unchanged",
+      "attempts": 0,
+      "gate_errors": [],
+      "review_issues": [],
+      "words": 40,
+      "parts": 1
+    },
+    {
+      "file": "README.md",
+      "key": "at-a-glance#1",
+      "action": "unchanged",
+      "attempts": 0,
+      "gate_errors": [],
+      "review_issues": [],
+      "words": 152,
+      "parts": 1
+    },
+    {
+      "file": "README.md",
+      "key": "common-commands#1",
+      "action": "unchanged",
+      "attempts": 0,
+      "gate_errors": [],
+      "review_issues": [],
+      "words": 5,
+      "parts": 1
+    },
+    {
+      "file": "README.md",
+      "key": "install#1",
+      "action": "unchanged",
+      "attempts": 0,
+      "gate_errors": [],
+      "review_issues": [],
+      "words": 40,
+      "parts": 1
+    },
+    {
+      "file": "README.md",
+      "key": "what-openminion-provides#1",
+      "action": "unchanged",
+      "attempts": 0,
+      "gate_errors": [],
+      "review_issues": [],
+      "words": 65,
+      "parts": 1
+    },
+    {
+      "file": "README.md",
+      "key": "runtime-surfaces#1",
+      "action": "unchanged",
+      "attempts": 0,
+      "gate_errors": [],
+      "review_issues": [],
+      "words": 101,
+      "parts": 1
+    },
+    {
+      "file": "README.md",
+      "key": "repository-map#1",
+      "action": "unchanged",
+      "attempts": 0,
+      "gate_errors": [],
+      "review_issues": [],
+      "words": 8,
+      "parts": 1
+    },
+    {
+      "file": "README.md",
+      "key": "development#1",
+      "action": "unchanged",
+      "attempts": 0,
+      "gate_errors": [],
+      "review_issues": [],
+      "words": 26,
+      "parts": 1
+    },
+    {
+      "file": "README.md",
+      "key": "docs-and-release#1",
+      "action": "unchanged",
+      "attempts": 0,
+      "gate_errors": [],
+      "review_issues": [],
+      "words": 63,
+      "parts": 1
+    },
+    {
+      "file": "README.md",
+      "key": "license-and-brand-use-boundary#1",
+      "action": "unchanged",
+      "attempts": 0,
+      "gate_errors": [],
+      "review_issues": [],
+      "words": 51,
+      "parts": 1
+    },
+    {
+      "file": "README.md",
+      "key": "quick-start#1",
+      "action": "translated",
+      "attempts": 1,
+      "gate_errors": [],
+      "review_issues": [],
+      "words": 561,
+      "parts": 2
+    },
+    {
+      "file": "README.md",
+      "key": "what-openminion-does-not-provide#1",
+      "action": "translated",
+      "attempts": 3,
+      "gate_errors": [],
+      "review_issues": [],
+      "words": 59,
+      "parts": 1
+    },
+    {
+      "file": "docs/getting-started.md",
+      "key": "openminion-getting-started#1",
+      "action": "unchanged",
+      "attempts": 0,
+      "gate_errors": [],
+      "review_issues": [],
+      "words": 28,
+      "parts": 1
+    },
+    {
+      "file": "docs/getting-started.md",
+      "key": "openminion-getting-started/fast-bootstrap#1",
+      "action": "unchanged",
+      "attempts": 0,
+      "gate_errors": [],
+      "review_issues": [],
+      "words": 96,
+      "parts": 1
+    },
+    {
+      "file": "docs/getting-started.md",
+      "key": "openminion-getting-started/first-run#1",
+      "action": "unchanged",
+      "attempts": 0,
+      "gate_errors": [],
+      "review_issues": [],
+      "words": 339,
+      "parts": 1
+    },
+    {
+      "file": "docs/getting-started.md",
+      "key": "openminion-getting-started/first-run/persistent-action-policy-defaults#1",
+      "action": "unchanged",
+      "attempts": 0,
+      "gate_errors": [],
+      "review_issues": [],
+      "words": 129,
+      "parts": 1
+    },
+    {
+      "file": "docs/getting-started.md",
+      "key": "openminion-getting-started/per-agent-command-access#1",
+      "action": "unchanged",
+      "attempts": 0,
+      "gate_errors": [],
+      "review_issues": [],
+      "words": 121,
+      "parts": 1
+    },
+    {
+      "file": "docs/getting-started.md",
+      "key": "openminion-getting-started/read-first#1",
+      "action": "unchanged",
+      "attempts": 0,
+      "gate_errors": [],
+      "review_issues": [],
+      "words": 11,
+      "parts": 1
+    },
+    {
+      "file": "docs/getting-started.md",
+      "key": "openminion-getting-started/normal-execution-loop#1",
+      "action": "unchanged",
+      "attempts": 0,
+      "gate_errors": [],
+      "review_issues": [],
+      "words": 50,
+      "parts": 1
+    },
+    {
+      "file": "docs/getting-started.md",
+      "key": "openminion-getting-started/pull-request-shape#1",
+      "action": "unchanged",
+      "attempts": 0,
+      "gate_errors": [],
+      "review_issues": [],
+      "words": 43,
+      "parts": 1
+    },
+    {
+      "file": "docs/getting-started.md",
+      "key": "openminion-getting-started/commit-message-shape#1",
+      "action": "unchanged",
+      "attempts": 0,
+      "gate_errors": [],
+      "review_issues": [],
+      "words": 81,
+      "parts": 1
+    },
+    {
+      "file": "docs/getting-started.md",
+      "key": "openminion-getting-started/boundary-reminder#1",
+      "action": "unchanged",
+      "attempts": 0,
+      "gate_errors": [],
+      "review_issues": [],
+      "words": 36,
+      "parts": 1
+    },
+    {
+      "file": "docs/getting-started.md",
+      "key": "openminion-getting-started/first-run/start-a-local-human-plus-agents-room#1",
+      "action": "translated",
+      "attempts": 2,
+      "gate_errors": [],
+      "review_issues": [],
+      "words": 1252,
+      "parts": 4
+    },
+    {
+      "file": "docs/runtime-surfaces.md",
+      "key": "openminion-runtime-surfaces#1",
+      "action": "unchanged",
+      "attempts": 0,
+      "gate_errors": [],
+      "review_issues": [],
+      "words": 27,
+      "parts": 1
+    },
+    {
+      "file": "docs/runtime-surfaces.md",
+      "key": "openminion-runtime-surfaces/primary-surfaces#1",
+      "action": "unchanged",
+      "attempts": 0,
+      "gate_errors": [],
+      "review_issues": [],
+      "words": 2,
+      "parts": 1
+    },
+    {
+      "file": "docs/runtime-surfaces.md",
+      "key": "openminion-runtime-surfaces/primary-surfaces/1-interactive-cli#1",
+      "action": "unchanged",
+      "attempts": 0,
+      "gate_errors": [],
+      "review_issues": [],
+      "words": 88,
+      "parts": 1
+    },
+    {
+      "file": "docs/runtime-surfaces.md",
+      "key": "openminion-runtime-surfaces/primary-surfaces/3-api-runtime-server-surface#1",
+      "action": "unchanged",
+      "attempts": 0,
+      "gate_errors": [],
+      "review_issues": [],
+      "words": 29,
+      "parts": 1
+    },
+    {
+      "file": "docs/runtime-surfaces.md",
+      "key": "openminion-runtime-surfaces/primary-surfaces/4-companion-operator-clis#1",
+      "action": "unchanged",
+      "attempts": 0,
+      "gate_errors": [],
+      "review_issues": [],
+      "words": 45,
+      "parts": 1
+    },
+    {
+      "file": "docs/runtime-surfaces.md",
+      "key": "openminion-runtime-surfaces/primary-surfaces/5-visual-graph-inspection#1",
+      "action": "unchanged",
+      "attempts": 0,
+      "gate_errors": [],
+      "review_issues": [],
+      "words": 265,
+      "parts": 1
+    },
+    {
+      "file": "docs/runtime-surfaces.md",
+      "key": "openminion-runtime-surfaces/primary-surfaces/6-acp-and-published-mcp#1",
+      "action": "unchanged",
+      "attempts": 0,
+      "gate_errors": [],
+      "review_issues": [],
+      "words": 88,
+      "parts": 1
+    },
+    {
+      "file": "docs/runtime-surfaces.md",
+      "key": "openminion-runtime-surfaces/example-surfaces#1",
+      "action": "unchanged",
+      "attempts": 0,
+      "gate_errors": [],
+      "review_issues": [],
+      "words": 65,
+      "parts": 1
+    },
+    {
+      "file": "docs/runtime-surfaces.md",
+      "key": "openminion-runtime-surfaces/primary-surfaces/2-python-library-api#1",
+      "action": "translated",
+      "attempts": 1,
+      "gate_errors": [],
+      "review_issues": [],
+      "words": 590,
+      "parts": 2
+    },
+    {
+      "file": "docs/runtime-surfaces.md",
+      "key": "openminion-runtime-surfaces/not-blanket-public#1",
+      "action": "translated",
+      "attempts": 1,
+      "gate_errors": [],
+      "review_issues": [],
+      "words": 106,
+      "parts": 1
+    },
+    {
+      "file": "docs/turn-budgets.md",
+      "key": "understanding-turn-budgets-and-token-cost#1",
+      "action": "unchanged",
+      "attempts": 0,
+      "gate_errors": [],
+      "review_issues": [],
+      "words": 45,
+      "parts": 1
+    },
+    {
+      "file": "docs/turn-budgets.md",
+      "key": "understanding-turn-budgets-and-token-cost/what-the-defaults-control#1",
+      "action": "unchanged",
+      "attempts": 0,
+      "gate_errors": [],
+      "review_issues": [],
+      "words": 205,
+      "parts": 1
+    },
+    {
+      "file": "docs/turn-budgets.md",
+      "key": "understanding-turn-budgets-and-token-cost/catalog-size-is-not-request-size#1",
+      "action": "unchanged",
+      "attempts": 0,
+      "gate_errors": [],
+      "review_issues": [],
+      "words": 162,
+      "parts": 1
+    },
+    {
+      "file": "docs/turn-budgets.md",
+      "key": "understanding-turn-budgets-and-token-cost/choose-a-change-from-evidence#1",
+      "action": "unchanged",
+      "attempts": 0,
+      "gate_errors": [],
+      "review_issues": [],
+      "words": 186,
+      "parts": 1
+    },
+    {
+      "file": "docs/turn-budgets.md",
+      "key": "understanding-turn-budgets-and-token-cost/automatic-fact-extraction#1",
+      "action": "translated",
+      "attempts": 1,
+      "gate_errors": [],
+      "review_issues": [],
+      "words": 361,
+      "parts": 1
+    },
+    {
+      "file": "docs/turn-budgets.md",
+      "key": "understanding-turn-budgets-and-token-cost/maintainer-assessment-for-issue-497#1",
+      "action": "translated",
+      "attempts": 2,
+      "gate_errors": [],
+      "review_issues": [],
+      "words": 258,
+      "parts": 1
+    },
+    {
+      "file": "docs/provider-capabilities.md",
+      "key": "provider-capabilities#1",
+      "action": "unchanged",
+      "attempts": 0,
+      "gate_errors": [],
+      "review_issues": [],
+      "words": 32,
+      "parts": 1
+    },
+    {
+      "file": "docs/provider-capabilities.md",
+      "key": "provider-capabilities/profile-facts#1",
+      "action": "unchanged",
+      "attempts": 0,
+      "gate_errors": [],
+      "review_issues": [],
+      "words": 42,
+      "parts": 1
+    },
+    {
+      "file": "docs/provider-capabilities.md",
+      "key": "provider-capabilities/request-requirements#1",
+      "action": "unchanged",
+      "attempts": 0,
+      "gate_errors": [],
+      "review_issues": [],
+      "words": 69,
+      "parts": 1
+    },
+    {
+      "file": "docs/provider-capabilities.md",
+      "key": "provider-capabilities/inspecting-the-matrix#1",
+      "action": "unchanged",
+      "attempts": 0,
+      "gate_errors": [],
+      "review_issues": [],
+      "words": 34,
+      "parts": 1
+    },
+    {
+      "file": "docs/provider-capabilities.md",
+      "key": "provider-capabilities/http-connection-reuse#1",
+      "action": "unchanged",
+      "attempts": 0,
+      "gate_errors": [],
+      "review_issues": [],
+      "words": 67,
+      "parts": 1
+    },
+    {
+      "file": "docs/configuration-compatibility.md",
+      "key": "configuration-compatibility-notes#1",
+      "action": "translated",
+      "attempts": 1,
+      "gate_errors": [],
+      "review_issues": [],
+      "words": 59,
+      "parts": 1
+    },
+    {
+      "file": "docs/configuration-compatibility.md",
+      "key": "configuration-compatibility-notes/selfimprovement-maxappliednotes#1",
+      "action": "translated",
+      "attempts": 1,
+      "gate_errors": [],
+      "review_issues": [],
+      "words": 87,
+      "parts": 1
+    },
+    {
+      "file": "docs/configuration-compatibility.md",
+      "key": "configuration-compatibility-notes/selfimprovement-mintokenoverlap#1",
+      "action": "translated",
+      "attempts": 1,
+      "gate_errors": [],
+      "review_issues": [],
+      "words": 86,
+      "parts": 1
+    },
+    {
+      "file": "docs/configuration-compatibility.md",
+      "key": "configuration-compatibility-notes/measured-behaviour-these-fields-do-not-change#1",
+      "action": "translated",
+      "attempts": 1,
+      "gate_errors": [],
+      "review_issues": [],
+      "words": 70,
+      "parts": 1
+    },
+    {
+      "file": "docs/configuration-compatibility.md",
+      "key": "configuration-compatibility-notes/related#1",
+      "action": "translated",
+      "attempts": 1,
+      "gate_errors": [],
+      "review_issues": [],
+      "words": 22,
+      "parts": 1
+    },
+    {
+      "file": "examples/sdk/README.md",
+      "key": "python-sdk-examples#1",
+      "action": "unchanged",
+      "attempts": 0,
+      "gate_errors": [],
+      "review_issues": [],
+      "words": 59,
+      "parts": 1
+    },
+    {
+      "file": "examples/sdk/README.md",
+      "key": "python-sdk-examples/example-map#1",
+      "action": "translated",
+      "attempts": 1,
+      "gate_errors": [],
+      "review_issues": [],
+      "words": 98,
+      "parts": 1
+    },
+    {
+      "file": "examples/sdk/README.md",
+      "key": "python-sdk-examples/handoff-approval#1",
+      "action": "translated",
+      "attempts": 1,
+      "gate_errors": [],
+      "review_issues": [],
+      "words": 168,
+      "parts": 1
+    }
+  ],
+  "glossary_proposals": [
+    {
+      "source": "Bare",
+      "target": "sederhana",
+      "reason": "Untuk mengartikan perintah 'bare command' sebagai perintah dasar atau sederhana dalam konteks teknologi"
+    },
+    {
+      "source": "read-only",
+      "target": "hanya baca",
+      "reason": "Istilah read-only digunakan sebagai 'hanya baca' sesuai konteks akses sistem file"
+    },
+    {
+      "source": "preset",
+      "target": "preset",
+      "reason": "Istilah ini tidak memiliki padanan khusus dalam glosarium, sehingga lebih baik menggunakan istilah aslinya agar tidak membingungkan konteks teknis."
+    },
+    {
+      "source": "researcher",
+      "target": "researcher",
+      "reason": "Term 'researcher' not found in glossary and contextually it refers to a specific role or identity in a technical setting, so the English term is preserved."
+    },
+    {
+      "source": "risk metadata",
+      "target": "metadata risiko",
+      "reason": "Translated based on common Indonesian technical terminology to describe metadata related to risk."
+    },
+    {
+      "source": "operator prompt",
+      "target": "prompt operator",
+      "reason": "Translated by combining the glossary term 'prompt' with 'operator' to fit the context."
+    },
+    {
+      "source": "thread",
+      "target": "thread",
+      "reason": "Not found in glossary and commonly used as a technical term in Indonesian IT contexts, so it is preserved in English."
+    }
+  ],
+  "glossary_added": [],
+  "validation": {
+    "candidates": [],
+    "summary": "no broken commands or imports"
+  },
+  "turns": [
+    {
+      "role": "translate",
+      "label": "README.md [quick-start::p1, quick-start::p2, what-openminion-does-not-provide]",
+      "ok": true,
+      "seconds": 82.4069999998901,
+      "tool_calls": 28,
+      "run_id": "bb6c917937084bb89f39160c1256f113",
+      "error": "",
+      "stats": {
+        "value": "{'input_tokens': 57143, 'output_tokens': 7422, 'cache_read_tokens': 4864, 'llm_calls': 7, 'tool_calls': 28, 'tool_errors': 0, 'duration_ms': 80692}"
+      },
+      "raw": "docdrift: {\"sections\":[{\"key\":\"quick-start#1::p1\",\"text\":\"## Quick Start\\n\\nUntuk sesi yang didukung model nyata, mulailah dengan perintah sederhana:\\n\\n⟦CODE1⟧\\n\\nSetup akan meminta provider, model, dan kredensial. Untuk provider bawaan,\\nOpenMinion secara otomatis memilih adaptor API. Misalnya, MiniMax tetap menjadi\\nprovider ketika menggunakan API yang kompatibel dengan OpenAI. Tekan Enter saat\\npemeriksaan provider yang dihosting untuk mengirim satu permintaan tes yang\\ndianjurkan sebelum Focus dibuka; permintaan ini mungkin mengonsumsi sejumlah\\nkecil kuota. Gunakan perintah provider-list di atas untuk katalog yang\\ntersedia dalam format yang dapat dibaca manusia atau mesin saat ini.\\n\\n⟦IC1⟧ yang eksplisit mempercayai workspace tersebut untuk proses saat ini. Peluncuran\\nbiasa juga mempercayai worktree Git biasa; direktori implisit lain memulai dalam\\nmode Read only. Meluncurkan dari direktori home Anda atau root filesystem\\nmemerlukan ⟦IC2⟧ yang eksplisit. Tambahkan direktori lain yang sudah ada untuk\\nproses saat ini dengan opsi ⟦IC3⟧ yang dapat diulang:\\n\\n⟦CODE2⟧\\n\\nAlat file terstruktur tetap terbatas pada workspace, direktori yang ditambahkan\\nsecara eksplisit, dan root kebijakan yang dikonfigurasi. Perintah host tetap\\ndinonaktifkan ketika tidak ada sandbox yang dikonfigurasi. ⟦IC4⟧ adalah\\npilihan opt-in eksplisit: perintah kemudian menggunakan izin OS proses\\nOpenMinion dan tidak terbatas pada root workspace; kebijakan perintah dan\\npersetujuan tetap berlaku. S",
+      "calls": [
+        "glossary_lookup('Bare')",
+        "glossary_lookup('read-only')",
+        "glossary_lookup('prompt')",
+        "glossary_lookup('Host commands')",
+        "glossary_lookup('sandbox')",
+        "glossary_lookup('opt-in')",
+        "glossary_lookup('confirmation')",
+        "glossary_lookup('confirmation')",
+        "glossary_lookup('action-policy')",
+        "glossary_lookup('Full access')",
+        "glossary_lookup('session')",
+        "glossary_lookup('Focus')",
+        "glossary_lookup('runtime')",
+        "glossary_lookup('profile')",
+        "glossary_lookup('config')",
+        "glossary_lookup('demo mode')",
+        "glossary_lookup('agent')",
+        "glossary_lookup('Room')",
+        "glossary_lookup('owner')",
+        "glossary_lookup('participant')",
+        "glossary_lookup('observer')",
+        "glossary_lookup('read-only')",
+        "glossary_lookup('write')",
+        "glossary_lookup('runtime composition')",
+        "glossary_lookup('credential')",
+        "glossary_lookup('project-owned')",
+        "glossary_lookup('profile')",
+        "glossary_lookup('bootstrap')"
+      ]
+    },
+    {
+      "role": "translate",
+      "label": "README.md [quick-start::p1, quick-start::p2, what-openminion-does-not-provide]",
+      "ok": false,
+      "seconds": 8.562000000150874,
+      "tool_calls": 0,
+      "run_id": "",
+      "error": "task-context capacity refusal: OpenMinion returned its canned 'could not safely update the task conditions' reply (input over the 12,000-character task limit) as a completed run",
+      "stats": {},
+      "raw": "docdrift: I could not safely update the task conditions. Please restate the current task and its required conditions.",
+      "calls": []
+    },
+    {
+      "role": "translate",
+      "label": "README.md [quick-start::p1, quick-start::p2, what-openminion-does-not-provide] (solo what-openminion-does-not-provide)",
+      "ok": false,
+      "seconds": 16.0,
+      "tool_calls": 1,
+      "run_id": "",
+      "error": "AgentOutputValidationError: Reply did not validate against TranslationBatch: 1 validation error for TranslationBatch\n  Invalid JSON: expected value at line 1 column 1 [type=json_invalid, input_value='docdrift: ## Apa yang Ti...roduk investasi apa pun', input_type=str]\n    For further information visit https://errors.pydantic.d",
+      "stats": {},
+      "raw": "docdrift: ## Apa yang Tidak Disediakan oleh OpenMinion\n\n- otonomi \"selesaikan tugas kompleks apa pun dan tinggalkan\"\n- plane kontrol yang dihosting atau layanan agent cloud yang dikelola\n- bukti sertifikasi yang didukung provider tanpa kredensial provider yang dikonfigurasi dan jendela run yang disetujui\n- pembungkus prompt kotak hitam yang menyembunyikan status runtime\n- izin otomatis untuk melakukan tindakan yang tidak aman atau berhak istimewa\n- produk cryptocurrency atau produk investasi apa pun",
+      "calls": [
+        "glossary_lookup('autonomy')"
+      ]
+    },
+    {
+      "role": "translate",
+      "label": "README.md [quick-start::p1, quick-start::p2, what-openminion-does-not-provide] (solo what-openminion-does-not-provide)",
+      "ok": true,
+      "seconds": 7.109000000171363,
+      "tool_calls": 0,
+      "run_id": "b859463b39eb41e3b08507de1de7ca11",
+      "error": "",
+      "stats": {
+        "value": "{'input_tokens': 7619, 'output_tokens': 365, 'cache_read_tokens': 0, 'llm_calls': 3, 'tool_calls': 0, 'tool_errors': 0, 'duration_ms': 7033}"
+      },
+      "raw": "docdrift: {\"sections\":[{\"key\":\"what-openminion-does-not-provide#1\",\"text\":\"## Apa yang Tidak Disediakan oleh OpenMinion\\n\\n- otonomi “selesaikan tugas kompleks apa pun dan tinggalkan” yang selesai\\n- plane kontrol yang dihosting atau layanan agent cloud yang dikelola\\n- bukti sertifikasi yang didukung provider tanpa kredensial provider yang dikonfigurasi dan jendela run yang disetujui\\n- pembungkus prompt kotak hitam yang menyembunyikan status runtime\\n- izin otomatis untuk melakukan tindakan yang tidak aman atau berhak istimewa\\n- produk cryptocurrency atau produk investasi apa pun\"}],\"new_terms\":[]}",
+      "calls": []
+    },
+    {
+      "role": "review",
+      "label": "README.md [quick-start::p1, quick-start::p2, what-openminion-does-not-provide]",
+      "ok": true,
+      "seconds": 5.25,
+      "tool_calls": 0,
+      "run_id": "d3a1bcd932be4e73ad5b9555c4eff8a0",
+      "error": "",
+      "stats": {
+        "value": "{'input_tokens': 13618, 'output_tokens': 224, 'cache_read_tokens': 0, 'llm_calls': 3, 'tool_calls': 0, 'tool_errors': 0, 'duration_ms': 4981}"
+      },
+      "raw": "docdrift: {\"sections\":[{\"key\":\"quick-start#1::p1\",\"faithful\":true}]}",
+      "calls": []
+    },
+    {
+      "role": "review",
+      "label": "README.md [quick-start::p1, quick-start::p2, what-openminion-does-not-provide]",
+      "ok": true,
+      "seconds": 5.125,
+      "tool_calls": 0,
+      "run_id": "6ffbc304223140d4969af0b5e02cae80",
+      "error": "",
+      "stats": {
+        "value": "{'input_tokens': 10481, 'output_tokens': 246, 'cache_read_tokens': 0, 'llm_calls': 3, 'tool_calls': 0, 'tool_errors': 0, 'duration_ms': 4860}"
+      },
+      "raw": "docdrift: {\"sections\":[{\"key\":\"quick-start#1::p2\",\"faithful\":true,\"issues\":[]},{\"key\":\"what-openminion-does-not-provide#1\",\"faithful\":true,\"issues\":[]}]}",
+      "calls": []
+    },
+    {
+      "role": "translate",
+      "label": "docs/getting-started.md [start-a-local-human-plus-agents-room::p1]",
+      "ok": false,
+      "seconds": 23.891000000061467,
+      "tool_calls": 0,
+      "run_id": "",
+      "error": "task-context capacity refusal: OpenMinion returned its canned 'could not safely update the task conditions' reply (input over the 12,000-character task limit) as a completed run",
+      "stats": {},
+      "raw": "docdrift: I could not safely update the task conditions. Please restate the current task and its required conditions.",
+      "calls": []
+    },
+    {
+      "role": "translate",
+      "label": "docs/getting-started.md [start-a-local-human-plus-agents-room::p1]",
+      "ok": true,
+      "seconds": 36.51600000006147,
+      "tool_calls": 1,
+      "run_id": "b9209fb39fbe4732a7267c2938e9bad2",
+      "error": "",
+      "stats": {
+        "value": "{'input_tokens': 33051, 'output_tokens': 3233, 'cache_read_tokens': 4608, 'llm_calls': 7, 'tool_calls': 1, 'tool_errors': 0, 'duration_ms': 35988}"
+      },
+      "raw": "docdrift: {\"sections\":[{\"key\":\"openminion-getting-started/first-run/start-a-local-human-plus-agents-room#1::p1\",\"text\":\"### Mulai ruang lokal human-plus-agents\\n\\nGunakan flag root eksplisit agar ruang dan telemetrinya tetap di bawah satu direktori runtime yang dipilih. Ganti ⟦IC1⟧ dan ⟦IC2⟧ dengan ID agent dari konfigurasi Anda:\\n\\n⟦CODE1⟧\\n\\nGunakan ⟦IC3⟧, ⟦IC4⟧, dan ⟦IC5⟧ untuk memeriksa ruang tersebut. Pemilik lokal dapat menggunakan ⟦IC6⟧, ⟦IC7⟧, ⟦IC8⟧, dan ⟦IC9⟧; alamat satu agent dengan ⟦IC10⟧, atau pilih routing ⟦IC11⟧ atau ⟦IC12⟧ untuk kedua agent.\\n\\nLayar pertama langsung menuju provider model. OpenAI, Anthropic, OpenRouter, MiniMax, dan Ollama lokal muncul pertama; provider tambahan, endpoint eksperimental, endpoint khusus, dan impor konfigurasi tetap tersedia dari menu yang sama.\\n\\nMode demo bukan bagian dari onboarding normal. Ini tetap tersedia melalui jalur pengembangan/uji ⟦IC13⟧ yang eksplisit. Demo non-interaktif juga dapat dibuat dengan ⟦IC14⟧. Ini memverifikasi konfigurasi lokal, penyimpanan, sesi, dan jalur CLI saja; tidak memanggil model. Oleh karena itu, ⟦IC15⟧ melaporkan ⟦IC16⟧ untuk konfigurasi tersebut sebagai ganti mengklaim kesiapan provider.\\n\\nSetup menunjukkan tiga identitas yang penting selama putaran pertama:\\n\\n1. provider, seperti OpenAI, Anthropic, OpenRouter, Ollama, MiniMax, Kimi, Z.ai, DeepSeek, Qwen/DashScope, Gemini, xAI, Mistral, Together, Cerebras, Groq, Cortensor Portal, Cortensor Router, atau endpoint khusus;\\n2. ID model, sepert",
+      "calls": [
+        "glossary_lookup('root flags')"
+      ]
+    },
+    {
+      "role": "review",
+      "label": "docs/getting-started.md [start-a-local-human-plus-agents-room::p1]",
+      "ok": true,
+      "seconds": 8.609999999869615,
+      "tool_calls": 0,
+      "run_id": "6101dd3bd7ee4f7c95ab6e6865e5439f",
+      "error": "",
+      "stats": {
+        "value": "{'input_tokens': 32057, 'output_tokens': 285, 'cache_read_tokens': 0, 'llm_calls': 5, 'tool_calls': 0, 'tool_errors': 0, 'duration_ms': 8275}"
+      },
+      "raw": "docdrift: {\"sections\":[{\"key\":\"openminion-getting-started/first-run/start-a-local-human-plus-agents-room#1::p1\",\"faithful\":true,\"issues\":[]}]}",
+      "calls": []
+    },
+    {
+      "role": "translate",
+      "label": "docs/getting-started.md [start-a-local-human-plus-agents-room::p2, start-a-local-human-plus-agents-room::p3]",
+      "ok": true,
+      "seconds": 75.68700000015087,
+      "tool_calls": 1,
+      "run_id": "c044e7d3bea7427981131932db13a4ea",
+      "error": "",
+      "stats": {
+        "value": "{'input_tokens': 54444, 'output_tokens': 7400, 'cache_read_tokens': 4864, 'llm_calls': 7, 'tool_calls': 1, 'tool_errors': 0, 'duration_ms': 75193}"
+      },
+      "raw": "docdrift: {\"sections\":[{\"key\":\"openminion-getting-started/first-run/start-a-local-human-plus-agents-room#1::p2\",\"text\":\"Form JSON melaporkan setiap ID provider, label, variabel lingkungan kredensial, persyaratan kredensial, URL dasar default, dan model yang direkomendasikan menurut urutan. Mencantumkan provider tidak membuat permintaan ke provider.\\n\\nPortal Cortensor tetap merupakan jalur hosting eksperimental karena ketersediaan layanan saat ini dapat lambat atau tidak stabil. Portal mengelola routing, kuota, kapasitas, dan siklus hidup permintaan internalnya. OpenMinion menetapkan batas waktu provider yang ada secara default menjadi 480 detik; nilai ⟦IC31⟧ yang dikonfigurasi lebih besar dipertahankan oleh runtime. Dukungan Portal saat ini meliputi teks, streaming teks, panggilan alat OpenAI asli, kelanjutan hasil alat, dan delta panggilan alat yang dipancarkan secara streaming. OpenMinion mempertahankan ID panggilan alat Portal, argumen, alasan penyelesaian, penggunaan, dan fakta korelasi ⟦IC32⟧. Permintaan Portal tidak secara otomatis dicoba ulang karena pengiriman ulang belum bersifat idempoten. Portal saat ini menghilangkan ⟦IC33⟧ dari respons validasi permintaan FastAPI ⟦IC34⟧; OpenMinion tidak dapat menangkap header yang tidak ada.\\n\\nJalankan penerimaan Portal awal secara serial. Dua permintaan simultan yang ditugaskan ke sesi Cortensor yang sama saat ini dapat menampilkan\\n⟦IC35⟧ sebagai ⟦IC36⟧; OpenMinion melaporkan kegagalan itu tanpa mencobanya ulang.\\n\\n⟦CODE3⟧\\",
+      "calls": [
+        "glossary_lookup('JSON')"
+      ]
+    },
+    {
+      "role": "review",
+      "label": "docs/getting-started.md [start-a-local-human-plus-agents-room::p2, start-a-local-human-plus-agents-room::p3]",
+      "ok": true,
+      "seconds": 4.891000000061467,
+      "tool_calls": 0,
+      "run_id": "8af357898762475aac958b02d1dce647",
+      "error": "",
+      "stats": {
+        "value": "{'input_tokens': 12421, 'output_tokens': 243, 'cache_read_tokens': 0, 'llm_calls': 3, 'tool_calls': 0, 'tool_errors': 0, 'duration_ms': 4605}"
+      },
+      "raw": "docdrift: {\"sections\":[{\"key\":\"openminion-getting-started/first-run/start-a-local-human-plus-agents-room#1::p2\",\"faithful\":true}]}",
+      "calls": []
+    },
+    {
+      "role": "review",
+      "label": "docs/getting-started.md [start-a-local-human-plus-agents-room::p2, start-a-local-human-plus-agents-room::p3]",
+      "ok": true,
+      "seconds": 5.75,
+      "tool_calls": 0,
+      "run_id": "b8595499bde440809edc387077cae464",
+      "error": "",
+      "stats": {
+        "value": "{'input_tokens': 12353, 'output_tokens': 330, 'cache_read_tokens': 0, 'llm_calls': 3, 'tool_calls': 0, 'tool_errors': 0, 'duration_ms': 5463}"
+      },
+      "raw": "docdrift: {\"sections\":[{\"key\":\"openminion-getting-started/first-run/start-a-local-human-plus-agents-room#1::p3\",\"faithful\":true,\"issues\":[]}]}",
+      "calls": []
+    },
+    {
+      "role": "translate",
+      "label": "docs/getting-started.md [start-a-local-human-plus-agents-room::p4]",
+      "ok": true,
+      "seconds": 23.733999999938533,
+      "tool_calls": 1,
+      "run_id": "fb440d2fb2e44bd0aab7341e633c94dd",
+      "error": "",
+      "stats": {
+        "value": "{'input_tokens': 29375, 'output_tokens': 1810, 'cache_read_tokens': 2816, 'llm_calls': 7, 'tool_calls': 1, 'tool_errors': 0, 'duration_ms': 22713}"
+      },
+      "raw": "docdrift: {\"sections\":[{\"key\":\"openminion-getting-started/first-run/start-a-local-human-plus-agents-room#1::p4\",\"text\":\"⟦IC56⟧ mengubah sesi saat ini dan dipulihkan saat sesi tersebut dilanjutkan. ⟦IC57⟧ memperbarui default tersimpan dari agent aktif.\\n⟦IC58⟧ menambahkan model ke koneksi saat ini dan langsung memilihnya untuk sesi; default agent tetap tidak berubah. ⟦IC59⟧ menggunakan preset provider yang sama dan penulis konfigurasi di dalam terminal Focus untuk menambahkan koneksi berbeda, meninjaunya, menyimpannya, dan menggunakannya tanpa perlu memulai ulang.\\n⟦IC60⟧ tetap tersedia untuk pengaturan pertama kali dan pengaturan skrip.\\n\\nUntuk provider yang kompatibel dengan OpenAI lainnya, pilih preset provider dan model:\\n\\n⟦CODE9⟧\\n\\nPolanya sama untuk ⟦IC61⟧, ⟦IC62⟧, ⟦IC63⟧, dan ⟦IC64⟧ dengan variabel lingkungan dan ID model masing-masing.\\n\\nPengaturan non-interaktif membaca kredensial dari variabel lingkungan provider dan secara default tidak mengirim permintaan ke provider jarak jauh. Tambahkan ⟦IC65⟧ hanya saat sesi diizinkan untuk membuat satu permintaan terbatas ke provider yang dapat mengkonsumsi kuota.\\n\\nEndpoint kustom bersifat eksplisit:\\n\\n⟦CODE10⟧\\n\\nEndpoint kustom menggunakan ⟦IC66⟧ atau ⟦IC67⟧; keduanya memerlukan format API yang eksplisit, URL dasar, dan ID model.\"}],\"new_terms\":[{\"source\":\"preset\",\"target\":\"preset\",\"reason\":\"Istilah ini tidak memiliki padanan khusus dalam glosarium, sehingga lebih baik menggunakan istilah aslinya agar tidak membingungk",
+      "calls": [
+        "glossary_lookup('preset')"
+      ]
+    },
+    {
+      "role": "review",
+      "label": "docs/getting-started.md [start-a-local-human-plus-agents-room::p4]",
+      "ok": true,
+      "seconds": 5.297000000020489,
+      "tool_calls": 0,
+      "run_id": "6a449aae95d64ee083a614fe0deae65c",
+      "error": "",
+      "stats": {
+        "value": "{'input_tokens': 8774, 'output_tokens': 213, 'cache_read_tokens': 0, 'llm_calls': 3, 'tool_calls': 0, 'tool_errors': 0, 'duration_ms': 5004}"
+      },
+      "raw": "docdrift: {\"sections\":[{\"key\":\"openminion-getting-started/first-run/start-a-local-human-plus-agents-room#1::p4\",\"faithful\":true,\"issues\":[]}]}",
+      "calls": []
+    },
+    {
+      "role": "translate",
+      "label": "docs/runtime-surfaces.md [2-python-library-api::p1, 2-python-library-api::p2, not-blanket-public]",
+      "ok": true,
+      "seconds": 37.938000000081956,
+      "tool_calls": 0,
+      "run_id": "a6f356c312c140b1921cc7c9a334528f",
+      "error": "",
+      "stats": {
+        "value": "{'input_tokens': 14042, 'output_tokens': 3688, 'cache_read_tokens': 0, 'llm_calls': 3, 'tool_calls': 0, 'tool_errors': 0, 'duration_ms': 37322}"
+      },
+      "raw": "docdrift: {\"sections\":[{\"key\":\"openminion-runtime-surfaces/primary-surfaces/2-python-library-api#1::p1\",\"text\":\"### 2. API library Python\\n\\nGunakan:\\n\\n1. ⟦IC1⟧\\n2. ⟦IC2⟧\\n3. ⟦IC3⟧\\n\\nTerbaik untuk:\\n\\n1. menyematkan OpenMinion ke dalam aplikasi Python,\\n2. komposisi runtime langsung,\\n3. eksekusi giliran eksplisit dari kode,\\n4. integrasi tool/penyerahan bertipe.\\n\\n⟦IC4⟧ memiliki sesi terisolasi secara default. Berikan ⟦IC5⟧ ke\\nkonstruktor atau ke ⟦IC6⟧ ketika aplikasi sudah memiliki kunci kontinuitas.\\nBerikan ⟦IC7⟧ untuk konfigurasi milik proyek dan ⟦IC8⟧ untuk memilih\\nprofil yang dikonfigurasi. Panggilan agent mengembalikan hasilnya ke Python tanpa pengiriman konsol,\\ndan ⟦IC9⟧ menampilkan kunci kontinuitas yang sudah diselesaikan.\\n⟦IC10⟧ juga mendukung ⟦IC11⟧ untuk pembersihan deterministik.\\n⟦IC12⟧ mempertahankan eksposur tool default yang dikonfigurasi; ⟦IC13⟧ menonaktifkan\\naplikasi dan tool orkestrasi untuk giliran tersebut. ⟦IC14⟧ eksplisit menambahkan\\ntool transfer mereka ke dalam daftar. Permintaan tool yang dipaksa tidak menggantikan daftar putih yang kosong.\\nSkema keluaran terstruktur internal masih dapat digunakan untuk penalaran runtime;\\nmereka tidak dapat mengirimkan tool aplikasi.\\nMetode ⟦IC15⟧-nya adalah giliran sinkron dengan callback progres. Untuk\\nstreaming iterator, pembatalan, atau resolusi persetujuan eksplisit, panggil\\n⟦IC16⟧ dan gunakan ⟦IC17⟧ yang dikembalikan.\\n⟦IC18⟧ menunjukkan siklus hidup itu menggunakan impor publik.\\n\\n⟦IC19⟧ dan ",
+      "calls": []
+    },
+    {
+      "role": "review",
+      "label": "docs/runtime-surfaces.md [2-python-library-api::p1, 2-python-library-api::p2, not-blanket-public]",
+      "ok": true,
+      "seconds": 7.187999999849126,
+      "tool_calls": 0,
+      "run_id": "82e7cfeed6d3475d9c6c5a32be3119cf",
+      "error": "",
+      "stats": {
+        "value": "{'input_tokens': 13397, 'output_tokens': 245, 'cache_read_tokens': 0, 'llm_calls': 3, 'tool_calls': 0, 'tool_errors': 0, 'duration_ms': 5448}"
+      },
+      "raw": "docdrift: {\"sections\":[{\"key\":\"openminion-runtime-surfaces/primary-surfaces/2-python-library-api#1::p1\",\"faithful\":true,\"issues\":[]}]}",
+      "calls": []
+    },
+    {
+      "role": "review",
+      "label": "docs/runtime-surfaces.md [2-python-library-api::p1, 2-python-library-api::p2, not-blanket-public]",
+      "ok": true,
+      "seconds": 9.594000000040978,
+      "tool_calls": 0,
+      "run_id": "9f5c5f138224438caa95565c2581a761",
+      "error": "",
+      "stats": {
+        "value": "{'input_tokens': 13352, 'output_tokens': 470, 'cache_read_tokens': 0, 'llm_calls': 3, 'tool_calls': 0, 'tool_errors': 0, 'duration_ms': 7853}"
+      },
+      "raw": "docdrift: {\"sections\":[{\"key\":\"openminion-runtime-surfaces/primary-surfaces/2-python-library-api#1::p2\",\"faithful\":true},{\"key\":\"openminion-runtime-surfaces/not-blanket-public#1\",\"faithful\":true}]}",
+      "calls": []
+    },
+    {
+      "role": "translate",
+      "label": "docs/turn-budgets.md [automatic-fact-extraction]",
+      "ok": true,
+      "seconds": 38.82799999997951,
+      "tool_calls": 1,
+      "run_id": "be08cc2b81b44faeb38a928371e09b06",
+      "error": "",
+      "stats": {
+        "value": "{'input_tokens': 40494, 'output_tokens': 3171, 'cache_read_tokens': 3840, 'llm_calls': 7, 'tool_calls': 1, 'tool_errors': 0, 'duration_ms': 35626}"
+      },
+      "raw": "docdrift: {\"sections\":[{\"key\":\"understanding-turn-budgets-and-token-cost/automatic-fact-extraction#1\",\"text\":\"## Ekstraksi fakta otomatis\\n\\nEkstraksi fakta otomatis diaktifkan secara default. Saat dijalankan, giliran melakukan satu pemanggilan model terstruktur tambahan sebelum pesan pengguna diinterpretasikan. Pemanggilan tersebut meminta fakta kandidat, preferensi pengguna, dan tugas yang secara eksplisit dinyatakan oleh pengguna. Hasilnya disimpan sebagai kandidat memori; ini bukan bagian dari balasan.\\n\\nSakelar yang didukung adalah bagian top-level ⟦IC1⟧:\\n\\n| Bidang | Default | Arti |\\n| --- | --- | --- |\\n| ⟦IC2⟧ | ⟦IC3⟧ | Menjalankan ekstraksi pada giliran yang memenuhi syarat. |\\n| ⟦IC4⟧ | ⟦IC5⟧ | Tingkatan model yang digunakan untuk memilih model ekstraksi. |\\n| ⟦IC6⟧ | ⟦IC7⟧ | Maksimum kandidat yang diminta dari satu pesan. |\\n| ⟦IC8⟧ | ⟦IC9⟧ | Pesan yang lebih pendek, setelah pemangkasan, diabaikan. |\\n| ⟦IC10⟧ | ⟦IC11⟧ | Keyakinan yang diberikan kepada kandidat yang disimpan. |\\n| ⟦IC12⟧ | ⟦IC13⟧ | Timeout pembacaan transportasi untuk pemanggilan; bukan batasan waktu ekstraksi total (#634). |\\n\\n⟦CODE1⟧\\n\\nKunci ⟦IC14⟧ di bawah ⟦IC15⟧ saat ini tidak berpengaruh. Parser profil agent tidak membacanya, dan bagian top-level tetap berlaku.\\n\\nModel berasal dari profil agent yang efektif. Dengan tingkatan ⟦IC16⟧ default, ekstraksi menggunakan ⟦IC17⟧, kemudian ⟦IC18⟧, lalu ⟦IC19⟧, mana yang diatur lebih dulu. Itu tidak selalu merupakan model dari permintaan aksi utama.",
+      "calls": [
+        "glossary_lookup('agent')"
+      ]
+    },
+    {
+      "role": "review",
+      "label": "docs/turn-budgets.md [automatic-fact-extraction]",
+      "ok": true,
+      "seconds": 17.108999999938533,
+      "tool_calls": 0,
+      "run_id": "449ba3137de44313b7854ab65dab6a8b",
+      "error": "",
+      "stats": {
+        "value": "{'input_tokens': 32490, 'output_tokens': 984, 'cache_read_tokens': 0, 'llm_calls': 5, 'tool_calls': 0, 'tool_errors': 0, 'duration_ms': 15333}"
+      },
+      "raw": "docdrift: {\"sections\":[{\"key\":\"understanding-turn-budgets-and-token-cost/automatic-fact-extraction#1\",\"faithful\":true,\"issues\":[]}]}",
+      "calls": []
+    },
+    {
+      "role": "translate",
+      "label": "docs/turn-budgets.md [maintainer-assessment-for-issue-497]",
+      "ok": true,
+      "seconds": 38.54700000002049,
+      "tool_calls": 1,
+      "run_id": "ef55a7a3025547ab80403db056adfe0f",
+      "error": "",
+      "stats": {
+        "value": "{'input_tokens': 33658, 'output_tokens': 2789, 'cache_read_tokens': 2816, 'llm_calls': 7, 'tool_calls': 1, 'tool_errors': 0, 'duration_ms': 35291}"
+      },
+      "raw": "docdrift: {\"sections\":[{\"key\":\"understanding-turn-budgets-and-token-cost/maintainer-assessment-for-issue-497#1\",\"text\":\"## Penilaian Pemelihara untuk isu #497\\n\\nPengukuran pada 29 Oktober 2026 di ⟦IC1⟧ menggunakan profil resmi MiniMax-M2.7 dengan pemikiran minimal, status lokal yang segar, dan fixture cari/baca/sintesis. Batas konteks sesi adalah ⟦IC2⟧; dua jalannya berbeda pada daftar pendek awal yang dinonaktifkan atau diaktifkan. Keduanya selesai dengan benar dengan dua panggilan alat file yang dijalankan dan tanpa kesalahan alat.\\n\\n| Pengamatan | Dinonaktifkan | Diaktifkan |\\n| --- | --- | --- |\\n| Permintaan provider aktual | 6 | 6 |\\n| Skema penuh per permintaan | 1, 8, 4, 5, 5, 1 | 1, 8, 4, 5, 5, 1 |\\n| Token input yang dilaporkan provider | 30.541 | 30.882 |\\n| Token output yang dilaporkan provider | 1.755 | 1.904 |\\n| Token input cache yang dilaporkan provider | 6.215 | 6.318 |\\n| Waktu giliran yang terukur | 33,76 s | 42,04 s |\\n| Total waktu penyusunan paket konteks yang terukur | 0,0430 s | 0,0393 s |\\n\\nIni adalah dua pengamatan, bukan tolok ukur kinerja komparatif atau kualifikasi DeepSeek. Keduanya tidak menghabiskan anggaran eksekusi. Keduanya menggunakan jalur skema yang diminta entri, jadi pasangan ini tidak mengukur manfaat pemilih awal opsional di jalur lain. Ringkasan respons hanya melaporkan satu panggilan LLM dan menghilangkan beberapa penggunaan fase; tabel menggunakan tanggapan provider yang diambil sebagai gantinya. Tidak ada klaim harga atau biaya",
+      "calls": [
+        "glossary_lookup('provider')"
+      ]
+    },
+    {
+      "role": "translate",
+      "label": "docs/turn-budgets.md [maintainer-assessment-for-issue-497]",
+      "ok": true,
+      "seconds": 31.655999999959022,
+      "tool_calls": 0,
+      "run_id": "b5648840e1784e39813bbef4e6ad9895",
+      "error": "",
+      "stats": {
+        "value": "{'input_tokens': 25263, 'output_tokens': 2515, 'cache_read_tokens': 1792, 'llm_calls': 5, 'tool_calls': 0, 'tool_errors': 0, 'duration_ms': 28390}"
+      },
+      "raw": "docdrift: {\n\"sections\": [\n{\n\"key\": \"understanding-turn-budgets-and-token-cost/maintainer-assessment-for-issue-497#1\",\n\"text\": \"## Penilaian pemelihara untuk masalah #497\\n\\nPengukuran pada 29 Oktober 2026 di ⟦IC1⟧ menggunakan profil resmi MiniMax-M2.7\\ndengan pemikiran minimal, status lokal baru, dan perlengkapan cari/baca/rangkum.\\nBatas konteks sesi adalah ⟦IC2⟧; pasangan percobaan berbeda pada fitur pemilihan awal\\nyang dinonaktifkan atau diaktifkan. Keduanya selesai dengan benar dengan dua\\npemanggilan alat file yang dieksekusi dan tanpa kesalahan alat.\\n\\n| Pengamatan | Dinonaktifkan | Diaktifkan |\\n| --- | --- | --- |\\n| Permintaan provider aktual | 6 | 6 |\\n| Skema lengkap per permintaan | 1, 8, 4, 5, 5, 1 | 1, 8, 4, 5, 5, 1 |\\n| Token input dilaporkan provider | 30,541 | 30,882 |\\n| Token output dilaporkan provider | 1,755 | 1,904 |\\n| Token input cache dilaporkan provider | 6,215 | 6,318 |\\n| Waktu giliran terukur | 33.76 s | 42.04 s |\\n| Total waktu perakitan paket konteks terukur | 0.0430 s | 0.0393 s |\\n\\nIni adalah dua pengamatan, bukan tolok ukur kinerja perbandingan atau kualifikasi DeepSeek.\\nKeduanya tidak menghabiskan anggaran eksekusi. Keduanya menggunakan jalur skema yang diminta masuk,\\njadi pasangan ini tidak mengukur manfaat dari pemilih awal opsional pada jalur lain.\\nRingkasan respons hanya melaporkan satu panggilan LLM dan menghilangkan beberapa fase penggunaan;\\ntabel menggunakan tanggapan provider yang diambil sebagai gantinya.\\nTidak ada klaim har",
+      "calls": []
+    },
+    {
+      "role": "review",
+      "label": "docs/turn-budgets.md [maintainer-assessment-for-issue-497]",
+      "ok": true,
+      "seconds": 10.610000000102445,
+      "tool_calls": 0,
+      "run_id": "86e9b9048460459fa713f8a29acc8b4d",
+      "error": "",
+      "stats": {
+        "value": "{'input_tokens': 24301, 'output_tokens': 306, 'cache_read_tokens': 0, 'llm_calls': 5, 'tool_calls': 0, 'tool_errors': 0, 'duration_ms': 8951}"
+      },
+      "raw": "docdrift: {\"sections\":[{\"key\":\"understanding-turn-budgets-and-token-cost/maintainer-assessment-for-issue-497#1\",\"faithful\":true,\"issues\":[]}]}",
+      "calls": []
+    },
+    {
+      "role": "translate",
+      "label": "docs/configuration-compatibility.md [configuration-compatibility-notes, selfimprovement-maxappliednotes, selfimprovement-mintokenoverlap, measured-behaviour-these-fields-do-not-change, related]",
+      "ok": true,
+      "seconds": 46.42200000002049,
+      "tool_calls": 2,
+      "run_id": "8c362f16abff4e699dd81770ba0af8aa",
+      "error": "",
+      "stats": {
+        "value": "{'input_tokens': 39977, 'output_tokens': 3958, 'cache_read_tokens': 3840, 'llm_calls': 7, 'tool_calls': 2, 'tool_errors': 0, 'duration_ms': 43015}"
+      },
+      "raw": "docdrift: {\n\"sections\": [\n{\n\"key\": \"configuration-compatibility-notes#1\",\n\"text\": \"# Catatan kompatibilitas konfigurasi\\n\\nStatus: pratinjau publik\\n\\nBeberapa pengaturan diterima, diurai, dan diserialisasi ulang oleh pemuat konfigurasi tanpa mengubah perilaku runtime, karena perilaku yang pernah mereka gambarkan telah dihapus atau dimiliki di tempat lain. Halaman ini adalah catatan kanonik tunggal untuk masing-masing, sehingga operator dapat membedakan kenop yang didukung dari bidang kompatibilitas tanpa harus membaca sumbernya.\"\n},\n{\n\"key\": \"configuration-compatibility-notes/selfimprovement-maxappliednotes#1\",\n\"text\": \"## ⟦IC1⟧\\n\\nKunci tingkat atas di bawah ⟦IC2⟧ dalam konfigurasi yang disimpan.\\n\\n- **Diterima dan dipertahankan.** Parser membacanya dan serializer menulisnya kembali. Parser menormalkan ⟦IC3⟧ ke ⟦IC4⟧; format serializer adalah hal terpisah dari nilai itu sendiri.\\n- **Tidak ada konsumen produksi saat ini dalam jalur pemilihan catatan.** Batas efektif adalah ⟦IC5⟧ dalam ⟦IC6⟧, diterapkan ketika paket konteks diberi peringkat untuk tujuan ⟦IC7⟧ di ⟦IC8⟧. Pengaturan ini tidak mengubahnya.\\n- **Panduan operator:** biarkan tidak diatur. Mengubah batas efektif adalah perubahan sumber di pemilik konteks, bukan perubahan konfigurasi.\"\n},\n{\n\"key\": \"configuration-compatibility-notes/selfimprovement-mintokenoverlap#1\",\n\"text\": \"## ⟦IC1⟧\\n\\nKunci tingkat atas di bawah ⟦IC2⟧ dalam konfigurasi yang disimpan.\\n\\n- **Diterima dan dipertahankan**, namun tidak aktif.\\n- **Ca",
+      "calls": [
+        "glossary_lookup('overlay cards')",
+        "glossary_lookup('final note references')"
+      ]
+    },
+    {
+      "role": "review",
+      "label": "docs/configuration-compatibility.md [configuration-compatibility-notes, selfimprovement-maxappliednotes, selfimprovement-mintokenoverlap, measured-behaviour-these-fields-do-not-change, related]",
+      "ok": true,
+      "seconds": 8.594000000040978,
+      "tool_calls": 0,
+      "run_id": "b9b1c2b7a2024393afdd12b7d2a07a9a",
+      "error": "",
+      "stats": {
+        "value": "{'input_tokens': 13239, 'output_tokens': 311, 'cache_read_tokens': 0, 'llm_calls': 3, 'tool_calls': 0, 'tool_errors': 0, 'duration_ms': 6678}"
+      },
+      "raw": "docdrift: {\"sections\":[{\"key\":\"configuration-compatibility-notes#1\",\"faithful\":true},{\"key\":\"configuration-compatibility-notes/selfimprovement-maxappliednotes#1\",\"faithful\":true},{\"key\":\"configuration-compatibility-notes/selfimprovement-mintokenoverlap#1\",\"faithful\":true},{\"key\":\"configuration-compatibility-notes/measured-behaviour-these-fields-do-not-change#1\",\"faithful\":true},{\"key\":\"configuration-compatibility-notes/related#1\",\"faithful\":true}]}",
+      "calls": []
+    },
+    {
+      "role": "translate",
+      "label": "examples/sdk/README.md [example-map, handoff-approval]",
+      "ok": true,
+      "seconds": 44.54700000002049,
+      "tool_calls": 4,
+      "run_id": "84d473d7ebae46fea1c913fff17f4b3c",
+      "error": "",
+      "stats": {
+        "value": "{'input_tokens': 44867, 'output_tokens': 3518, 'cache_read_tokens': 4864, 'llm_calls': 7, 'tool_calls': 4, 'tool_errors': 0, 'duration_ms': 41307}"
+      },
+      "raw": "docdrift: {\"sections\":[{\"key\":\"python-sdk-examples/example-map#1\",\"text\":\"## Peta contoh\\n\\n| Berkas | Gunakan untuk |\\n| --- | --- |\\n| ⟦IC1⟧ | Alat Python yang dihias dan panggilan alat pertama yang dipaksa |\\n| ⟦IC2⟧ | Output yang tervalidasi menggunakan Pydantic |\\n| ⟦IC3⟧ | ID sesi yang dibagikan dan terisolasi |\\n| ⟦IC4⟧ | Jalankan sinkron dengan callback kemajuan |\\n| ⟦IC5⟧ | Streaming iterator bertipe dan resolusi persetujuan |\\n| ⟦IC6⟧ | Penyerahan rekan (dengan jeda persetujuan) dan subagen terbatas |\\n| ⟦IC7⟧ | Siklus hidup ⟦IC8⟧ yang dimiliki aplikasi |\\n| ⟦IC9⟧ | Memilih agen yang dikonfigurasi tanpa mengubah kode |\\n| ⟦IC10⟧ | Kegagalan provider, tenggat waktu giliran, dan validasi output |\\n\\nGunakan ⟦IC11⟧ untuk melihat opsi setiap program. Perintah penyiapan dan penggantian provider ada di ⟦IC12⟧.\\n\\nContoh output terstruktur meminta provider untuk JSON yang tepat. OpenMinion juga menjaga perilaku ⟦IC13⟧ terbatas yang menerima satu objek JSON yang valid secara skema yang dibungkus dalam prosa provider.\"},{\"key\":\"python-sdk-examples/handoff-approval#1\",\"text\":\"## Persetujuan penyerahan\\n\\n⟦IC1⟧ mengekspos researcher sebagai alat ⟦IC2⟧. Sebuah ⟦IC3⟧ tidak mendeklarasikan metadata risiko, sehingga kebijakan membuatnya pada default ketidakpastian kebalikan dan menjeda untuk konfirmasi sebelum target dijalankan.\\n\\n- Tanpa ⟦IC4⟧, jalannya berakhir pada jeda itu: ⟦IC5⟧ adalah prompt operator (\\\"Diperlukan konfirmasi kebijakan. …\\\"), bukan jawaban researcher, dan ⟦I",
+      "calls": [
+        "glossary_lookup('researcher')",
+        "glossary_lookup('risk metadata')",
+        "glossary_lookup('operator prompt')",
+        "glossary_lookup('thread')"
+      ]
+    },
+    {
+      "role": "review",
+      "label": "examples/sdk/README.md [example-map, handoff-approval]",
+      "ok": true,
+      "seconds": 12.313000000081956,
+      "tool_calls": 0,
+      "run_id": "e2467dd74d4e45cfb9c85a360008d87a",
+      "error": "",
+      "stats": {
+        "value": "{'input_tokens': 12041, 'output_tokens': 426, 'cache_read_tokens': 0, 'llm_calls': 3, 'tool_calls': 0, 'tool_errors': 0, 'duration_ms': 10106}"
+      },
+      "raw": "docdrift: {\"sections\":[{\"key\":\"python-sdk-examples/example-map#1\",\"faithful\":true,\"issues\":[]},{\"key\":\"python-sdk-examples/handoff-approval#1\",\"faithful\":true,\"issues\":[]}]}",
+      "calls": []
+    },
+    {
+      "role": "glossary",
+      "label": "Bare",
+      "ok": true,
+      "seconds": 10.344000000040978,
+      "tool_calls": 0,
+      "run_id": "e002bc51a9df4b749ad6137aa3f1a555",
+      "error": "",
+      "stats": {
+        "value": "{'input_tokens': 4635, 'output_tokens': 271, 'cache_read_tokens': 0, 'llm_calls': 3, 'tool_calls': 0, 'tool_errors': 0, 'duration_ms': 7032}"
+      },
+      "raw": "docdrift: Confirmation denied. The action was not run.",
+      "calls": []
+    },
+    {
+      "role": "glossary",
+      "label": "read-only",
+      "ok": true,
+      "seconds": 6.75,
+      "tool_calls": 0,
+      "run_id": "3296931b5e854cf19f4ebaf880a13d10",
+      "error": "",
+      "stats": {
+        "value": "{'input_tokens': 4639, 'output_tokens': 266, 'cache_read_tokens': 0, 'llm_calls': 3, 'tool_calls': 0, 'tool_errors': 0, 'duration_ms': 6207}"
+      },
+      "raw": "docdrift: Confirmation denied. The action was not run.",
+      "calls": []
+    },
+    {
+      "role": "glossary",
+      "label": "preset",
+      "ok": true,
+      "seconds": 5.922000000020489,
+      "tool_calls": 0,
+      "run_id": "f11bc63baa9d45989af36d980f6503f3",
+      "error": "",
+      "stats": {
+        "value": "{'input_tokens': 4710, 'output_tokens': 187, 'cache_read_tokens': 0, 'llm_calls': 3, 'tool_calls': 0, 'tool_errors': 0, 'duration_ms': 5271}"
+      },
+      "raw": "docdrift: Confirmation denied. The action was not run.",
+      "calls": []
+    },
+    {
+      "role": "glossary",
+      "label": "researcher",
+      "ok": true,
+      "seconds": 7.155999999959022,
+      "tool_calls": 0,
+      "run_id": "0c4741d4af1e4702905326afbe5baf30",
+      "error": "",
+      "stats": {
+        "value": "{'input_tokens': 4738, 'output_tokens': 285, 'cache_read_tokens': 0, 'llm_calls': 3, 'tool_calls': 0, 'tool_errors': 0, 'duration_ms': 6560}"
+      },
+      "raw": "docdrift: Confirmation denied. The action was not run.",
+      "calls": []
+    },
+    {
+      "role": "glossary",
+      "label": "risk metadata",
+      "ok": true,
+      "seconds": 6.327999999979511,
+      "tool_calls": 0,
+      "run_id": "9f8352d0a75e48799f6f1e9b034ce2c6",
+      "error": "",
+      "stats": {
+        "value": "{'input_tokens': 4616, 'output_tokens': 236, 'cache_read_tokens': 0, 'llm_calls': 3, 'tool_calls': 0, 'tool_errors': 0, 'duration_ms': 5780}"
+      },
+      "raw": "docdrift: Confirmation denied. The action was not run.",
+      "calls": []
+    },
+    {
+      "role": "glossary",
+      "label": "operator prompt",
+      "ok": true,
+      "seconds": 6.063000000081956,
+      "tool_calls": 0,
+      "run_id": "249a43f9ab3c4bca91aa610d859267d8",
+      "error": "",
+      "stats": {
+        "value": "{'input_tokens': 4644, 'output_tokens': 163, 'cache_read_tokens': 0, 'llm_calls': 3, 'tool_calls': 0, 'tool_errors': 0, 'duration_ms': 5556}"
+      },
+      "raw": "docdrift: Confirmation denied. The action was not run.",
+      "calls": []
+    },
+    {
+      "role": "glossary",
+      "label": "thread",
+      "ok": true,
+      "seconds": 6.796000000089407,
+      "tool_calls": 0,
+      "run_id": "1ca98d221a174231a3c6fc121e9a2cbe",
+      "error": "",
+      "stats": {
+        "value": "{'input_tokens': 4665, 'output_tokens': 266, 'cache_read_tokens': 0, 'llm_calls': 3, 'tool_calls': 0, 'tool_errors': 0, 'duration_ms': 6336}"
+      },
+      "raw": "docdrift: Confirmation denied. The action was not run.",
+      "calls": []
+    }
+  ]
+}

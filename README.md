@@ -1,148 +1,167 @@
-# DocDrift
+# DocTwin
 
-**An OpenMinion agent that checks whether OpenMinion's own documentation still
-matches the SDK and CLI you actually installed.**
+**OpenMinion agents that keep translated docs a faithful, up-to-date twin of the
+English source.**
 
 Built for Cortensor Hackathon #5 with the OpenMinion 0.1 Python SDK.
 
-OpenMinion shipped 23 releases in the 0.1 line. People pin a version, then read
-docs written for `main`. DocDrift answers one repeatable question:
+Open-source docs change every release; translations fall behind or break. A
+translated page that is three releases old, or that "translated" a command
+into something that no longer runs, is worse than no translation. DocTwin
+answers one repeatable job:
 
-> *If I follow these docs with the `openminion` I have installed, what will break,
-> and which written claims are no longer true?*
+> *The English docs changed. Update the translation, only where the source
+> changed, without breaking a single command, link or code block, and tell a
+> human exactly what still needs their eyes.*
 
-## What it does
+Demo target: the OpenMinion docs, translated into **Bahasa Indonesia** and kept
+in sync as OpenMinion moves from v0.1.18 to v0.1.23.
+
+## Results (real runs, `gpt-4.1-mini`)
+
+| Sync | Sections | Sent to the model | Reused | Kept in English | Model time |
+| --- | --- | --- | --- | --- | --- |
+| initial, OpenMinion docs **v0.1.18** (6 files) | 47 | 47 | 0 | 2 (gates refused them, see below) | 19.4 min |
+| update to **v0.1.23** (7 files, one new) | 54 | **14** | **40** | 0 | 11.0 min |
+
+In every file of every sync, code blocks, links and headings matched the
+source exactly. DocDrift found no broken command or import in the output.
+The two sections kept in English during the first sync were refused by the
+gates: the translator rewrote `33.76` as `33,76` (Indonesian decimal comma) in
+a table of measurements, and it dropped one section from its output twice.
+Both translated cleanly in the update. The translated docs live in
+[`translations/id/`](translations/id/). They are unofficial, and the
+Apache-2.0 attribution is in [`translations/NOTICE.md`](translations/NOTICE.md).
+The reports are in `translations/id/.doctwin/reports/`, one folder per sync.
+
+## How a sync works
 
 ```
-            OpenMinion docs (git tag that matches your install)
-                               │
-   ┌───────────────────────────┴────────────────────────────┐
-   │ 1. scan  (deterministic, no model)                      │
-   │    • every `openminion ...` command → real `--help`     │
-   │    • every Python snippet / example → imports, kwargs,  │
-   │      methods resolved against the installed package     │
-   │    • every OPENMINION_* env var → grep installed source │
-   └───────────────────────────┬────────────────────────────┘
-                               │ candidates + evidence.json
-   ┌───────────────────────────┴────────────────────────────┐
-   │ 2. triage agent    real_drift / out_of_scope / false_+ │
-   │ 3. claims agent    reads prose, extracts checkable     │
-   │                    claims, verifies them in source      │
-   │ 4. reviewer        `subagent` re-checks every negative  │
-   │                    verdict independently                │
-   │ 5. issue writer    drafts GitHub issues, each write     │
-   │                    paused for operator approval         │
-   └───────────────────────────┬────────────────────────────┘
-                               │
-                 out/report.md · out/report.json · out/issues/*.md
+ English docs (any git ref)                       translations/<lang>/
+          │                                                 ▲
+          ▼                                                 │
+ 1. split into sections ──► ledger: which sections changed? ┤ unchanged sections
+          │                                                 │ are reused as-is
+          ▼ changed / new sections only                     │
+ 2. protect: code, inline code, URLs, HTML  →  ⟦CODE1⟧ ⟦IC2⟧ ⟦URL3⟧
+          │      (the model never sees them, so it cannot break them)
+          ▼
+ 3. translator agent (OpenMinion, glossary_lookup tool)
+          ▼
+ 4. deterministic gates: placeholders exact · heading level · numbers ·
+    list items · table shape · glossary terms · length ratio
+          │ fail → one retry with the gate errors quoted back
+          ▼
+ 5. reviewer subagent (skeptical, bilingual): meaning, negations, numbers
+          │ reject → one repair attempt, then "needs review"
+          ▼
+ 6. restore placeholders byte-for-byte, write the file, update the ledger
+ 7. glossary keeper agent: new terms are written only after human approval
+ 8. DocDrift: every command and import in the output checked against the SDK
 ```
 
-All evidence tools are read-only (`@tool(min_scope="READ_ONLY", idempotent=True)`).
-The only tool that writes, `write_issue_draft`, uses the default write scope, so
-OpenMinion's action policy pauses it and asks you first. Nothing is posted to
-GitHub.
+What a human can rely on:
+
+| Guarantee | How |
+| --- | --- |
+| Code blocks, inline code, links and HTML are byte-identical to the source | placeholders + a per-file check (`code blocks identical` in every report) |
+| Only changed sections are re-translated | section digests in `.doctwin/ledger.json` |
+| Hand edits to a translated file are never overwritten | the ledger stores each written file's digest; an edited file is skipped |
+| Terminology stays consistent | `glossary.<lang>.json`, enforced by a gate; additions need approval |
+| Nothing wrong is silently accepted | a section that fails gates stays in English; reviewer problems are marked `<!-- doctwin: needs review -->` and listed in the report |
 
 ## Quick start
 
-Requires Python 3.12+, [uv](https://docs.astral.sh/uv/), git, and a model
-provider key. The default is Gemini, which has a free tier.
+Requires Python 3.12+, [uv](https://docs.astral.sh/uv/), git and an OpenAI or
+Gemini key.
 
 ```bash
-git clone <this repo> docdrift && cd docdrift
+git clone https://github.com/bagusardin25/openminion-docdrift.git doctwin && cd doctwin
 uv sync
-cp .env.example .env          # then put your GEMINI_API_KEY or OPENAI_API_KEY in .env
-uv run docdrift init          # Gemini; or: uv run docdrift init --provider openai
-                              # writes .openminion/agents.json (key stays in .env)
-uv run docdrift fetch         # clones the OpenMinion docs at v<installed version>
-uv run docdrift scan          # deterministic pass, no model, ~45 s
-uv run docdrift run           # full agent pipeline -> out/report.md
+cp .env.example .env                   # put OPENAI_API_KEY (or GEMINI_API_KEY) in .env
+uv run docdrift init --provider openai # writes .openminion/agents.json; the key stays in .env
+
+uv run doctwin fetch --ref v0.1.18     # English docs at an older release
+uv run doctwin sync --source .cache/openminion-v0.1.18 --lang id
+
+uv run doctwin fetch --ref v0.1.23     # the docs move on
+uv run doctwin plan --source .cache/openminion-v0.1.23 --lang id   # what changed (no model)
+uv run doctwin sync --source .cache/openminion-v0.1.23 --lang id   # only those sections
 ```
 
-On Windows PowerShell use `copy .env.example .env`.
-
-Useful options:
+Output: `translations/id/` (the translated docs), `translations/id/.doctwin/report.md`
+and `preview.html` (English and Indonesian side by side).
 
 | Option | Meaning |
 | --- | --- |
-| `scan --strict` | exit 1 when any candidate is found (CI gate before an upgrade) |
-| `run --section "docs/x.md#Heading"` | verify claims in specific sections (repeatable) |
-| `run --max-claims 5` | claims extracted per section |
-| `run --issues ask\|yes\|no\|skip` | how issue-draft approvals are answered |
-| `run --pace 5` | wait between model turns (free-tier rate limits) |
-| `init --provider X --model Y` | any OpenMinion provider preset, e.g. `cortensor-portal` |
-| `approval-check` | proves the approval gate with a synthetic finding (deny → no file, approve → file) |
-
-### Check docs against a different installed version
-
-DocDrift is most useful right before or after an upgrade. Run the same docs
-against another `openminion` release without touching your project:
-
-```bash
-uv run --isolated --no-project --python 3.12 --with "openminion==0.1.10" --with-editable . \
-  docdrift scan --docs .cache/openminion-v0.1.23
-```
-
-## Results
-
-**Deterministic scan** (docs tag v0.1.23, 165 snippets: 20 Python, 145 shell):
-
-| Installed | Candidates | What they are |
-| --- | --- | --- |
-| 0.1.23 | 5 | all `unknown_env_var`, and all used only by the repo's `tests/` / `.github/` |
-| 0.1.15 | 6 | + `openminion.modules.a2a.transport.HTTPTransport` does not exist (`docs/a2a-remote.md:72`) |
-| 0.1.10 | 8 | + `openminion tasks show --runs-limit` is not a flag (`docs/system-operations.md:215`) |
-
-**Agent run on 0.1.23** (`gpt-4.1-mini`, run 3, [`out/report.md`](out/report.md)):
-5/5 candidates correctly triaged `out_of_scope`; 19 claims checked in 4 doc
-sections, 16 supported, 0 contradicted, 3 unverifiable; 9/9 model turns
-succeeded in 4.1 minutes of model time. **No doc drift in 0.1.23.**
-
-Getting there took three runs. In run 1, the triage agent and the reviewer
-subagent agreed on four "drift" findings that were all wrong. The fixes, and
-six pieces of SDK feedback found along the way (one with a fix PR), are in
-[WHAT_WE_LEARNED.md](WHAT_WE_LEARNED.md). Per-feature results are in
-[BUILDING_BLOCKS.md](BUILDING_BLOCKS.md).
+| `--lang es` / `pt` / `vi` / `zh` / any code | target language (glossary seed exists for `id`) |
+| `--file docs/x.md` | which files to keep in sync (repeatable) |
+| `--terms ask\|yes\|no\|skip` | how glossary additions are approved |
+| `--max-chars N` | source + previous translation per model turn (default 5200) |
+| `--force` | overwrite translated files a human edited |
+| `--dry-run` | translate but do not write |
 
 ## How the OpenMinion SDK is used
 
 | SDK feature | Where | Why |
 | --- | --- | --- |
-| `Agent(config_path=..., agent_id=...)` | `agents.py` | provider-neutral: switch Gemini ↔ Cortensor Portal in config only |
-| `@tool(min_scope="READ_ONLY", idempotent=True)` | `tools.py` | six evidence tools run without prompts |
-| `@tool` default scope + `approval_callback` | `tools.write_issue_draft`, `cli._approval` | operator approves every file write |
-| `output_type=<Pydantic model>` | triage, claims, reviewer | validated JSON verdicts, no regex parsing |
-| `subagent(parent, ...)` | `agents.review` | bounded reviewer with its own instructions and timeout |
-| `forced_tools=[...]` | issue writer | first action is always the draft write |
-| `session_id` per run, new thread per item | every role | one inspectable OpenMinion session per DocDrift run |
-| `ProviderError`, `TurnTimeoutError`, `AgentOutputValidationError`, `result.stats` | `agents._run` | every turn is logged in the report's *Run diagnostics* |
+| `Agent(config_path, agent_id, tools=[...], output_type=...)` | translator, reviewer, glossary keeper | provider-neutral; switch OpenAI ↔ Gemini ↔ Cortensor Portal in config |
+| `@tool(min_scope="READ_ONLY", idempotent=True)` | `glossary_lookup` | runs without prompts |
+| `@tool` default scope + `approval_callback` | `add_glossary_term` | a human approves every terminology decision |
+| `forced_tools=[...]` | glossary keeper | the first action is the (approval-gated) write |
+| `subagent(parent, ...)` | reviewer | bounded, own instructions/tools/output type |
+| `output_type=<Pydantic>` | translation and review batches | validated JSON; see WHAT_WE_LEARNED §1 for the workaround we needed |
+| `session_id` per sync, a new thread per turn | all roles | one inspectable OpenMinion session per sync |
+| `ProviderError`, `TurnTimeoutError`, `AgentOutputValidationError`, `run_id`, `stats` | `docdrift.agents._run` | per-turn diagnostics in every report |
 
-OpenMinion state (sessions, runs) stays inside the project in `.openminion/`.
+## DocDrift: the validation gate (and our first prototype)
+
+`docdrift` is the second tool in this repo. It checks docs against the
+installed SDK without a model: every `openminion ...` command against the
+real `--help` (58 command paths), every Python snippet against the installed
+package (imports, keyword arguments, methods), every `OPENMINION_*` variable
+against the source. DocTwin runs it on its own output. It also works on its
+own:
+
+```bash
+uv run docdrift fetch && uv run docdrift scan        # OpenMinion docs vs installed SDK
+uv run docdrift scan --docs path/to/your/openminion/project   # any project built on OpenMinion
+uv run docdrift run                                  # + agent triage, claim checks, reviewer
+```
+
+We started the hackathon with DocDrift as the main project. It found no drift
+in OpenMinion 0.1.23 (the docs are in good shape), real drift when the same
+docs meet older releases (0.1.10, 0.1.15), and six SDK issues. Then we found a
+similar entry (DriftCheck), so we made DocDrift the safety net of something
+nobody else was building. Its results are in [`out/report.md`](out/report.md).
+
+## What we found in OpenMinion
+
+Full details with file:line evidence in [WHAT_WE_LEARNED.md](WHAT_WE_LEARNED.md),
+building-block results in [BUILDING_BLOCKS.md](BUILDING_BLOCKS.md). The short
+version:
+
+1. `Agent(output_type=...)` never sends the schema to the model.
+2. `AgentOutputValidationError` reports `json_invalid` when the real problem is a
+   schema mismatch: [openminion#803](https://github.com/openminion/openminion/issues/803).
+   The maintainer confirmed it in scope, and our fix with regression tests,
+   [openminion#810](https://github.com/openminion/openminion/pull/810), was
+   **approved and merged into `dev`** on 2026-11-20 after all 18 hosted checks
+   passed.
+3. A user message over 12,000 characters comes back as a canned "could not safely
+   update the task conditions" reply with `run_state="completed"`:
+   [openminion#804](https://github.com/openminion/openminion/issues/804).
 
 ## Project layout
 
 ```
-src/docdrift/
-  extract.py     fenced-block and example-file extraction with absolute lines
-  cli_check.py   `openminion ... --help` walker (parallel, cached, sandboxed home)
-  py_check.py    AST checks against the installed package
-  env_check.py   OPENMINION_* env vars vs installed source
-  scan.py        deterministic pass → candidates
-  tools.py       OpenMinion tools (6 read-only + 1 approval-gated write)
-  agents.py      triage / claims / reviewer subagent / issue writer
-  report.py      report.md + report.json
-  cli.py         docdrift init | fetch | scan | run
-tests/           checker tests (no model needed): uv run pytest
+src/doctwin/    segment.py · gates.py · glossary.py · ledger.py · agents.py · sync.py · render.py · cli.py
+src/docdrift/   extract.py · cli_check.py · py_check.py · env_check.py · scan.py · tools.py · agents.py · report.py · cli.py
+tests/          uv run pytest   (no model needed)
+scripts/        make_demo_source.py (cheap live demo) · invalidate_protect_change.py
+translations/   the Indonesian twin of the OpenMinion docs, produced by DocTwin
+submission/     demo script, PR text, upstream issue drafts and patch
 ```
-
-## Limits
-
-- Python checks are static. Methods on objects returned from calls (for example
-  `result.output.x`) are not type-inferred.
-- Claim verification is only as good as the model and its tool use. That is why
-  every negative verdict goes through the reviewer subagent, and disputed items
-  are reported separately instead of dropped.
-- Doc pages about the repository's own test suite are in scope for scanning.
-  The triage agent is expected to mark their env vars `out_of_scope`.
 
 ## License
 

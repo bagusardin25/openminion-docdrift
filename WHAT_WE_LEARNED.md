@@ -1,193 +1,242 @@
 # What We Learned
 
-Feedback from building DocDrift on OpenMinion `0.1.23` (PyPI), Python 3.12,
-Windows 11, `openai` preset with `gpt-4.1-mini`. Every item says what we saw,
-the evidence, and what we would change. File paths are relative to the
+Feedback from building DocTwin and DocDrift on OpenMinion `0.1.23` (PyPI),
+Python 3.12, Windows 11, `openai` preset with `gpt-4.1-mini`. Each item gives
+what we saw, the evidence, and what we would change. Paths are relative to the
 installed `openminion` package unless noted.
 
-**Status key.** *Confirmed*: reproduced, root cause found in source.
-*Observed*: reproduced; cause not fully traced. *Documented gotcha*: works as
-the docs say, but tripped us up.
+**Status key.** *Confirmed*: reproduced, with the cause found in source.
+*Observed*: reproduced, but the cause is not fully traced. *Known*: already
+reported upstream; we add our data. *Gotcha*: works as documented, but tripped
+us up.
 
 ---
 
-## 1. `Agent(output_type=...)` never tells the model about the schema (Confirmed)
+## Part A · OpenMinion SDK findings
 
-**What we saw.** Our first real runs failed with `AgentOutputValidationError`
-in 2 of 2 claim-verification turns. The model answered in prose, or used its
-own keys (`claims_verification` instead of `claims`).
+### A1. `Agent(output_type=...)` never tells the model about the schema (Confirmed, not reported upstream yet)
 
-**Why.** `output_type` is used only after the reply arrives, in
-`api/agent.py:253-284` (`_coerce_output`). `_build_payload`
-(`api/agent.py:158-194`) sends no schema and no JSON mode. `instructions`
-*are* sent: we captured the request bodies in-process (wrapping
-`ProviderHTTPClient.urlopen`) and found them under `[IDENTITY]`. But they sit
-inside a 5,278–17,763 character runtime system prompt that has its own
-answer-format contracts (for example a "Tool-calling contract" and "provide the
-full user-facing final answer and populate the structured confidence…").
+**Seen.** Our first real runs failed with `AgentOutputValidationError` in 2 of
+2 claim turns. The model answered in prose or invented its own keys
+(`claims_verification` instead of `claims`).
 
-**Measured** with a minimal probe (`instructions` asking for a 2-key JSON
-object, `output_type` set):
+**Why.** `output_type` is used only after the reply comes back
+(`api/agent.py:253-284`, `_coerce_output`). `_build_payload`
+(`api/agent.py:158-194`) sends no schema and no JSON mode. `instructions` do
+reach the provider. We captured the request bodies by wrapping
+`ProviderHTTPClient.urlopen`, and the instructions sit under `[IDENTITY]`
+inside a 5,278–17,763-character runtime system prompt. That prompt has its own
+answer-format contracts ("Tool-calling contract", "provide the full
+user-facing final answer and populate the structured confidence…").
 
-| Agent | Schema-valid replies |
+| Agent (probe: 2-key JSON) | Schema-valid replies |
 | --- | --- |
 | no `tools=` | 0 / 4 |
 | one `@tool` | 2 / 4 |
-| schema repeated in the **user message** (DocDrift's workaround) | 13 / 13 structured turns in the first full run, with no repair turn needed |
+| schema repeated in the **user message** (our workaround, `docdrift.agents.format_reminder`) | 13/13 (DocDrift run 1), 9/9 (run 3), 37/38 turns in the DocTwin initial sync |
 
-**Suggested change.** When `output_type` is a Pydantic model, append its JSON
-Schema as the last system block or to the final-answer step. When the provider
-profile declares `supports_json`, also send the provider's JSON/schema mode.
-Until then, the SDK README could say that `instructions` must spell out the
-JSON shape. The examples already do this implicitly (`structured_output.py`).
+**Change.** When `output_type` is a Pydantic model, append its JSON Schema as
+the last system block or to the final-answer step. Also send the provider's
+JSON/schema mode when the profile declares `supports_json`. At minimum,
+document that `instructions` must describe the JSON shape.
 
-## 2. `AgentOutputValidationError` hides the real cause (Confirmed, fix PR ready)
+### A2. `AgentOutputValidationError` hides the real cause (Confirmed, reported as [#803](https://github.com/openminion/openminion/issues/803), fixed by our PR [#810](https://github.com/openminion/openminion/pull/810), merged into `dev` 2026-11-20)
 
 When the raw reply is not JSON, `_coerce_output` recovers the first JSON object
 and validates it again. If that also fails, it raises the **first** error.
-Replies always start with `"<agent>: "` (see §3), so the message is always
+Replies always start with `"<agent>: "` (A4), so the message always says
 `Invalid JSON: expected value at line 1 column 1`. In our case the real cause
 was `Field required: claims`.
 
 Fix: keep the recovered object's `ValidationError`.
-[`submission/upstream/0001-agent-output-validation-error-cause.patch`](submission/upstream/0001-agent-output-validation-error-cause.patch)
-adds one regression test. `tests/api/test_agent.py` passes 50/50 with the
-patch, and the new test fails on 0.1.23.
+[`submission/upstream/0001-agent-output-validation-error-cause.patch`](submission/upstream/0001-agent-output-validation-error-cause.patch).
+`tests/api/test_agent.py` passes 50/50 with the patch, and the new test fails on
+0.1.23. Posted text: [`issue-1`](submission/upstream/issue-1-output-validation-error-cause.md).
 
-## 3. `result.text` starts with `"<agent_id>: "` (Confirmed)
+### A3. A user message over 12,000 characters returns a canned reply as a *completed* run (Confirmed, reported as [#804](https://github.com/openminion/openminion/issues/804))
+
+`Agent.run()` with a 12,492-character message returns *"I could not safely
+update the task conditions. Please restate the current task and its required
+conditions."* with `run_state="completed"` and `respond_kind="assistant"`. At
+11,492 characters the model answers normally. Callers cannot tell the refusal
+from an answer. With `output_type` set it shows up as A2's misleading
+`Invalid JSON`.
+
+**Corrected by the maintainer on #804.** We first wrote that the model is never
+asked. That is wrong. In the maintainer's controlled test of `runner._decide`,
+the provider is called once at both 12,000 and 12,001 characters. For a new
+task with no active task context, the runtime then seeds the verbatim message as
+the task objective, and `ResolvedTaskContext`'s 12,000-character bound
+(`TASK_CONTEXT_MAX_CHARS`, `modules/brain/constants.py:21`;
+`modules/brain/schemas/task_context.py:35`) rejects that seed. The turn becomes
+`invalid_task_context_update` / clarify, which returns the restate text. This is
+not a general SDK input limit: the existing-task and model-update paths differ.
+The maintainer asked for a bounded fix that carries a truthful structured
+outcome through the API/SDK before output coercion. The issue is open under
+maintainer investigation.
+
+This hit DocTwin hard. In our first translation run, 10 of 36 turns failed, and
+every failed reply we inspected was this text. The visible symptom matches #719,
+but the trigger is different: input length, not an invalid `task_update`.
+DocTwin now keeps requests under 11,000 characters, splits batches, sends long
+sections in paragraph parts, and treats the canned text as a failure. Posted text:
+[`issue-2`](submission/upstream/issue-2-long-input-canned-reply.md).
+
+Separately (*Observed*): 1 of 38 turns in a later run got the same canned reply
+for a 6,066-character message. We could not reproduce it in a one-session
+versus fresh-session probe. That fits #719's random trigger.
+
+### A4. `result.text` starts with `"<agent_id>: "` (Known: #567)
 
 `services/brain/post_execution/postprocess_response.py:276` builds
-`f"{agent_name}: {response_text}"`. `Agent.run()` sets `deliver: False`, yet the
-envelope prefix still reaches `AgentRunResult.text`. For example:
-`'docdrift: The hex code of teal is #008080.'`. Applications that show or parse
-`result.text` have to strip it. `_extract_json_object` hides the prefix for
-JSON, which makes §2 worse.
+`f"{agent_name}: {response_text}"`, and that prefix reaches
+`AgentRunResult.text` even with `deliver: False`. #567 reported this on 0.1.17.
+It is still present in 0.1.23.
 
-**Suggested change:** keep the channel envelope out of `result.text`, or expose
-the unprefixed text separately.
+### A5. A one-tool question costs about 7 provider calls (Observed; related #777)
 
-## 4. A one-tool question costs about 7 provider calls (Observed)
+A wire capture of one `Agent.run("What is the hex code of teal?")` with one
+`@tool` counted 7 HTTP requests: tool-contract turn, freshness classifier,
+tool-result continuations, confidence/final composition, closing identity turn.
+Without tools it was 2. #777 measures the same redundancy. For DocTwin this is
+the main cost driver: a ~6,000-character translation turn takes about 60 s.
 
-Our wire capture of one `Agent.run("What is the hex code of teal?")` with a
-single `@tool` counted 7 HTTP requests: the tool-contract turn, a
-"freshness-routing classifier", tool-result continuations, a confidence/final
-composition step, and a closing identity turn. Without tools it was 2 calls.
-That is fine on paid OpenAI, but it matters for free-tier rate limits and for
-Cortensor Portal, which the docs describe as slow and serial
-(`docs/getting-started.md`).
+### A6. `tools=None` still exposes the runtime's default tools (Gotcha; #269 closed)
 
-**Suggested change:** document the per-turn call budget and expose a switch for
-the auxiliary classifier steps in SDK runs.
+This is documented (`docs/runtime-surfaces.md:55`). But a pure
+structured-output agent still gets the tool-calling contract in its system
+prompt, and in our probe that contract competed with the output format.
+DocTwin passes explicit tool lists everywhere, `[]` included.
 
-## 5. `tools=None` still exposes the runtime's default tools (Documented gotcha)
+### A7. `OPENMINION_TRACE_REQUESTS=1` wrote no trace files for SDK runs (Observed)
 
-`docs/runtime-surfaces.md:55` documents this: `tools=None` keeps the default
-tool exposure and `tools=[]` disables it. Even so, an agent that only wants
-structured output still gets the tool-calling contract in its system prompt. In
-our probe that contract competed with the output format. The `output_type`
-docs could recommend `tools=[]` for pure structured-output agents.
-
-## 6. `OPENMINION_TRACE_REQUESTS=1` wrote no trace files for SDK runs (Observed)
-
-With `OPENMINION_TRACE_REQUESTS=1` (and `OPENMINION_TRACE_REQUESTS_DIR`) set in
-the process environment, `resolve_environment_config()` reports the flag as
-`True`. Yet a full `Agent.run()` wrote no `*-http.json` file under
-`OPENMINION_HOME`, the trace dir, `~/.openminion`, or the temp dir. The
-provider transport passes `env=env_owner` to `trace_http_json_request`
+The flag resolves `True` from the process environment, but a full `Agent.run()`
+wrote no `*-http.json` file anywhere we looked (`OPENMINION_HOME`, the trace
+dir, `~/.openminion`, temp). The transport passes `env=env_owner`
 (`modules/llm/providers/transport/http.py`), not the process env. We did not
-confirm whether that is the cause. We fell back to wrapping
-`ProviderHTTPClient.urlopen` to see request bodies.
+confirm whether that is the cause.
 
-## 7. Agent quality: one model reviewing itself rubber-stamps (Lesson for builders)
+### A8. No SDK-level memory API for a small, scoped fact store (Design feedback)
 
-Our first full run triaged five env-var candidates. The triage agent called 4
-of them `real_drift`, and the reviewer subagent (same model) **confirmed all
-4**. Every one was wrong. All of the variables live in `tests/`, `.github/`, or
-are built from a prefix constant
-(`tests/e2e/runners/run_blockchain_testnet_write.py:38`). The agents made only
-1–2 tool calls each and never looked at the repo's test tree.
+We wanted the glossary in OpenMinion memory. The public `MemoryBundle` is a
+portability format (`modules/memory/portability/`). We found no `Agent`-level
+way to write a scoped fact ("`library` → `library`") and read it back
+deterministically in later runs. DocTwin keeps the glossary as a reviewable
+JSON file, changed only through an approval-gated `@tool`. A
+`agent.memory.put/get(namespace, key)` facade would let apps like this use
+OpenMinion memory instead of a side file.
 
-What fixed it:
-- **Facts are computed deterministically and handed to the model.** DocDrift
-  now records where each name is used in the checkout, including prefix
-  constants. The model judges; it no longer has to find the facts.
-- **The reviewer is told to disprove.** Its instructions list the alternative
-  explanations it must rule out (test/CI/maintainer-only names,
-  contributor-facing pages, renamed APIs) before agreeing.
+---
 
-Re-run results after the fix: see [Runs](#runs) below.
+## Part B · Lessons for building reliable agents on OpenMinion
 
-**The model searched source code for doc sentences.** The claims agent marked
-"The task has at most 128 conditions and a 12000-character content limit"
-(`docs/task-context.md:54`) as *unverifiable*. The claim is true:
-`modules/brain/schemas/task_context.py:37` has `max_length=128` and
-`modules/brain/constants.py:21` has `TASK_CONTEXT_MAX_CHARS = 12_000`. Per-turn
-tool-call logging showed why: its queries were whole sentences
-(`search_package_source('task has at most 128 conditions')`). It also could not
-have matched `12000` against `12_000`. We fixed our tools (number searches also
-try the underscore form, and sentence-shaped queries that miss return a hint)
-and the prompt (search identifiers and literals, at least two queries per
-claim). After that the agent searched `128`, `12000` and opened the right
-files, though it still chose different claims to report. With `gpt-4.1-mini`,
-claim selection and verdicts vary between runs: two claims supported with exact
-file:line in run 1 came back *unverifiable* in run 2.
+**B1. One model reviewing itself rubber-stamps.** In DocDrift run 1 the triage
+agent called 4 of 5 env-var candidates `real_drift`, and the reviewer subagent
+(same model) confirmed all 4. All 4 were wrong: the variables live in `tests/`
+or `.github/`, or are built from a prefix constant
+(`tests/e2e/runners/run_blockchain_testnet_write.py:38`). Two changes fixed it:
+deterministic facts handed to the model (where each name is used), and a
+reviewer told to *disprove*. After that, 5/5 were correct in runs 2 and 3.
 
-**"Supported" is weaker than it looks.** The claims agent sometimes backs a
-claim with loose evidence. For example, it cited `Agent.close()` for a claim
-about provider client lifetime. DocDrift only escalates `contradicted` verdicts,
-so this does not create false issues, but supported claims should be read as
-"no contradiction found", not "proven".
+**B2. Models search source code for doc sentences.** The claims agent marked
+"at most 128 conditions and a 12000-character content limit" *unverifiable*.
+Its queries were whole sentences, and `12000` never matches `12_000`. Number
+searches now also try the underscore form, and a sentence-shaped query that
+misses returns a hint. With `gpt-4.1-mini`, claim selection still varies from
+run to run.
 
-## 8. What worked well
+**B3. Translation needs hard gates, not trust.** What the gates and checks
+caught in DocTwin's real runs:
+- the model dropping a section's trailing newline, which glued the next heading
+  onto a paragraph (`…surface.### 3. API runtime`). Whitespace around every
+  section is now restored from the source;
+- **decimal points localized** (`33.76` → `33,76`) in a table of measurements.
+  The number gate rejected it and the section stayed in English instead of
+  shipping changed values. The prompt now says to keep decimal points;
+- "Library callers" translated as "Pemanggil *perpustakaan*" (a building). A
+  glossary entry (`library` → `library`) plus the glossary gate now block it;
+- a section left out of the model's batch output twice. It now gets one solo
+  attempt.
 
-- **Docs quality.** All 145 shell and 20 Python snippets in the v0.1.23 docs
-  match the installed CLI and package. Drift appears only when the same docs
-  are used with older releases: 0.1.15 lacks `HTTPTransport`
-  (`docs/a2a-remote.md:72`), and 0.1.10 also lacks
-  `openminion tasks show --runs-limit` (`docs/system-operations.md:215`).
-- **Permissions and approval.** `READ_ONLY` + `idempotent` tools never
-  prompted. The default-scope write tool hit `approval_callback` every time.
-  `docdrift approval-check` passed 6/6 (deny → no file and the runtime says
-  "Confirmation denied. The action was not run."; approve → file written). In
-  the first full run, 1 of 4 issue-writer turns ended without calling the
-  forced tool and without an approval prompt. We did not capture that reply and
-  could not reproduce it.
-- **Provider setup.** `openminion setup --provider openai` stored only
-  `api_key_env`. No file under `.openminion/` contains the key.
+**B4. A failed reviewer must not mean "approved".** Early on, a review turn
+that failed (A3) left its sections accepted *unreviewed* but reported as
+"translated". DocTwin now splits failed review batches down to single units and
+records any unit still without a verdict as `unreviewed`. The next sync
+re-runs only the reviewer for those.
+
+**B6. Protection rules need tests on real docs, not just on toy strings.**
+Reading the published preview by eye, we found English leaking into a
+translation: `` `agent.run("yes",⏎ thread_id=…)` `` is inline code that wraps
+onto a second line. Our single-line inline-code pattern instead paired the
+backticks around `; a plain later `, so that prose was "protected" and never
+translated. The gates could not see it, because every placeholder was in place.
+We fixed the pattern, added a regression test, and wrote
+`scripts/invalidate_protect_change.py`, which found exactly the 2 affected
+sections and queued them for re-translation. The same review found that quoted
+program output (`"Confirmation denied. The action was not run."`) was being
+translated, even though users see it in English. Straight-quoted full
+sentences are now protected too. The reviewer subagent also lets through
+literal word choices a native speaker would fix (for example "address one agent"
+→ "alamat satu agent"). Gates catch structure, not style.
+
+**B5. "Supported" is weaker than it looks.** DocDrift's claims agent sometimes
+backs a claim with loose evidence, for example the same line for five different
+defaults. Only `contradicted` verdicts are escalated, so this never creates
+false issues. Even so, "supported" means no contradiction was found, not that
+the claim is proven.
+
+---
+
+## Part C · What worked well
+
+- **Permissions and approval.** `READ_ONLY` + `idempotent` tools never prompted.
+  Default-scope write tools (`add_glossary_term`, `write_issue_draft`) always
+  reached `approval_callback`. `docdrift approval-check` passed 6/6 (deny → no
+  file and "Confirmation denied. The action was not run."; approve → written).
 - **`subagent`** gave the reviewer its own instructions, tools, output type and
   timeout in one call.
-- **Diagnostics.** `ProviderError`, `TurnTimeoutError` and `run_id` were enough
-  to build a per-turn diagnostics table without touching internals.
+- **Provider setup.** `openminion setup --provider openai` stored only
+  `api_key_env`; no file under `.openminion/` contains the key. Switching to
+  Gemini or Cortensor Portal is config-only.
+- **Diagnostics.** `ProviderError`, `TurnTimeoutError`, `run_id` and `stats`
+  were enough for a per-turn diagnostics table in every report.
+- **Docs quality.** All 145 shell and 20 Python snippets in the v0.1.23 docs
+  match the installed CLI and package (DocDrift).
+
+---
 
 ## Runs
 
-All runs: openminion 0.1.23 vs docs tag v0.1.23 (`695ba66`), 165 snippets,
-5 deterministic candidates (all `unknown_env_var`), `gpt-4.1-mini`.
+### DocTwin (Bahasa Indonesia, 7 OpenMinion doc files)
 
-| Run | Change | Triage (5 candidates) | Reviewer | Claims (supported / contradicted / unverifiable) | Turns OK | Model time |
+| Run | Source | Sections | Sent to the model | Result | Turns OK | Model time |
 | --- | --- | --- | --- | --- | --- | --- |
-| 1 | baseline | 4 real_drift, 1 out_of_scope (**4 wrong**) | confirmed 4/4 (**all wrong**) | 13 / 0 / 6 | 17/17 | 6.3 min |
-| 2 | usage facts in candidates, skeptical reviewer | 5 out_of_scope (**all correct**) | nothing to review | 10 / 0 / 9 | 9/10 (1 repaired by the JSON repair turn) | 5.5 min |
-| 3 | better search tools + prompt; `task-context` section swapped for `getting-started#Persistent action-policy defaults` | 5 out_of_scope (**all correct**) | nothing to review | 16 / 0 / 3 | 9/9, no repair turn | 4.1 min |
+| initial (before the A3 fixes) | v0.1.18 | 47 | 47 | 46 translated, but sections in 4 chunks were never reviewed (B4) | 26/36 | 19 min |
+| initial (fixed) | v0.1.18 | 47 | 47 | 45 translated, 2 kept in English (decimal commas; a section the model dropped twice) | 37/38 | 19.4 min |
+| update | v0.1.18 → v0.1.23 | 54 | 14 | 14 translated, 40 reused, 0 need review, 0 in English; the 2 sections refused before now pass | 30/33 (all 3 failures recovered by retries) | 11.0 min |
+| fix | v0.1.23 | 54 | 3 | re-translated the 2 sections hit by the inline-code bug (B6), then 1 more for quoted program output | all OK | ~2 min |
 
-Archived reports: [`out/history/`](out/history/). Latest: [`out/report.md`](out/report.md).
+Code blocks were byte-identical to the source in every file of every run, and
+DocDrift found no broken command or import in the output. Heading counts
+matched the source in all 7 files.
 
-**Spot checks of run 3 by hand.**
-- Two of the three *unverifiable* claims are in fact supported by source.
-  "`24` iterations, `64` tool calls" (`docs/turn-budgets.md:14`) matches
-  `modules/brain/config.py:43-44` (`ADAPTIVE_MAX_ITERATIONS = 24`,
-  `ADAPTIVE_MAX_TOOL_CALLS = 64`). The 128-condition / 12,000-character limit
-  from run 2 is the other.
-- The five *supported* claims in `getting-started#Persistent action-policy
-  defaults` all cite the same line (`api/core/infrastructure.py:291`), which is
-  where the policy service is built, not where each default lives. The
-  defaults themselves are correct: `openminion config init` writes
-  `"mode": "auto"`, `"default_action": "require_confirm"` and
-  `"allow_read_only_without_prompt": true`.
+**Cost note.** All runs together used about 5.1 million tokens on
+`gpt-4.1-mini` (OpenAI usage page). The main reason is A5: every `Agent.run`
+turns into ~7 provider calls, each carrying a 5,000–17,000-character runtime
+system prompt. Debugging runs did the rest. For anyone budgeting a similar
+project: a translation turn costs roughly 20–40k tokens regardless of how short
+the text is. `brain.auto_fact_extraction.enabled: false`
+(`docs/turn-budgets.md`) removes one of those calls.
 
-**Net result for OpenMinion 0.1.23.** We found no doc drift. The CLI and
-Python snippets all match the installed package. Every flagged env var belongs
-to the repo's test suite. No checked claim is contradicted. The useful output
-of this project is therefore the SDK feedback in §1–§6, the fix PR for §2, and
-a checker that does catch drift when the docs and the installed version
-diverge (0.1.10 / 0.1.15 rows in the README).
+### DocDrift (OpenMinion docs v0.1.23 vs installed 0.1.23)
+
+| Run | Change | Triage (5 candidates) | Claims (supported / contradicted / unverifiable) | Turns OK |
+| --- | --- | --- | --- | --- |
+| 1 | baseline | 4 wrong `real_drift`, all confirmed by the reviewer | 13 / 0 / 6 | 17/17 |
+| 2 | usage facts + skeptical reviewer | 5/5 correct `out_of_scope` | 10 / 0 / 9 | 9/10 |
+| 3 | better search tools and prompt | 5/5 correct | 16 / 0 / 3 | 9/9 |
+
+Against older installs, the same docs show real drift: 0.1.15 lacks
+`HTTPTransport` (`docs/a2a-remote.md:72`), and 0.1.10 also lacks
+`openminion tasks show --runs-limit` (`docs/system-operations.md:215`).
+Archived reports: [`out/history/`](out/history/).
