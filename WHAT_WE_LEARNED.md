@@ -49,9 +49,9 @@ Replies always start with `"<agent>: "` (A4), so the message always says
 was `Field required: claims`.
 
 Fix: keep the recovered object's `ValidationError`.
-[`submission/upstream/0001-agent-output-validation-error-cause.patch`](submission/upstream/0001-agent-output-validation-error-cause.patch).
+[`upstream/0001-agent-output-validation-error-cause.patch`](upstream/0001-agent-output-validation-error-cause.patch).
 `tests/api/test_agent.py` passes 50/50 with the patch, and the new test fails on
-0.1.23. Posted text: [`issue-1`](submission/upstream/issue-1-output-validation-error-cause.md).
+0.1.23. Posted text: [`issue-1`](upstream/issue-1-output-validation-error-cause.md).
 
 ### A3. A user message over 12,000 characters returns a canned reply as a *completed* run (Confirmed, reported as [#804](https://github.com/openminion/openminion/issues/804))
 
@@ -80,7 +80,7 @@ every failed reply we inspected was this text. The visible symptom matches #719,
 but the trigger is different: input length, not an invalid `task_update`.
 DocTwin now keeps requests under 11,000 characters, splits batches, sends long
 sections in paragraph parts, and treats the canned text as a failure. Posted text:
-[`issue-2`](submission/upstream/issue-2-long-input-canned-reply.md).
+[`issue-2`](upstream/issue-2-long-input-canned-reply.md).
 
 Separately (*Observed*): 1 of 38 turns in a later run got the same canned reply
 for a 6,066-character message. We could not reproduce it in a one-session
@@ -332,4 +332,4 @@ the text is. `brain.auto_fact_extraction.enabled: false`
 Against older installs, the same docs show real drift: 0.1.15 lacks
 `HTTPTransport` (`docs/a2a-remote.md:72`), and 0.1.10 also lacks
 `openminion tasks show --runs-limit` (`docs/system-operations.md:215`).
-Archived reports: [`out/history/`](out/history/).
+Archived reports: [`evidence/docdrift/`](evidence/docdrift/).
