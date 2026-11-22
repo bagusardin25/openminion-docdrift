@@ -60,6 +60,9 @@ class ReviewBatch(BaseModel):
 # Tools
 # --------------------------------------------------------------------------
 GLOSSARY: Glossary | None = None  # set by the sync before any turn runs
+# Off for providers whose tool calling is unreliable (see WHAT_WE_LEARNED Part D);
+# the relevant glossary entries are in every prompt either way.
+USE_TOOLS = True
 
 
 @tool(min_scope="READ_ONLY", idempotent=True)
@@ -172,7 +175,7 @@ def translate(
         settings,
         name="doctwin-translator",
         instructions=TRANSLATOR.format(lang=lang_name),
-        tools=[glossary_lookup],
+        tools=[glossary_lookup] if USE_TOOLS else [],
         output_type=TranslationBatch,
     ) as agent:
         result = _run(log, agent, "translate", label, message, timeout=settings.timeout)
@@ -207,7 +210,7 @@ def review(settings: AgentSettings, log: RunLog, lang: str, label: str, pairs: l
             parent,
             name="doctwin-reviewer",
             instructions=with_schema(REVIEWER.format(lang=lang_name), ReviewBatch),
-            tools=[glossary_lookup],
+            tools=[glossary_lookup] if USE_TOOLS else [],
             output_type=ReviewBatch,
             timeout_seconds=int(settings.timeout),
         )

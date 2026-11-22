@@ -205,6 +205,99 @@ the claim is proven.
 
 ---
 
+## Part D · Cortensor Portal (hosted inference) findings
+
+Tested 2026-11-21 with a free-plan Portal account, OpenMinion 0.1.23, preset
+`cortensor-portal` (profile `docdrift-portal`). Setup followed the Portal's own
+in-app Quick start (`portal.cortensor.network/portal/docs`).
+
+**What the Portal docs say today.** Base URL `https://api.cortensor.app`. The
+OpenAI route is `POST /v1/chat/completions` and the Anthropic route is
+`POST /v1/messages`. Auth is `Authorization: Bearer ctp_…`. Aliases: `gemma4`
+(Gemma 4 E4B), `oss-20b` (the launch model), `qwen` (Qwen 3.5 9B), and
+`oss-120b`, which is listed as "supported, no capacity" and rejects live
+requests. Compatibility routes are "text-only requests today". The free plan
+uses rolling 2-hour and 7-day windows; the Usage page first showed enforced
+token caps of 200,000 per 2 h and 2,000,000 per 7 days, and later "cap not
+published yet". Request counts (100 per 2 h, 1,000 per 7 days) are recorded,
+not enforced.
+
+**Direct API checks (small requests, no OpenMinion).** All on `oss-20b`:
+
+| Request | Result | Latency |
+| --- | --- | --- |
+| plain chat, `max_tokens: 16` | 200, `finish_reason: length`, **empty content** (the reasoning model spent all 16 tokens before answering) | 17.4 s |
+| one tool, `tool_choice` auto | 200, `finish_reason: tool_calls`, 1 tool call | 19.9 s |
+| forced named `tool_choice` | 200, 1 tool call | 24.9 s |
+| 5,000-char system prompt, `max_tokens: 512` | 200, 1 tool call, 1,111 prompt tokens | 35.1 s |
+| same, no `max_tokens` | 200, 1 tool call | 23.1 s |
+
+Native tool calling works, including forced `tool_choice`. "Text-only" means
+no multimodal input, not "no tools". Successful responses carry an
+`x-request-id` (`gw-…`).
+
+**OpenMinion on Portal (one `Agent.run` with one `@tool` and `output_type`).**
+
+| Run | Provider requests | Outcome |
+| --- | --- | --- |
+| 1 | 1: stalled 478.5 s, then "Server disconnected without sending a response" | `TurnTimeoutError` at the 480 s turn budget |
+| 2 | 4: **502 Bad Gateway** (39.0 s), 200 (40.0 s), 200 (89.4 s), read timeout (310.2 s) | `TurnTimeoutError` at 480 s |
+| 3 | `brain.auto_fact_extraction.enabled: false` and a 900 s turn timeout. Only 1 request this time (the extraction call is gone), but it stalled 481.7 s | `ProviderError: TIMEOUT` (the provider's 480 s read timeout) |
+| 4 | same, plus `http_connection_reuse_enabled: false` and a 900 s provider timeout. No stall: the turn ended at 76.1 s | `ProviderError`: Portal returned **HTTP 502 "Model tool arguments do not match the advertised schema."** (`gw-743094d3-…`) |
+| 5 | same settings, model `gemma4`. No stall: the turn ended at 60.1 s | the canned "could not safely update the task conditions" reply. This is OpenMinion #719's trigger (an invalid optional `task_update` from a smaller model), reproduced here on Portal with `gemma4` |
+| 6 | `gemma4` with **no tools** (`tools=[]`), glossary in the prompt. The turn ended at 120.0 s | invalid output: the model answered in prose ("I will use the web search tool…"), even though no tool was offered |
+| 7 | `oss-20b`, no tools, connection reuse off, 900 s provider timeout | **stalled 904.1 s**, then `ProviderError` (read timeout). So stalls also happen without connection reuse |
+
+**Bottom line (2026-11-21).** None of the seven OpenMinion runs produced a valid
+structured result on Portal. Every failure had a different, logged cause:
+stalls, a gateway 502 on tool arguments, #719's task-update reply, and prose
+instead of JSON. Each Portal feature works when called directly, and Portal
+can serve OpenMinion's exact request. What does not yet hold together is
+OpenMinion's multi-request turn on top of Portal's current latency and
+stability. DocTwin's sync therefore runs on the `openai` profile. The Portal
+profile (`docdrift-portal`) stays in the repo, config-only, for when capacity
+improves (`oss-120b` is listed as "no capacity" today).
+
+**Replaying OpenMinion's exact request.** We captured the body OpenMinion
+sends without sending it (8,674-char system prompt, one tool,
+`tool_choice: auto`; 2,223 prompt tokens). Sent directly to Portal, the same
+body **succeeded**: in 69.6 s (`gw-7135194f-…`), and in 124.1 s with
+`max_tokens: 2048` (`gw-9a878a49-…`). Both returned the right
+`glossary_lookup` call. The request is valid, and Portal can serve it. What
+broke the OpenMinion turns was latency variance (17–124 s per request) plus
+occasional stalls of 8 minutes or more, which hit us in all three OpenMinion
+runs.
+
+The same captured body on other aliases: `gemma4` returned the right tool call
+in 62.5 s (`gw-eb63dad5-…`), while `qwen` stalled until our 300 s client
+timeout.
+
+**Two things worth the Portal team's attention.**
+1. *Stalls.* Our direct `oss-20b` requests (7 of 7) completed. OpenMinion's
+   requests stalled in 4 of 7 runs (1, 2, 3 and 7), for 5–15
+   minutes, with no response or a disconnect. One run with connection reuse
+   off did not stall, which first suggested reuse was the cause. Run 7 then
+   stalled 904 s with reuse off. The stalls look intermittent and
+   server-side, not tied to the client's connection handling.
+2. *Schema-invalid tool arguments come back as 502.* The gateway validates the
+   model's tool-call arguments against the advertised schema, and on a
+   mismatch it returns `502` ("Model tool arguments do not match the
+   advertised schema."). A 502 reads as an upstream outage, and under the
+   free plan upstream failures count toward quota. A structured 4xx or 422
+   error, or a gateway-side retry, would let clients like OpenMinion tell a
+   model mistake from an outage.
+
+**What this means.** Each Portal request takes 17–124 s for `oss-20b`, and
+occasional 502s and multi-minute stalls happen. OpenMinion turns one
+`Agent.run` into several provider requests (A5), and per its docs it does not
+retry Portal requests because resubmission is not idempotent. So a single
+tool-using turn can take longer than the default 480 s turn budget, even
+though every individual feature works when called directly. For builders:
+disable `auto_fact_extraction`, give Portal turns a longer timeout, and keep
+one Portal request in flight at a time, as the OpenMinion docs recommend.
+
+---
+
 ## Runs
 
 ### DocTwin (Bahasa Indonesia, 7 OpenMinion doc files)

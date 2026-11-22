@@ -1,0 +1,3 @@
+total 76.1s -> ProviderError: PROVIDER_ERROR: The configured model provider failed before it could return a decision (openai request failed with HTTP 502: Model tool arguments do not match the advertised schema.). Please retry or switch models. Provider request ID: gw-743094d3-c753-4916-8ce1-9f33dba81f63.
+HTTP requests to provider: 0
+exit=0

@@ -135,6 +135,25 @@ docs meet older releases (0.1.10, 0.1.15), and six SDK issues. Then we found a
 similar entry (DriftCheck), so we made DocDrift the safety net of something
 nobody else was building. Its results are in [`out/report.md`](out/report.md).
 
+## Running on Cortensor Portal
+
+DocTwin is provider-neutral, so Portal is a config switch. Put your key in
+`.env` as `CORTENSOR_API_KEY`, then:
+
+```bash
+uv run docdrift init --provider cortensor-portal --model oss-20b --agent docdrift-portal
+uv run doctwin sync --source .cache/demo-source --out .cache/demo-twin --agent docdrift-portal --timeout 900
+```
+
+We tested it with a free-plan Portal key, following the Portal's own Quick
+start. Direct API calls work: tool calls, forced `tool_choice`, and even
+OpenMinion's exact captured request. Full OpenMinion turns did not complete
+reliably on Portal yet. In seven runs we hit request stalls, a gateway 502 for
+schema-invalid tool arguments, OpenMinion #719's canned task-update reply, and
+prose instead of JSON. Each run, with request IDs and the mitigations we tried,
+is in [WHAT_WE_LEARNED.md](WHAT_WE_LEARNED.md) Part D. The real syncs in this
+repo ran on `gpt-4.1-mini`.
+
 ## What we found in OpenMinion
 
 Full details with file:line evidence in [WHAT_WE_LEARNED.md](WHAT_WE_LEARNED.md),

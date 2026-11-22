@@ -128,7 +128,7 @@ def cmd_init(args: argparse.Namespace) -> int:
         "--model",
         args.model,
         "--agent",
-        "docdrift",
+        args.agent,
         "--no-chat",
     ]
     if args.check:
@@ -355,6 +355,7 @@ def main(argv: list[str] | None = None) -> int:
     p = sub.add_parser("init", help="configure the agent profile from .env")
     p.add_argument("--provider", default="gemini", help="OpenMinion preset id: gemini, openai, openrouter, cortensor-portal, ...")
     p.add_argument("--model", default=None, help="default: the preset's recommended model")
+    p.add_argument("--agent", default="docdrift", help="agent id to write, e.g. docdrift-portal to keep several providers side by side")
     p.add_argument("--check", action="store_true", help="send one small validation request")
     p.set_defaults(func=cmd_init)
 

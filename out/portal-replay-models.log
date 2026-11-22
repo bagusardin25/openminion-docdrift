@@ -1,0 +1,3 @@
+[openminion body, model=qwen] TimeoutError after 301.7s: The read operation timed out
+[openminion body, model=gemma4] HTTP 200 62.5s finish=tool_calls tool_calls=['glossary_lookup'] content='' usage={'completion_tokens': 122, 'prompt_tokens': 2591, 'total_tokens': 2713} request_id=gw-eb63dad5-616d-4e16-8f37-ab6f16659ff4
+exit=0

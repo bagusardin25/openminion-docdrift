@@ -20,7 +20,7 @@ from docdrift.agents import AgentSettings, RunLog
 from docdrift.cli import CACHE, CONFIG, PROJECT, REPO_URL, docs_ref, isolate_runtime, load_dotenv
 from docdrift.extract import Profile
 
-from . import render
+from . import agents, render
 from .ledger import Ledger
 from .segment import split_sections
 from .sync import DEFAULT_FILES, sync
@@ -94,6 +94,7 @@ def cmd_sync(args) -> int:
     files = _files(args)
     ref = docs_ref(source)
     settings = AgentSettings(config_path=str(CONFIG), agent_id=args.agent, timeout=args.timeout, pace_seconds=args.pace)
+    agents.USE_TOOLS = not args.no_tools
     log = RunLog(session_id=f"doctwin-{args.lang}-{datetime.now():%Y%m%d-%H%M%S}")
     print(f"DocTwin sync: {ref} -> {out} ({args.lang})")
     started = time.monotonic()
@@ -182,6 +183,7 @@ def main(argv: list[str] | None = None) -> int:
             p.add_argument("--dry-run", action="store_true", help="translate but do not write files")
             p.add_argument("--force", action="store_true", help="overwrite translated files edited by a human")
             p.add_argument("--no-validate", action="store_true", help="skip the DocDrift check of the output")
+            p.add_argument("--no-tools", action="store_true", help="do not offer the glossary_lookup tool (for providers with unreliable tool calling)")
 
     args = parser.parse_args(argv)
     return args.func(args)

@@ -1,0 +1,4 @@
+total 483.8s -> ProviderError: TIMEOUT: The configured model provider timed out before it could return a decision (openai request timed out: The read operation timed out). Please retry.
+HTTP requests to provider: 1
+  1. ERR URLError: <urlopen error The read operation timed out> 481.7s model=oss-20b tools_in_request=1 https://api.cortensor.app/v1/chat/completions
+exit=0
