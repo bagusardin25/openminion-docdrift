@@ -1,0 +1,17 @@
+# 2026-11-22T21:26:57Z  model=oss-20b
+$ uv run doctwin sync --source .cache/demo-source --out .cache/demo-portal-oss-20b --agent docdrift-portal --no-tools --terms skip --timeout 900
+    4.0s  DocTwin sync: demo-source -> .cache\demo-portal-oss-20b (id)
+    4.1s    README.md: 14 sections, 0 to translate, 0 to re-review, 14 reused
+    4.1s    docs/getting-started.md: 11 sections, 0 to translate, 0 to re-review, 11 reused
+    4.2s    docs/runtime-surfaces.md: 10 sections, 0 to translate, 0 to re-review, 10 reused
+    4.2s    docs/turn-budgets.md: 6 sections, 0 to translate, 0 to re-review, 6 reused
+    4.2s    docs/provider-capabilities.md: 5 sections, 1 to translate, 0 to re-review, 4 reused
+  429.0s      docs/provider-capabilities.md [http-connection-reuse]: 1/1 accepted, 0 need review, 0 unreviewed, 0 kept in English
+  429.0s    docs/configuration-compatibility.md: 5 sections, 0 to translate, 0 to re-review, 5 reused
+  429.0s    examples/sdk/README.md: 3 sections, 0 to translate, 0 to re-review, 3 reused
+  429.0s    validating commands and code in the translated files with DocDrift ...
+  438.9s  
+  438.9s  done: 1 translated, 53 reused, 0 need review, 0 not reviewed, 0 kept in English
+  438.9s  report:  .cache/demo-portal-oss-20b/.doctwin/reports/20261123-043415/report.md
+  438.9s  preview: .cache/demo-portal-oss-20b/.doctwin/preview.html
+  439.3s  [exit 0]

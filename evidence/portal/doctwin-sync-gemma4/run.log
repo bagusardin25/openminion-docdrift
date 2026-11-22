@@ -1,0 +1,17 @@
+# 2026-11-22T21:35:05Z  model=gemma4
+$ uv run doctwin sync --source .cache/demo-source --out .cache/demo-portal-gemma4 --agent docdrift-portal-gemma4 --no-tools --terms skip --timeout 900
+    4.1s  DocTwin sync: demo-source -> .cache\demo-portal-gemma4 (id)
+    4.2s    README.md: 14 sections, 0 to translate, 0 to re-review, 14 reused
+    4.2s    docs/getting-started.md: 11 sections, 0 to translate, 0 to re-review, 11 reused
+    4.2s    docs/runtime-surfaces.md: 10 sections, 0 to translate, 0 to re-review, 10 reused
+    4.2s    docs/turn-budgets.md: 6 sections, 0 to translate, 0 to re-review, 6 reused
+    4.3s    docs/provider-capabilities.md: 5 sections, 1 to translate, 0 to re-review, 4 reused
+ 2706.6s      docs/provider-capabilities.md [http-connection-reuse]: 0/1 accepted, 0 need review, 0 unreviewed, 1 kept in English
+ 2706.6s    docs/configuration-compatibility.md: 5 sections, 0 to translate, 0 to re-review, 5 reused
+ 2706.6s    examples/sdk/README.md: 3 sections, 0 to translate, 0 to re-review, 3 reused
+ 2706.6s    validating commands and code in the translated files with DocDrift ...
+ 2716.6s  
+ 2716.6s  done: 0 translated, 53 reused, 0 need review, 0 not reviewed, 1 kept in English
+ 2716.6s  report:  .cache/demo-portal-gemma4/.doctwin/reports/20261123-052022/report.md
+ 2716.6s  preview: .cache/demo-portal-gemma4/.doctwin/preview.html
+ 2717.1s  [exit 0]

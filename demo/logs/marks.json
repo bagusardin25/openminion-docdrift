@@ -1,0 +1,54 @@
+{
+  "recording": "screen-recording.mp4",
+  "duration": 145.4,
+  "start": 2.4,
+  "sync_seconds": 32.3,
+  "video": {
+    "start": 2.4,
+    "plan.prompt": 3.44,
+    "plan.typed": 5.61,
+    "plan.done": 10.54,
+    "sync.prompt": 12.55,
+    "sync.typed": 15.02,
+    "sync.done": 47.32,
+    "diff.prompt": 50.34,
+    "diff.typed": 53.83,
+    "diff.done": 53.86,
+    "glossary.prompt": 57.37,
+    "glossary.typed": 59.36,
+    "glossary.done": 131.18,
+    "edit.prompt": 134.19,
+    "edit.typed": 137.11,
+    "edit.done": 137.11,
+    "resync.prompt": 137.73,
+    "resync.typed": 140.39,
+    "resync.done": 145.34,
+    "end": 148.35
+  },
+  "run": {
+    "report": "20261123-000450",
+    "translated": 1,
+    "reused": 53,
+    "files": 7,
+    "files_with_identical_code": 7,
+    "validation": "no broken commands or imports",
+    "attempts": 2,
+    "turns": [
+      {
+        "role": "translate",
+        "ok": false,
+        "seconds": 5.4
+      },
+      {
+        "role": "translate",
+        "ok": true,
+        "seconds": 5.3
+      },
+      {
+        "role": "review",
+        "ok": true,
+        "seconds": 3.6
+      }
+    ]
+  }
+}

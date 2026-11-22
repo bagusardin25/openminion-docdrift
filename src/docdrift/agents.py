@@ -100,8 +100,8 @@ def _stats_dict(stats: Any) -> dict[str, Any]:
 CAPACITY_REFUSAL = "could not safely update the task conditions"
 MAX_REQUEST_CHARS = 11_500
 CAPACITY_ERROR = (
-    "task-context capacity refusal: OpenMinion returned its canned 'could not safely update the "
-    "task conditions' reply (input over the 12,000-character task limit) as a completed run"
+    "canned reply: OpenMinion returned 'could not safely update the task conditions' as a completed run "
+    "(seen for input over the 12,000-character task limit, and now and then for short input)"
 )
 
 

@@ -1,0 +1,99 @@
+{
+  "voice": {
+    "model": "gpt-4o-mini-tts",
+    "voice": "alloy",
+    "instructions": "Narrate a software product demo. Clear, warm and confident, at a steady, slightly brisk pace. Natural intonation, no dramatic pauses."
+  },
+  "scenes": [
+    {
+      "id": "s01-problem",
+      "beats": [
+        {"say": "Docs change with every release.", "cap": "Docs change with every release."},
+        {"say": "Translations don't. They fall behind.", "cap": "Translations don't. They fall behind."},
+        {"say": "Or someone re-translates a page, and a command quietly breaks.", "cap": "Or someone re-translates a page, and a command quietly breaks."}
+      ]
+    },
+    {
+      "id": "s02-intro",
+      "beats": [
+        {"say": "This is Doc Twin.", "cap": "This is DocTwin."},
+        {"say": "A set of OpenMinion agents that keep translated docs in sync with the English source,", "cap": "OpenMinion agents that keep translated docs in sync with the English source,"},
+        {"say": "without breaking a single command, link, or code block.", "cap": "without breaking a single command, link, or code block."}
+      ]
+    },
+    {
+      "id": "s03-how",
+      "beats": [
+        {"say": "Here is how a sync works.", "cap": "Here is how a sync works."},
+        {"say": "Doc Twin splits the docs into sections and checks a ledger, so only the sections that changed go to the model.", "cap": "It splits the docs into sections and checks a ledger. Only changed sections go to the model."},
+        {"say": "Code, links and inline commands are replaced by placeholders the model cannot touch.", "cap": "Code, links and inline commands become placeholders the model cannot touch."},
+        {"say": "A translator agent does the writing.", "cap": "A translator agent does the writing."},
+        {"say": "Deterministic gates check structure, numbers and glossary terms.", "cap": "Deterministic gates check structure, numbers and glossary terms."},
+        {"say": "A skeptical reviewer subagent checks the meaning.", "cap": "A skeptical reviewer subagent checks the meaning."},
+        {"say": "And Doc Drift, our validator, checks every command against the real S D K.", "cap": "And DocDrift, our validator, checks every command against the real SDK."}
+      ]
+    },
+    {
+      "id": "s04-live",
+      "beats": [
+        {"say": "Let's run it for real, on G P T four point one mini. What you see is a screen recording.", "cap": "Let's run it for real, on gpt-4.1-mini. What you see is a screen recording."},
+        {"say": "One sentence changed in the English docs. The plan finds it: one section out of fifty-four.", "cap": "One sentence changed in the English docs. The plan finds it: 1 section out of 54."},
+        {"say": "Now the sync. The translator and the reviewer run as OpenMinion agents.", "cap": "Now the sync. The translator and the reviewer run as OpenMinion agents."},
+        {"say": "Thirty-two seconds later: one section translated, fifty-three reused, code blocks identical, and no broken commands.", "cap": "32 seconds later: 1 section translated, 53 reused, code blocks identical, no broken commands."},
+        {"say": "Here is the section it wrote. The new sentence is there, and the code block is byte for byte the same.", "cap": "The new sentence is there, and the code block is byte for byte the same."}
+      ]
+    },
+    {
+      "id": "s05-guardrails",
+      "beats": [
+        {"say": "Three guardrails keep it honest.", "cap": "Three guardrails keep it honest."},
+        {"say": "One: the gates. In our first full sync, the model rewrote thirty-three point seven six as thirty-three comma seven six, the Indonesian decimal style.", "cap": "One: the gates. In our first sync, the model rewrote 33.76 as 33,76."},
+        {"say": "The number gate refused it, so that section stayed in English instead of shipping a wrong value.", "cap": "The number gate refused it, so that section stayed in English instead of shipping a wrong value."},
+        {"say": "Two: approval. A new glossary term is written only when a human approves it.", "cap": "Two: approval. A new glossary term is written only when a human approves it."},
+        {"say": "Here, one term is approved and one is denied, and only the approved one reaches the file.", "cap": "Here, one term is approved and one is denied. Only the approved one reaches the file."},
+        {"say": "Three: human edits. When a person edits a translated file, Doc Twin notices and leaves it alone.", "cap": "Three: human edits. When a person edits a translated file, DocTwin notices and leaves it alone."}
+      ]
+    },
+    {
+      "id": "s06-results",
+      "beats": [
+        {"say": "We proved it on OpenMinion's own docs, translated into Bahasa Indonesia.", "cap": "We proved it on OpenMinion's own docs, translated into Bahasa Indonesia."},
+        {"say": "Moving from version zero point one point eighteen to zero point one point twenty-three, only fourteen of fifty-four sections went to the model.", "cap": "From v0.1.18 to v0.1.23, only 14 of 54 sections went to the model."},
+        {"say": "The other forty were reused, untouched.", "cap": "The other 40 were reused, untouched."}
+      ]
+    },
+    {
+      "id": "s07-sdk",
+      "beats": [
+        {"say": "Under the hood, it is all OpenMinion:", "cap": "Under the hood, it is all OpenMinion:"},
+        {"say": "agents with typed outputs, a read-only glossary tool,", "cap": "agents with typed outputs, a read-only glossary tool,"},
+        {"say": "an approval callback on the one tool that writes, forced tools, and a reviewer subagent.", "cap": "an approval callback on the one tool that writes, forced tools, and a reviewer subagent."}
+      ]
+    },
+    {
+      "id": "s08-upstream",
+      "beats": [
+        {"say": "Building it also improved OpenMinion itself.", "cap": "Building it also improved OpenMinion itself."},
+        {"say": "We found that validation errors were hiding their real cause, and reported it.", "cap": "We found that validation errors were hiding their real cause, and reported it."},
+        {"say": "The maintainers confirmed it and merged our fix, and it shipped in OpenMinion zero point one point twenty-four.", "cap": "The maintainers confirmed it and merged our fix. It shipped in OpenMinion 0.1.24."},
+        {"say": "We also reported that a message longer than twelve thousand characters comes back as a canned reply marked completed, and proposed a fix.", "cap": "We also reported a canned reply for messages over 12,000 characters, and proposed a fix."}
+      ]
+    },
+    {
+      "id": "s09-portal",
+      "beats": [
+        {"say": "We tested Cortensor Portal and Gemma four too.", "cap": "We tested Cortensor Portal and Gemma4 too."},
+        {"say": "Called directly, the A P I works, including tool calls.", "cap": "Called directly, the API works, including tool calls."},
+        {"say": "Full agent turns did not complete yet: we hit intermittent stalls and a gateway five oh two.", "cap": "Full agent turns did not complete yet: we hit intermittent stalls and a gateway 502."},
+        {"say": "Every run is logged with its request I D for the Cortensor team.", "cap": "Every run is logged with its request ID for the Cortensor team."}
+      ]
+    },
+    {
+      "id": "s10-close",
+      "beats": [
+        {"say": "Doc Twin.", "cap": "DocTwin."},
+        {"say": "Translated docs that stay in sync, and stay correct. Built on OpenMinion.", "cap": "Translated docs that stay in sync, and stay correct. Built on OpenMinion."}
+      ]
+    }
+  ]
+}

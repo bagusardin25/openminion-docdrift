@@ -1,0 +1,7 @@
+{
+  "file": "docs/provider-capabilities.md",
+  "key": "provider-capabilities/http-connection-reuse#1",
+  "en": "## HTTP connection reuse\n\nOpenMinion reuses provider HTTP connections by default for OpenAI, OpenRouter,\nAnthropic, Cerebras, Groq, Ollama, and Cortensor. Reuse is owned by each provider\ninstance and does not change routing, retries, prompts, or response parsing.\n\nSet `http_connection_reuse_enabled: false` on a provider to return that provider\nto one HTTP connection per request:\n\n```yaml\nproviders:\n  openrouter:\n    http_connection_reuse_enabled: false\n```\n\nThe provider client is closed when its agent runtime is evicted or the API\nruntime shuts down. Reuse never shares a connection between two providers.\n",
+  "id": "## Penggunaan Kembali Koneksi HTTP\n\nOpenMinion menggunakan kembali koneksi HTTP provider secara default untuk OpenAI, OpenRouter, Anthropic, Cerebras, Groq, Ollama, dan Cortensor. Penggunaan kembali dimiliki oleh setiap instansi provider dan tidak mengubah perutean, pengulangan, prompt, atau parsing respons.\n\nTetapkan `http_connection_reuse_enabled: false` pada sebuah provider untuk mengembalikan provider tersebut ke satu koneksi HTTP per permintaan:\n\n```yaml\nproviders:\n  openrouter:\n    http_connection_reuse_enabled: false\n```\n\nKlien provider ditutup saat runtime agent-nya dikeluarkan atau runtime API dimatikan. Penggunaan kembali tidak pernah membagi satu koneksi antara dua provider.\n",
+  "new_en": "Reuse never shares a connection between two providers."
+}

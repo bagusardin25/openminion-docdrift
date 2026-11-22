@@ -6,8 +6,8 @@ DocTwin, of documentation from the OpenMinion project
 They are not produced, reviewed or endorsed by the OpenMinion maintainers. The
 English originals are authoritative.
 
-Translations were changed from the original by translating prose into another
-language. Code blocks, inline code, links, commands and quoted program output
+We changed the originals by translating the prose into Bahasa Indonesia. Code
+blocks, inline code, links, commands and quoted program output
 are kept byte-for-byte identical to the source.
 
 The original documentation is distributed under the Apache License, Version 2.0

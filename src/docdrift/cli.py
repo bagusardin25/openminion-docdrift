@@ -134,7 +134,42 @@ def cmd_init(args: argparse.Namespace) -> int:
     if args.check:
         cmd.append("--check-provider")
     print("running:", " ".join(cmd[1:]))
-    return subprocess.call(cmd)
+    code = subprocess.call(cmd)
+    if code == 0 and CONFIG.exists():
+        for change in tune_profile(CONFIG, args.agent, args.provider):
+            print("set", change)
+    return code
+
+
+def tune_profile(config: Path, agent: str, provider: str) -> list[str]:
+    """Apply the settings the runs in this repo used, after `openminion setup` wrote the profile.
+
+    DocTwin and DocDrift do not use OpenMinion's automatic fact extraction, and
+    turning it off saves one provider call per turn. Cortensor Portal requests can
+    take minutes, so a Portal profile also gets a 900 s timeout and one HTTP
+    connection per request: the settings of our successful Portal sync.
+    """
+
+    data = json.loads(config.read_text(encoding="utf-8"))
+    changes = []
+    facts = data.setdefault("brain", {}).setdefault("auto_fact_extraction", {})
+    if facts.get("enabled") is not False:
+        facts["enabled"] = False
+        changes.append("brain.auto_fact_extraction.enabled = false")
+    profile = data.get("agents", {}).get(agent)
+    if provider == "cortensor-portal" and isinstance(profile, dict):
+        blocks = [profile.get("provider_config_overrides")]
+        blocks += [c.get("provider_config_overrides") for c in profile.get("model_connections", {}).values()]
+        wanted = {"timeout_seconds": 900, "http_connection_reuse_enabled": False}
+        changed = False
+        for block in blocks:
+            if isinstance(block, dict) and any(block.get(k) != v for k, v in wanted.items()):
+                block.update(wanted)
+                changed = True
+        if changed:
+            changes.append(f"{agent}: timeout_seconds = 900, http_connection_reuse_enabled = false")
+    config.write_text(json.dumps(data, indent=2) + "\n", encoding="utf-8")
+    return changes
 
 
 def cmd_fetch(args: argparse.Namespace) -> int:

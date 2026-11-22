@@ -1,0 +1,655 @@
+{
+  "generated_at": "2026-11-22T22:20:22+00:00",
+  "lang": "id",
+  "source": ".cache\\demo-source",
+  "source_ref": "demo-source",
+  "session_id": "doctwin-id-20261123-043510",
+  "wall_seconds": 2712.5,
+  "counts": {
+    "unchanged": 53,
+    "source_fallback": 1
+  },
+  "words": {
+    "unchanged": 6814,
+    "source_fallback": 75
+  },
+  "files": [
+    {
+      "file": "README.md",
+      "status": "unchanged",
+      "sections": 14,
+      "removed": [],
+      "code_blocks_identical": true
+    },
+    {
+      "file": "docs/getting-started.md",
+      "status": "unchanged",
+      "sections": 11,
+      "removed": [],
+      "code_blocks_identical": true
+    },
+    {
+      "file": "docs/runtime-surfaces.md",
+      "status": "unchanged",
+      "sections": 10,
+      "removed": [],
+      "code_blocks_identical": true
+    },
+    {
+      "file": "docs/turn-budgets.md",
+      "status": "unchanged",
+      "sections": 6,
+      "removed": [],
+      "code_blocks_identical": true
+    },
+    {
+      "file": "docs/provider-capabilities.md",
+      "status": "written",
+      "sections": 5,
+      "removed": [],
+      "code_blocks_identical": true
+    },
+    {
+      "file": "docs/configuration-compatibility.md",
+      "status": "unchanged",
+      "sections": 5,
+      "removed": [],
+      "code_blocks_identical": true
+    },
+    {
+      "file": "examples/sdk/README.md",
+      "status": "unchanged",
+      "sections": 3,
+      "removed": [],
+      "code_blocks_identical": true
+    }
+  ],
+  "sections": [
+    {
+      "file": "README.md",
+      "key": "_preamble#1",
+      "action": "unchanged",
+      "attempts": 0,
+      "gate_errors": [],
+      "review_issues": [],
+      "words": 74,
+      "parts": 1
+    },
+    {
+      "file": "README.md",
+      "key": "read-this-first#1",
+      "action": "unchanged",
+      "attempts": 0,
+      "gate_errors": [],
+      "review_issues": [],
+      "words": 56,
+      "parts": 1
+    },
+    {
+      "file": "README.md",
+      "key": "trust-and-brand-safety#1",
+      "action": "unchanged",
+      "attempts": 0,
+      "gate_errors": [],
+      "review_issues": [],
+      "words": 40,
+      "parts": 1
+    },
+    {
+      "file": "README.md",
+      "key": "at-a-glance#1",
+      "action": "unchanged",
+      "attempts": 0,
+      "gate_errors": [],
+      "review_issues": [],
+      "words": 152,
+      "parts": 1
+    },
+    {
+      "file": "README.md",
+      "key": "common-commands#1",
+      "action": "unchanged",
+      "attempts": 0,
+      "gate_errors": [],
+      "review_issues": [],
+      "words": 5,
+      "parts": 1
+    },
+    {
+      "file": "README.md",
+      "key": "install#1",
+      "action": "unchanged",
+      "attempts": 0,
+      "gate_errors": [],
+      "review_issues": [],
+      "words": 40,
+      "parts": 1
+    },
+    {
+      "file": "README.md",
+      "key": "quick-start#1",
+      "action": "unchanged",
+      "attempts": 0,
+      "gate_errors": [],
+      "review_issues": [],
+      "words": 554,
+      "parts": 1
+    },
+    {
+      "file": "README.md",
+      "key": "what-openminion-provides#1",
+      "action": "unchanged",
+      "attempts": 0,
+      "gate_errors": [],
+      "review_issues": [],
+      "words": 65,
+      "parts": 1
+    },
+    {
+      "file": "README.md",
+      "key": "what-openminion-does-not-provide#1",
+      "action": "unchanged",
+      "attempts": 0,
+      "gate_errors": [],
+      "review_issues": [],
+      "words": 59,
+      "parts": 1
+    },
+    {
+      "file": "README.md",
+      "key": "runtime-surfaces#1",
+      "action": "unchanged",
+      "attempts": 0,
+      "gate_errors": [],
+      "review_issues": [],
+      "words": 101,
+      "parts": 1
+    },
+    {
+      "file": "README.md",
+      "key": "repository-map#1",
+      "action": "unchanged",
+      "attempts": 0,
+      "gate_errors": [],
+      "review_issues": [],
+      "words": 8,
+      "parts": 1
+    },
+    {
+      "file": "README.md",
+      "key": "development#1",
+      "action": "unchanged",
+      "attempts": 0,
+      "gate_errors": [],
+      "review_issues": [],
+      "words": 26,
+      "parts": 1
+    },
+    {
+      "file": "README.md",
+      "key": "docs-and-release#1",
+      "action": "unchanged",
+      "attempts": 0,
+      "gate_errors": [],
+      "review_issues": [],
+      "words": 63,
+      "parts": 1
+    },
+    {
+      "file": "README.md",
+      "key": "license-and-brand-use-boundary#1",
+      "action": "unchanged",
+      "attempts": 0,
+      "gate_errors": [],
+      "review_issues": [],
+      "words": 51,
+      "parts": 1
+    },
+    {
+      "file": "docs/getting-started.md",
+      "key": "openminion-getting-started#1",
+      "action": "unchanged",
+      "attempts": 0,
+      "gate_errors": [],
+      "review_issues": [],
+      "words": 28,
+      "parts": 1
+    },
+    {
+      "file": "docs/getting-started.md",
+      "key": "openminion-getting-started/fast-bootstrap#1",
+      "action": "unchanged",
+      "attempts": 0,
+      "gate_errors": [],
+      "review_issues": [],
+      "words": 96,
+      "parts": 1
+    },
+    {
+      "file": "docs/getting-started.md",
+      "key": "openminion-getting-started/first-run#1",
+      "action": "unchanged",
+      "attempts": 0,
+      "gate_errors": [],
+      "review_issues": [],
+      "words": 339,
+      "parts": 1
+    },
+    {
+      "file": "docs/getting-started.md",
+      "key": "openminion-getting-started/first-run/persistent-action-policy-defaults#1",
+      "action": "unchanged",
+      "attempts": 0,
+      "gate_errors": [],
+      "review_issues": [],
+      "words": 129,
+      "parts": 1
+    },
+    {
+      "file": "docs/getting-started.md",
+      "key": "openminion-getting-started/first-run/start-a-local-human-plus-agents-room#1",
+      "action": "unchanged",
+      "attempts": 0,
+      "gate_errors": [],
+      "review_issues": [],
+      "words": 1252,
+      "parts": 1
+    },
+    {
+      "file": "docs/getting-started.md",
+      "key": "openminion-getting-started/per-agent-command-access#1",
+      "action": "unchanged",
+      "attempts": 0,
+      "gate_errors": [],
+      "review_issues": [],
+      "words": 121,
+      "parts": 1
+    },
+    {
+      "file": "docs/getting-started.md",
+      "key": "openminion-getting-started/read-first#1",
+      "action": "unchanged",
+      "attempts": 0,
+      "gate_errors": [],
+      "review_issues": [],
+      "words": 11,
+      "parts": 1
+    },
+    {
+      "file": "docs/getting-started.md",
+      "key": "openminion-getting-started/normal-execution-loop#1",
+      "action": "unchanged",
+      "attempts": 0,
+      "gate_errors": [],
+      "review_issues": [],
+      "words": 50,
+      "parts": 1
+    },
+    {
+      "file": "docs/getting-started.md",
+      "key": "openminion-getting-started/pull-request-shape#1",
+      "action": "unchanged",
+      "attempts": 0,
+      "gate_errors": [],
+      "review_issues": [],
+      "words": 43,
+      "parts": 1
+    },
+    {
+      "file": "docs/getting-started.md",
+      "key": "openminion-getting-started/commit-message-shape#1",
+      "action": "unchanged",
+      "attempts": 0,
+      "gate_errors": [],
+      "review_issues": [],
+      "words": 81,
+      "parts": 1
+    },
+    {
+      "file": "docs/getting-started.md",
+      "key": "openminion-getting-started/boundary-reminder#1",
+      "action": "unchanged",
+      "attempts": 0,
+      "gate_errors": [],
+      "review_issues": [],
+      "words": 36,
+      "parts": 1
+    },
+    {
+      "file": "docs/runtime-surfaces.md",
+      "key": "openminion-runtime-surfaces#1",
+      "action": "unchanged",
+      "attempts": 0,
+      "gate_errors": [],
+      "review_issues": [],
+      "words": 27,
+      "parts": 1
+    },
+    {
+      "file": "docs/runtime-surfaces.md",
+      "key": "openminion-runtime-surfaces/primary-surfaces#1",
+      "action": "unchanged",
+      "attempts": 0,
+      "gate_errors": [],
+      "review_issues": [],
+      "words": 2,
+      "parts": 1
+    },
+    {
+      "file": "docs/runtime-surfaces.md",
+      "key": "openminion-runtime-surfaces/primary-surfaces/1-interactive-cli#1",
+      "action": "unchanged",
+      "attempts": 0,
+      "gate_errors": [],
+      "review_issues": [],
+      "words": 88,
+      "parts": 1
+    },
+    {
+      "file": "docs/runtime-surfaces.md",
+      "key": "openminion-runtime-surfaces/primary-surfaces/2-python-library-api#1",
+      "action": "unchanged",
+      "attempts": 0,
+      "gate_errors": [],
+      "review_issues": [],
+      "words": 590,
+      "parts": 1
+    },
+    {
+      "file": "docs/runtime-surfaces.md",
+      "key": "openminion-runtime-surfaces/primary-surfaces/3-api-runtime-server-surface#1",
+      "action": "unchanged",
+      "attempts": 0,
+      "gate_errors": [],
+      "review_issues": [],
+      "words": 29,
+      "parts": 1
+    },
+    {
+      "file": "docs/runtime-surfaces.md",
+      "key": "openminion-runtime-surfaces/primary-surfaces/4-companion-operator-clis#1",
+      "action": "unchanged",
+      "attempts": 0,
+      "gate_errors": [],
+      "review_issues": [],
+      "words": 45,
+      "parts": 1
+    },
+    {
+      "file": "docs/runtime-surfaces.md",
+      "key": "openminion-runtime-surfaces/primary-surfaces/5-visual-graph-inspection#1",
+      "action": "unchanged",
+      "attempts": 0,
+      "gate_errors": [],
+      "review_issues": [],
+      "words": 265,
+      "parts": 1
+    },
+    {
+      "file": "docs/runtime-surfaces.md",
+      "key": "openminion-runtime-surfaces/primary-surfaces/6-acp-and-published-mcp#1",
+      "action": "unchanged",
+      "attempts": 0,
+      "gate_errors": [],
+      "review_issues": [],
+      "words": 88,
+      "parts": 1
+    },
+    {
+      "file": "docs/runtime-surfaces.md",
+      "key": "openminion-runtime-surfaces/example-surfaces#1",
+      "action": "unchanged",
+      "attempts": 0,
+      "gate_errors": [],
+      "review_issues": [],
+      "words": 65,
+      "parts": 1
+    },
+    {
+      "file": "docs/runtime-surfaces.md",
+      "key": "openminion-runtime-surfaces/not-blanket-public#1",
+      "action": "unchanged",
+      "attempts": 0,
+      "gate_errors": [],
+      "review_issues": [],
+      "words": 106,
+      "parts": 1
+    },
+    {
+      "file": "docs/turn-budgets.md",
+      "key": "understanding-turn-budgets-and-token-cost#1",
+      "action": "unchanged",
+      "attempts": 0,
+      "gate_errors": [],
+      "review_issues": [],
+      "words": 45,
+      "parts": 1
+    },
+    {
+      "file": "docs/turn-budgets.md",
+      "key": "understanding-turn-budgets-and-token-cost/what-the-defaults-control#1",
+      "action": "unchanged",
+      "attempts": 0,
+      "gate_errors": [],
+      "review_issues": [],
+      "words": 205,
+      "parts": 1
+    },
+    {
+      "file": "docs/turn-budgets.md",
+      "key": "understanding-turn-budgets-and-token-cost/catalog-size-is-not-request-size#1",
+      "action": "unchanged",
+      "attempts": 0,
+      "gate_errors": [],
+      "review_issues": [],
+      "words": 162,
+      "parts": 1
+    },
+    {
+      "file": "docs/turn-budgets.md",
+      "key": "understanding-turn-budgets-and-token-cost/automatic-fact-extraction#1",
+      "action": "unchanged",
+      "attempts": 0,
+      "gate_errors": [],
+      "review_issues": [],
+      "words": 361,
+      "parts": 1
+    },
+    {
+      "file": "docs/turn-budgets.md",
+      "key": "understanding-turn-budgets-and-token-cost/choose-a-change-from-evidence#1",
+      "action": "unchanged",
+      "attempts": 0,
+      "gate_errors": [],
+      "review_issues": [],
+      "words": 186,
+      "parts": 1
+    },
+    {
+      "file": "docs/turn-budgets.md",
+      "key": "understanding-turn-budgets-and-token-cost/maintainer-assessment-for-issue-497#1",
+      "action": "unchanged",
+      "attempts": 0,
+      "gate_errors": [],
+      "review_issues": [],
+      "words": 258,
+      "parts": 1
+    },
+    {
+      "file": "docs/provider-capabilities.md",
+      "key": "provider-capabilities#1",
+      "action": "unchanged",
+      "attempts": 0,
+      "gate_errors": [],
+      "review_issues": [],
+      "words": 32,
+      "parts": 1
+    },
+    {
+      "file": "docs/provider-capabilities.md",
+      "key": "provider-capabilities/profile-facts#1",
+      "action": "unchanged",
+      "attempts": 0,
+      "gate_errors": [],
+      "review_issues": [],
+      "words": 42,
+      "parts": 1
+    },
+    {
+      "file": "docs/provider-capabilities.md",
+      "key": "provider-capabilities/request-requirements#1",
+      "action": "unchanged",
+      "attempts": 0,
+      "gate_errors": [],
+      "review_issues": [],
+      "words": 69,
+      "parts": 1
+    },
+    {
+      "file": "docs/provider-capabilities.md",
+      "key": "provider-capabilities/inspecting-the-matrix#1",
+      "action": "unchanged",
+      "attempts": 0,
+      "gate_errors": [],
+      "review_issues": [],
+      "words": 34,
+      "parts": 1
+    },
+    {
+      "file": "docs/provider-capabilities.md",
+      "key": "provider-capabilities/http-connection-reuse#1",
+      "action": "source_fallback",
+      "attempts": 3,
+      "gate_errors": [
+        "missing from the model's output"
+      ],
+      "review_issues": [],
+      "words": 75,
+      "parts": 1
+    },
+    {
+      "file": "docs/configuration-compatibility.md",
+      "key": "configuration-compatibility-notes#1",
+      "action": "unchanged",
+      "attempts": 0,
+      "gate_errors": [],
+      "review_issues": [],
+      "words": 59,
+      "parts": 1
+    },
+    {
+      "file": "docs/configuration-compatibility.md",
+      "key": "configuration-compatibility-notes/selfimprovement-maxappliednotes#1",
+      "action": "unchanged",
+      "attempts": 0,
+      "gate_errors": [],
+      "review_issues": [],
+      "words": 87,
+      "parts": 1
+    },
+    {
+      "file": "docs/configuration-compatibility.md",
+      "key": "configuration-compatibility-notes/selfimprovement-mintokenoverlap#1",
+      "action": "unchanged",
+      "attempts": 0,
+      "gate_errors": [],
+      "review_issues": [],
+      "words": 86,
+      "parts": 1
+    },
+    {
+      "file": "docs/configuration-compatibility.md",
+      "key": "configuration-compatibility-notes/measured-behaviour-these-fields-do-not-change#1",
+      "action": "unchanged",
+      "attempts": 0,
+      "gate_errors": [],
+      "review_issues": [],
+      "words": 70,
+      "parts": 1
+    },
+    {
+      "file": "docs/configuration-compatibility.md",
+      "key": "configuration-compatibility-notes/related#1",
+      "action": "unchanged",
+      "attempts": 0,
+      "gate_errors": [],
+      "review_issues": [],
+      "words": 22,
+      "parts": 1
+    },
+    {
+      "file": "examples/sdk/README.md",
+      "key": "python-sdk-examples#1",
+      "action": "unchanged",
+      "attempts": 0,
+      "gate_errors": [],
+      "review_issues": [],
+      "words": 59,
+      "parts": 1
+    },
+    {
+      "file": "examples/sdk/README.md",
+      "key": "python-sdk-examples/example-map#1",
+      "action": "unchanged",
+      "attempts": 0,
+      "gate_errors": [],
+      "review_issues": [],
+      "words": 98,
+      "parts": 1
+    },
+    {
+      "file": "examples/sdk/README.md",
+      "key": "python-sdk-examples/handoff-approval#1",
+      "action": "unchanged",
+      "attempts": 0,
+      "gate_errors": [],
+      "review_issues": [],
+      "words": 154,
+      "parts": 1
+    }
+  ],
+  "glossary_proposals": [],
+  "glossary_added": [],
+  "validation": {
+    "candidates": [],
+    "summary": "no broken commands or imports"
+  },
+  "turns": [
+    {
+      "role": "translate",
+      "label": "docs/provider-capabilities.md [http-connection-reuse]",
+      "ok": false,
+      "seconds": 901.4060000000027,
+      "tool_calls": 0,
+      "run_id": "",
+      "error": "TurnTimeoutError: Turn execution timed out after 900.00 seconds.",
+      "stats": {},
+      "raw": "",
+      "calls": []
+    },
+    {
+      "role": "translate",
+      "label": "docs/provider-capabilities.md [http-connection-reuse]",
+      "ok": false,
+      "seconds": 900.4850000000006,
+      "tool_calls": 0,
+      "run_id": "",
+      "error": "TurnTimeoutError: Turn execution timed out after 900.00 seconds.",
+      "stats": {},
+      "raw": "",
+      "calls": []
+    },
+    {
+      "role": "translate",
+      "label": "docs/provider-capabilities.md [http-connection-reuse] (solo http-connection-reuse)",
+      "ok": false,
+      "seconds": 900.390999999996,
+      "tool_calls": 0,
+      "run_id": "",
+      "error": "TurnTimeoutError: Turn execution timed out after 900.00 seconds.",
+      "stats": {},
+      "raw": "",
+      "calls": []
+    }
+  ]
+}
