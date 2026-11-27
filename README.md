@@ -12,9 +12,11 @@ after, runs at the end of every sync and tests each command and import in the
 translation against the real SDK.
 
 Built on the OpenMinion 0.1 Python SDK for Cortensor Hackathon #5. While
-building it we found a bug in the SDK, and our fix
-([openminion#810](https://github.com/openminion/openminion/pull/810)) was
-merged and shipped in openminion 0.1.24.
+building it we found bugs in the SDK and fixed two of them:
+[openminion#810](https://github.com/openminion/openminion/pull/810) was
+merged and shipped in openminion 0.1.24, and
+[openminion#869](https://github.com/openminion/openminion/pull/869) was merged into `dev`
+for the next release.
 
 [![Watch the DocTwin demo](demo/thumbnail.png)](https://youtu.be/YquM4dqjr7M)
 
@@ -60,7 +62,7 @@ are unchanged, and the code block is byte-identical.
 | Demo video, 1 to 5 minutes | <https://youtu.be/YquM4dqjr7M> |
 | Building Blocks Tested | [BUILDING_BLOCKS.md](BUILDING_BLOCKS.md) |
 | What We Learned | [WHAT_WE_LEARNED.md](WHAT_WE_LEARNED.md) |
-| Bug report and fix PR | [openminion#803](https://github.com/openminion/openminion/issues/803), fixed by [openminion#810](https://github.com/openminion/openminion/pull/810): merged, shipped in 0.1.24 |
+| Bug reports and fix PRs | [openminion#803](https://github.com/openminion/openminion/issues/803), fixed by [openminion#810](https://github.com/openminion/openminion/pull/810): merged, shipped in 0.1.24. [openminion#804](https://github.com/openminion/openminion/issues/804), part 1 fixed by [openminion#869](https://github.com/openminion/openminion/pull/869): approved and merged into `dev` |
 | Portal and Gemma4 testing | a complete one-section sync on Portal ([evidence](evidence/portal/doctwin-sync-oss-20b/)), and every run in [WHAT_WE_LEARNED.md](WHAT_WE_LEARNED.md), Part D |
 
 ## Why
@@ -227,8 +229,11 @@ Details, with file and line references, are in
   `completed`.** The reply is a fixed text built into OpenMinion, not a model
   answer, so callers cannot tell it apart. Reported as
   [openminion#804](https://github.com/openminion/openminion/issues/804), where
-  the maintainer also corrected part of our analysis. We followed up there
-  with a proposed fix.
+  the maintainer also corrected part of our analysis. The maintainer accepted
+  the first part of our proposed fix, and our PR [openminion#869](https://github.com/openminion/openminion/pull/869)
+  gives the most common case, an oversized new request, its own reason and a
+  question that says what happened. It is approved and merged into `dev`; the
+  rest of the issue stays with the maintainers.
 - **`Agent(output_type=...)` never sends the schema to the model.** We measured
   how often replies were valid with and without our workaround. Another builder
   reported the same gap as
@@ -273,7 +278,7 @@ src/docdrift/    command, snippet and env-var checks, plus the triage agents
 tests/           20 tests, no model needed
 translations/    the Indonesian docs DocTwin produced, with ledger and reports
 evidence/        logs and reports from the real runs
-upstream/        the issue texts, patch and release check we sent to OpenMinion
+upstream/        the issue texts, PR descriptions, patch and release check we sent to OpenMinion
 scripts/         helpers: the one-sentence demo source, and re-syncing after a rule change
 demo/            the raw screen recording, the thumbnail, and the scripts that build the demo video
 ```

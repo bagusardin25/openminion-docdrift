@@ -24,7 +24,9 @@ What we would change, most useful first:
 2. **Report the real validation error** (A2). Done: our fix shipped in
    openminion 0.1.24.
 3. **Do not return a refused turn as a `completed` run** (A3, upstream #804).
-   Callers cannot tell the canned text from an answer.
+   Callers cannot tell the canned text from an answer. Partly done: our PR
+   #869, merged into `dev`, gives an oversized new request its own reason and a
+   truthful question. Carrying that reason to the API result is still open.
 4. **Make a tool turn cheaper** (A5). One question with one tool costs about 7
    provider calls.
 5. **Offer a small scoped memory API** (A8), so apps like this do not need a
@@ -90,7 +92,7 @@ cases (a schema-invalid reply without the prefix, a non-JSON reply, and two
 valid replies) give the same result on both versions. Posted on #803:
 [`upstream/issue-1-release-check.md`](upstream/issue-1-release-check.md).
 
-### A3. A user message over 12,000 characters returns a canned reply as a *completed* run (Confirmed, reported as [#804](https://github.com/openminion/openminion/issues/804))
+### A3. A user message over 12,000 characters returns a canned reply as a *completed* run (Confirmed, reported as [#804](https://github.com/openminion/openminion/issues/804); part 1 fixed by our PR [#869](https://github.com/openminion/openminion/pull/869))
 
 `Agent.run()` with a 12,492-character message returns *"I could not safely
 update the task conditions. Please restate the current task and its required
@@ -114,6 +116,18 @@ outcome through the API/SDK before output coercion. The issue is open under
 maintainer investigation. We re-checked through the SDK on current `dev` with a
 controlled provider and posted a bounded proposal
 ([`upstream/issue-2-followup-proposal.md`](upstream/issue-2-followup-proposal.md)).
+
+**Part 1 fixed by our PR [#869](https://github.com/openminion/openminion/pull/869).** The maintainer approved the
+first part of the proposal. With #869, a new request too long to keep word for
+word as the task objective gets its own reason, `task_context_capacity_exceeded`,
+and a question that states its length and the 12,000-character limit, instead of
+the generic restate text. The bound, the task state and every other failure
+reason are unchanged. The maintainer reviewed it, re-ran the checks, approved it
+and merged it into `dev` on 2026-11-27. It is not in a release yet (0.1.24 is the
+latest), so the issue stays open until a published package is verified. Parts 2
+and 3, carrying the reason to the API result and handling it before output
+coercion, stay with the maintainers. PR text:
+[`upstream/pr-804-part1-body.md`](upstream/pr-804-part1-body.md).
 
 This hit DocTwin hard. In our first translation run, 10 of 36 turns failed, and
 every failed reply we inspected was this text. #719 reports the same canned
