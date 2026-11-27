@@ -23,5 +23,3 @@ Contributor review
 - [x] I updated affected public documentation and kept unrelated cleanup out of this PR. (No public documentation describes this error message.)
 - [x] For brain or core changes, I traced the affected callers, stated any intended behavior change, and supplied positive and negative regression evidence for it and the neighboring contracts that must remain unchanged.
 - [ ] For cleanup, I linked the current inventory and per-file dispositions, validation and remaining work; for merged-code findings, I checked surviving code and existing owners on current `dev`. (Not a cleanup PR.)
-
-🤖 Generated with [Claude Code](https://claude.com/claude-code)
